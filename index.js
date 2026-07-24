@@ -11,7 +11,7 @@ app.listen(port, () => {
 });
 
 const { Client, GatewayIntentBits, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, PermissionFlagsBits } = require('discord.js');
-const { TicTacToe, ConnectFour, RockPaperScissors, GuessTheNumber, QuickClick, Slot } = require('discord-gamecord');
+const { ConnectFour, RockPaperScissors, GuessTheNumber, QuickClick, Slot } = require('discord-gamecord');
 
 const client = new Client({
     intents: [
@@ -34,7 +34,7 @@ const flagsGameData = [
     { country: "إيطاليا", flag: "🇮🇹", options: ["إسبانيا", "إيطاليا", "فرنسا", "اليونان"] }
 ];
 
-// لعبة عواصم الدول (جديدة)
+// لعبة عواصم الدول (محدثة بـ 18 دولة وعاصمة)
 const capitalsGameData = [
     { country: "المملكة العربية السعودية", capital: "الرياض", options: ["الرياض", "جدة", "مكة المكرمة", "الدمام"] },
     { country: "الإمارات العربية المتحدة", capital: "أبوظبي", options: ["دبي", "أبوظبي", "الشارقة", "عجمان"] },
@@ -43,10 +43,20 @@ const capitalsGameData = [
     { country: "قطر", capital: "الدوحة", options: ["الوكرة", "الدوحة", "الخور", "لوسيل"] },
     { country: "اليابان", capital: "طوكيو", options: ["أوساكا", "طوكيو", "كيوتو", "هيروشيما"] },
     { country: "فرنسا", capital: "باريس", options: ["مارسيليا", "ليون", "باريس", "نيس"] },
-    { country: "المملكة المتحدة", capital: "لندن", options: ["مانشستر", "لندن", "ليفربول", "برمنغهام"] }
+    { country: "المملكة المتحدة", capital: "لندن", options: ["مانشستر", "لندن", "ليفربول", "برمنغهام"] },
+    { country: "إيطاليا", capital: "روما", options: ["ميلانو", "روما", "البندقية", "فلورنس"] },
+    { country: "إسبانيا", capital: "مدريد", options: ["برشلونة", "مدريد", "إشبيلية", "فالنسيا"] },
+    { country: "ألمانيا", capital: "برلين", options: ["ميونخ", "برلين", "فرانكفورت", "هامبورغ"] },
+    { country: "التركية", capital: "أنقرة", options: ["إسطنبول", "أنقرة", "إزمير", "أنطاليا"] },
+    { country: "المغرب", capital: "الرباط", options: ["الدار البيضاء", "الرباط", "مراكش", "فاس"] },
+    { country: "الجزائر", capital: "الجزائر", options: ["وهران", "الجزائر", "قسنطينة", "عنابة"] },
+    { country: "تونس", capital: "تونس", options: ["سوسة", "تونس", "صفاقس", "بنزرت"] },
+    { country: "العراق", capital: "بغداد", options: ["البصرة", "بغداد", "أربيل", "الموصل"] },
+    { country: "الأردن", capital: "عمان", options: ["العقبة", "عمان", "إربد", "الزرقاء"] },
+    { country: "سلطنة عمان", capital: "مسقط", options: ["صلالة", "مسقط", "نزوى", "صحر"] }
 ];
 
-// لعبة فكك (30+ كلمة)
+// لعبة فكك
 const fakkData = [
     { word: "مكتبة", spaced: "م ك ت ب ة" },
     { word: "حاسب", spaced: "ح ا س ب" },
@@ -55,37 +65,7 @@ const fakkData = [
     { word: "قهوة", spaced: "ق ه و ة" },
     { word: "مفتاح", spaced: "م ف ت ا ح" },
     { word: "كمبيوتر", spaced: "ك م ب ي و ت ر" },
-    { word: "مدرستنا", spaced: "م د ر س ت ن ا" },
-    { word: "سيارة", spaced: "س ي ا ر ة" },
-    { word: "مستشفى", spaced: "م س ت ش ف ي" },
-    { word: "تلفاز", spaced: "ت ل ف ا ز" },
-    { word: "جامعة", spaced: "ج ا م ع ة" },
-    { word: "نافذة", spaced: "ن ا ف ذ ة" },
-    { word: "حديقة", spaced: "ح د ي ق ة" },
-    { word: "شارع", spaced: "ش ا ر ع" },
-    { word: "طائرة", spaced: "ط ا ئ ر ة" },
-    { word: "قطار", spaced: "ق ط ا ر" },
-    { word: "ملعب", spaced: "م ل ع ب" },
-    { word: "هاتف", spaced: "ه ا ت ف" },
-    { word: "سماعة", spaced: "س م ا ع ة" },
-    { word: "لوحة", spaced: "ل و ح ة" },
-    { word: "قلم", spaced: "ق ل م" },
-    { word: "مسجد", spaced: "م س ج د" },
-    { word: "طاولة", spaced: "ط ا و ل ة" },
-    { word: "ساعة", spaced: "س ا ع ة" },
-    { word: "شباك", spaced: "ش ب ا ك" },
-    { word: "باب", spaced: "ب ا ب" },
-    { word: "جسر", spaced: "ج س ر" },
-    { word: "مطار", spaced: "م ط ا ر" },
-    { word: "مركب", spaced: "م ر ك ب" },
-    { word: "محفظة", spaced: "م ح ف ظ ة" },
-    { word: "ثلاجة", spaced: "ث ل ا ج ة" },
-    { word: "مكيف", spaced: "م ك ي ف" },
-    { word: "كرسي", spaced: "ك ر س ي" },
-    { word: "قميص", spaced: "ق م ي ص" },
-    { word: "حقيبة", spaced: "ح ق ي ب ة" },
-    { word: "دفتر", spaced: "د ف ت ر" },
-    { word: "سبورة", spaced: "س ب و ر ة" }
+    { word: "مدرستنا", spaced: "م د ر س ت ن ا" }
 ];
 
 // لعبة ركب
@@ -179,14 +159,92 @@ client.on('messageCreate', async message => {
         await message.reply({ embeds: [helpEmbed] });
     }
 
+    // لعبة إكس أو بالعربي
     if (message.content === '!xo') {
-        const Game = new TicTacToe({
-            message: message, isSlashGame: false,
-            opponent: message.mentions.users.first() || message.author,
-            embed: { title: 'لعبة إكس أو', color: '#5865F2' },
-            mentionUser: true, timeoutTime: 60000,
+        const opponent = message.mentions.users.first();
+        if (!opponent) {
+            return message.reply('❌ يجب عليك منشن شخص لتبدأ معه لعبة إكس أو! مثال: `!xo @الشخص`');
+        }
+        if (opponent.bot || opponent.id === message.author.id) {
+            return message.reply('❌ لا يمكنك اللعب مع بوت أو مع نفسك!');
+        }
+
+        let board = Array(9).fill(null);
+        let turn = message.author.id;
+
+        const getRow = (currentBoard) => {
+            let rows = [];
+            for (let i = 0; i < 3; i++) {
+                let row = new ActionRowBuilder();
+                for (let j = 0; j < 3; j++) {
+                    let index = i * 3 + j;
+                    let label = "➖";
+                    let style = ButtonStyle.Secondary;
+                    if (currentBoard[index] === 'X') {
+                        label = "❌";
+                        style = ButtonStyle.Danger;
+                    } else if (currentBoard[index] === 'O') {
+                        label = "⭕";
+                        style = ButtonStyle.Primary;
+                    }
+                    row.addComponents(
+                        new ButtonBuilder()
+                            .setCustomId(`xo_${index}`)
+                            .setLabel(label)
+                            .setStyle(style)
+                            .setDisabled(currentBoard[index] !== null)
+                    );
+                }
+                rows.push(row);
+            }
+            return rows;
+        };
+
+        const checkWin = (b) => {
+            const wins = [
+                [0, 1, 2], [3, 4, 5], [6, 7, 8],
+                [0, 3, 6], [1, 4, 7], [2, 5, 8],
+                [0, 4, 8], [2, 4, 6]
+            ];
+            for (let w of wins) {
+                if (b[w[0]] && b[w[0]] === b[w[1]] && b[w[0]] === b[w[2]]) {
+                    return b[w[0]];
+                }
+            }
+            if (b.every(cell => cell !== null)) return 'tie';
+            return null;
+        };
+
+        const embed = new EmbedBuilder()
+            .setTitle('❌ لعبة إكس أو ⭕')
+            .setDescription(`دور اللاعب: <@${turn}> (❌)`)
+            .setColor(0x5865F2);
+
+        const gameMessage = await message.reply({ embeds: [embed], components: getRow(board) });
+        const collector = gameMessage.createMessageComponentCollector({ time: 60000 });
+
+        collector.on('collect', async interaction => {
+            if (interaction.user.id !== turn) {
+                return interaction.reply({ content: '❌ ليس دورك الآن!', ephemeral: true });
+            }
+
+            const index = parseInt(interaction.customId.split('_')[1]);
+            board[index] = (turn === message.author.id) ? 'X' : 'O';
+
+            let winner = checkWin(board);
+            if (winner) {
+                collector.stop();
+                let resultText = winner === 'tie' ? '🤝 تعادلتما!' : `🎉 الفائز هو <@${turn}> مبروك!`;
+                embed.setDescription(`انتهت اللعبة!\n\n${resultText}`);
+                return await interaction.update({ embeds: [embed], components: getRow(board) });
+            }
+
+            turn = (turn === message.author.id) ? opponent.id : message.author.id;
+            let symbolText = (turn === message.author.id) ? '❌' : '⭕';
+            embed.setDescription(`دور اللاعب: <@${turn}> (${symbolText})`);
+
+            await interaction.update({ embeds: [embed], components: getRow(board) });
         });
-        Game.startGame();
     }
 
     if (message.content === '!اربع') {
