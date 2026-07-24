@@ -47,7 +47,7 @@ const capitalsGameData = [
     { country: "إيطاليا", capital: "روما", options: ["ميلانو", "روما", "البندقية", "فلورنس"] },
     { country: "إسبانيا", capital: "مدريد", options: ["برشلونة", "مدريد", "إشبيلية", "فالنسيا"] },
     { country: "ألمانيا", capital: "برلين", options: ["ميونخ", "برلين", "فرانكفورت", "هامبورغ"] },
-    { country: "التركية", capital: "أنقرة", options: ["إسطنبول", "أنقرة", "إزمير", "أنطاليا"] },
+    { country: "تركيا", capital: "أنقرة", options: ["إسطنبول", "أنقرة", "إزمير", "أنطاليا"] },
     { country: "المغرب", capital: "الرباط", options: ["الدار البيضاء", "الرباط", "مراكش", "فاس"] },
     { country: "الجزائر", capital: "الجزائر", options: ["وهران", "الجزائر", "قسنطينة", "عنابة"] },
     { country: "تونس", capital: "تونس", options: ["سوسة", "تونس", "صفاقس", "بنزرت"] },
@@ -112,6 +112,7 @@ client.once('ready', () => {
 client.on('messageCreate', async message => {
     if (message.author.bot) return;
 
+    // أمر تنظيف الشات (!clear)
     if (message.content.startsWith('!clear')) {
         if (!message.member.permissions.has(PermissionFlagsBits.ManageMessages)) {
             return message.reply({ content: '❌ ما عندك صلاحية لإستخدام هذا الأمر!', ephemeral: true });
@@ -136,12 +137,27 @@ client.on('messageCreate', async message => {
         return;
     }
 
+    // أمر معلومات السيرفر (!server)
+    if (message.content === '!server') {
+        const serverEmbed = new EmbedBuilder()
+            .setTitle(`📊 معلومات السيرفر: ${message.guild.name}`)
+            .setThumbnail(message.guild.iconURL({ dynamic: true }))
+            .addFields(
+                { name: '👑 الأنر (المالك):', value: `<@${message.guild.ownerId}>`, inline: true },
+                { name: '👥 عدد الأعضاء:', value: `${message.guild.memberCount}`, inline: true },
+                { name: '📅 تاريخ الإنشاء:', value: `<t:${Math.floor(message.guild.createdTimestamp / 1000)}:R>`, inline: true }
+            )
+            .setColor(0x5865F2);
+        return message.reply({ embeds: [serverEmbed] });
+    }
+
+    // قائمة المساعدة (!help)
     if (message.content === '!help') {
         const helpEmbed = new EmbedBuilder()
-            .setTitle('🎮 قائمة ألعاب البوت التفاعلية الشاملة')
-            .setDescription('اختر لعبتك المفضلة واكتب أمرها في الشات:')
+            .setTitle('🎮 قائمة ألعاب البوت التفاعلية والأوامر')
+            .setDescription('اختر لعبتك المفضلة أو الأمر واكتبه في الشات:')
             .addFields(
-                { name: '❌ إكس أو', value: '`!xo`', inline: true },
+                { name: '❌ إكس أو', value: '`!xo @الشخص`', inline: true },
                 { name: '🟡 أربع على الحواف', value: '`!اربع`', inline: true },
                 { name: '✂️ حجر ورق مقص', value: '`!rps`', inline: true },
                 { name: '🔢 تخمين الرقم', value: '`!تخمين`', inline: true },
@@ -152,14 +168,16 @@ client.on('messageCreate', async message => {
                 { name: '🏛️ لعبة العواصم', value: '`!عواصم`', inline: true },
                 { name: '🧩 لعبة فكك', value: '`!فكك`', inline: true },
                 { name: '🔤 لعبة ركب', value: '`!ركب`', inline: true },
-                { name: '🧠 لعبة حزر', value: '`!حزر`', inline: true }
+                { name: '🧠 لعبة حزر', value: '`!حزر`', inline: true },
+                { name: '📊 معلومات السيرفر', value: '`!server`', inline: true },
+                { name: '🧹 مسح الشات', value: '`!clear`', inline: true }
             )
             .setColor(0x5865F2);
 
         await message.reply({ embeds: [helpEmbed] });
     }
 
-    // لعبة إكس أو بالعربي (مدة الاستجابة واللعب 5 دقائق)
+    // لعبة إكس أو بالعربي
     if (message.content.startsWith('!xo')) {
         const args = message.content.split(' ');
         let opponent = message.mentions.users.first();
@@ -191,7 +209,6 @@ client.on('messageCreate', async message => {
 
         const inviteMessage = await message.reply({ content: `<@${opponent.id}>`, embeds: [inviteEmbed], components: [inviteRow] });
         
-        // 5 دقائق للموافقة (300000 ملي ثانية)
         const inviteCollector = inviteMessage.createMessageComponentCollector({ time: 300000 });
 
         inviteCollector.on('collect', async interaction => {
@@ -262,7 +279,6 @@ client.on('messageCreate', async message => {
 
             await interaction.update({ embeds: [gameEmbed], components: getRow(board) });
             
-            // 5 دقائق مدة اللعبة كاملة (300000 ملي ثانية)
             const gameCollector = inviteMessage.createMessageComponentCollector({ time: 300000 });
 
             gameCollector.on('collect', async gameInteraction => {
