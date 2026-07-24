@@ -34,7 +34,7 @@ const flagsGameData = [
     { country: "إيطاليا", flag: "🇮🇹", options: ["إسبانيا", "إيطاليا", "فرنسا", "اليونان"] }
 ];
 
-// لعبة عواصم الدول (محدثة بـ 18 دولة وعاصمة)
+// لعبة عواصم الدول
 const capitalsGameData = [
     { country: "المملكة العربية السعودية", capital: "الرياض", options: ["الرياض", "جدة", "مكة المكرمة", "الدمام"] },
     { country: "الإمارات العربية المتحدة", capital: "أبوظبي", options: ["دبي", "أبوظبي", "الشارقة", "عجمان"] },
@@ -159,7 +159,7 @@ client.on('messageCreate', async message => {
         await message.reply({ embeds: [helpEmbed] });
     }
 
-    // لعبة إكس أو بالعربي (تم التعديل هنا لتقبل المنشن والآي دي بنجاح)
+    // لعبة إكس أو بالعربي (طلب الموافقة بمهلة دقيقة كاملة 60000)
     if (message.content.startsWith('!xo')) {
         const args = message.content.split(' ');
         let opponent = message.mentions.users.first();
@@ -179,81 +179,123 @@ client.on('messageCreate', async message => {
             return message.reply('❌ لا يمكنك اللعب مع بوت أو مع نفسك!');
         }
 
-        let board = Array(9).fill(null);
-        let turn = message.author.id;
-
-        const getRow = (currentBoard) => {
-            let rows = [];
-            for (let i = 0; i < 3; i++) {
-                let row = new ActionRowBuilder();
-                for (let j = 0; j < 3; j++) {
-                    let index = i * 3 + j;
-                    let label = "➖";
-                    let style = ButtonStyle.Secondary;
-                    if (currentBoard[index] === 'X') {
-                        label = "❌";
-                        style = ButtonStyle.Danger;
-                    } else if (currentBoard[index] === 'O') {
-                        label = "⭕";
-                        style = ButtonStyle.Primary;
-                    }
-                    row.addComponents(
-                        new ButtonBuilder()
-                            .setCustomId(`xo_${index}`)
-                            .setLabel(label)
-                            .setStyle(style)
-                            .setDisabled(currentBoard[index] !== null)
-                    );
-                }
-                rows.push(row);
-            }
-            return rows;
-        };
-
-        const checkWin = (b) => {
-            const wins = [
-                [0, 1, 2], [3, 4, 5], [6, 7, 8],
-                [0, 3, 6], [1, 4, 7], [2, 5, 8],
-                [0, 4, 8], [2, 4, 6]
-            ];
-            for (let w of wins) {
-                if (b[w[0]] && b[w[0]] === b[w[1]] && b[w[0]] === b[w[2]]) {
-                    return b[w[0]];
-                }
-            }
-            if (b.every(cell => cell !== null)) return 'tie';
-            return null;
-        };
-
-        const embed = new EmbedBuilder()
-            .setTitle('❌ لعبة إكس أو ⭕')
-            .setDescription(`دور اللاعب: <@${turn}> (❌)`)
+        const inviteEmbed = new EmbedBuilder()
+            .setTitle('🎮 طلب تحدي لعبة إكس أو ❌⭕')
+            .setDescription(`لقد تحداك <@${message.author.id}> للعبة إكس أو!\nهل توافق على التحدي يا <@${opponent.id}>؟`)
             .setColor(0x5865F2);
 
-        const gameMessage = await message.reply({ embeds: [embed], components: getRow(board) });
-        const collector = gameMessage.createMessageComponentCollector({ time: 60000 });
+        const inviteRow = new ActionRowBuilder().addComponents(
+            new ButtonBuilder().setCustomId('xo_accept').setLabel('وافق').setStyle(ButtonStyle.Success),
+            new ButtonBuilder().setCustomId('xo_decline').setLabel('رفض').setStyle(ButtonStyle.Danger)
+        );
 
-        collector.on('collect', async interaction => {
-            if (interaction.user.id !== turn) {
-                return interaction.reply({ content: '❌ ليس دورك الآن!', ephemeral: true });
+        const inviteMessage = await message.reply({ content: `<@${opponent.id}>`, embeds: [inviteEmbed], components: [inviteRow] });
+        const inviteCollector = inviteMessage.createMessageComponentCollector({ time: 60000 }); // دقيقة كاملة للموافقة
+
+        inviteCollector.on('collect', async interaction => {
+            if (interaction.user.id !== opponent.id) {
+                return interaction.reply({ content: '❌ هذا التحدي ليس موجهاً لك!', ephemeral: true });
             }
 
-            const index = parseInt(interaction.customId.split('_')[1]);
-            board[index] = (turn === message.author.id) ? 'X' : 'O';
-
-            let winner = checkWin(board);
-            if (winner) {
-                collector.stop();
-                let resultText = winner === 'tie' ? '🤝 تعادلتما!' : `🎉 الفائز هو <@${turn}> مبروك!`;
-                embed.setDescription(`انتهت اللعبة!\n\n${resultText}`);
-                return await interaction.update({ embeds: [embed], components: getRow(board) });
+            if (interaction.customId === 'xo_decline') {
+                inviteCollector.stop();
+                const declineEmbed = new EmbedBuilder()
+                    .setTitle('❌ تم رفض التحدي')
+                    .setDescription(`للأسف، رفض <@${opponent.id}> التحدي.`);
+                return await interaction.update({ embeds: [declineEmbed], components: [] });
             }
 
-            turn = (turn === message.author.id) ? opponent.id : message.author.id;
-            let symbolText = (turn === message.author.id) ? '❌' : '⭕';
-            embed.setDescription(`دور اللاعب: <@${turn}> (${symbolText})`);
+            inviteCollector.stop();
 
-            await interaction.update({ embeds: [embed], components: getRow(board) });
+            let board = Array(9).fill(null);
+            let turn = message.author.id;
+
+            const getRow = (currentBoard) => {
+                let rows = [];
+                for (let i = 0; i < 3; i++) {
+                    let row = new ActionRowBuilder();
+                    for (let j = 0; j < 3; j++) {
+                        let index = i * 3 + j;
+                        let label = "➖";
+                        let style = ButtonStyle.Secondary;
+                        if (currentBoard[index] === 'X') {
+                            label = "❌";
+                            style = ButtonStyle.Danger;
+                        } else if (currentBoard[index] === 'O') {
+                            label = "⭕";
+                            style = ButtonStyle.Primary;
+                        }
+                        row.addComponents(
+                            new ButtonBuilder()
+                                .setCustomId(`xo_${index}`)
+                                .setLabel(label)
+                                .setStyle(style)
+                                .setDisabled(currentBoard[index] !== null)
+                        );
+                    }
+                    rows.push(row);
+                }
+                return rows;
+            };
+
+            const checkWin = (b) => {
+                const wins = [
+                    [0, 1, 2], [3, 4, 5], [6, 7, 8],
+                    [0, 3, 6], [1, 4, 7], [2, 5, 8],
+                    [0, 4, 8], [2, 4, 6]
+                ];
+                for (let w of wins) {
+                    if (b[w[0]] && b[w[0]] === b[w[1]] && b[w[0]] === b[w[2]]) {
+                        return b[w[0]];
+                    }
+                }
+                if (b.every(cell => cell !== null)) return 'tie';
+                return null;
+            };
+
+            const gameEmbed = new EmbedBuilder()
+                .setTitle('❌ لعبة إكس أو ⭕')
+                .setDescription(`دور اللاعب: <@${turn}> (❌)`)
+                .setColor(0x5865F2);
+
+            await interaction.update({ embeds: [gameEmbed], components: getRow(board) });
+            
+            const gameCollector = inviteMessage.createMessageComponentCollector({ time: 60000 }); // دقيقة لكل حركة
+
+            gameCollector.on('collect', async gameInteraction => {
+                if (!gameInteraction.customId.startsWith('xo_')) return;
+                
+                if (gameInteraction.user.id !== turn) {
+                    return gameInteraction.reply({ content: '❌ ليس دورك الآن!', ephemeral: true });
+                }
+
+                const index = parseInt(gameInteraction.customId.split('_')[1]);
+                board[index] = (turn === message.author.id) ? 'X' : 'O';
+
+                let winner = checkWin(board);
+                if (winner) {
+                    gameCollector.stop();
+                    let resultText = winner === 'tie' ? '🤝 تعادلتما!' : `🎉 الفائز هو <@${turn}> مبروك!`;
+                    gameEmbed.setDescription(`انتهت اللعبة!\n\n${resultText}`);
+                    return await gameInteraction.update({ embeds: [gameEmbed], components: getRow(board) });
+                }
+
+                turn = (turn === message.author.id) ? opponent.id : message.author.id;
+                let symbolText = (turn === message.author.id) ? '❌' : '⭕';
+                gameEmbed.setDescription(`دور اللاعب: <@${turn}> (${symbolText})`);
+
+                await gameInteraction.update({ embeds: [gameEmbed], components: getRow(board) });
+            });
+        });
+
+        inviteCollector.on('end', async collected => {
+            if (collected.size === 0) {
+                const timeoutEmbed = new EmbedBuilder()
+                    .setTitle('⌛ انتهت الصلاحية')
+                    .setDescription('لم يقم الخصم بالرد على طلب التحدي في الوقت المحدد (دقيقة واحدة).')
+                    .setColor(0xFF0000);
+                await inviteMessage.edit({ embeds: [timeoutEmbed], components: [] }).catch(() => {});
+            }
         });
     }
 
