@@ -159,7 +159,7 @@ client.on('messageCreate', async message => {
         await message.reply({ embeds: [helpEmbed] });
     }
 
-    // لعبة إكس أو بالعربي (فقط اكتب !xo @الشخص بدون أي كلام إضافي)
+    // لعبة إكس أو بالعربي (مدة الاستجابة واللعب 5 دقائق)
     if (message.content.startsWith('!xo')) {
         const args = message.content.split(' ');
         let opponent = message.mentions.users.first();
@@ -190,7 +190,9 @@ client.on('messageCreate', async message => {
         );
 
         const inviteMessage = await message.reply({ content: `<@${opponent.id}>`, embeds: [inviteEmbed], components: [inviteRow] });
-        const inviteCollector = inviteMessage.createMessageComponentCollector({ time: 60000 }); // دقيقة كاملة للموافقة
+        
+        // 5 دقائق للموافقة (300000 ملي ثانية)
+        const inviteCollector = inviteMessage.createMessageComponentCollector({ time: 300000 });
 
         inviteCollector.on('collect', async interaction => {
             if (interaction.user.id !== opponent.id) {
@@ -260,11 +262,16 @@ client.on('messageCreate', async message => {
 
             await interaction.update({ embeds: [gameEmbed], components: getRow(board) });
             
-            const gameCollector = inviteMessage.createMessageComponentCollector({ time: 60000 });
+            // 5 دقائق مدة اللعبة كاملة (300000 ملي ثانية)
+            const gameCollector = inviteMessage.createMessageComponentCollector({ time: 300000 });
 
             gameCollector.on('collect', async gameInteraction => {
                 if (!gameInteraction.customId.startsWith('xo_')) return;
                 
+                if (gameInteraction.user.id !== message.author.id && gameInteraction.user.id !== opponent.id) {
+                    return gameInteraction.reply({ content: '❌ لا يمكنك اللعب في مباراة لا تخصك!', ephemeral: true });
+                }
+
                 if (gameInteraction.user.id !== turn) {
                     return gameInteraction.reply({ content: '❌ ليس دورك الآن!', ephemeral: true });
                 }
@@ -292,7 +299,7 @@ client.on('messageCreate', async message => {
             if (collected.size === 0) {
                 const timeoutEmbed = new EmbedBuilder()
                     .setTitle('⌛ انتهت الصلاحية')
-                    .setDescription('لم يقم الخصم بالرد على طلب التحدي في الوقت المحدد (دقيقة واحدة).')
+                    .setDescription('لم يقم الخصم بالرد على طلب التحدي في الوقت المحدد (5 دقائق).')
                     .setColor(0xFF0000);
                 await inviteMessage.edit({ embeds: [timeoutEmbed], components: [] }).catch(() => {});
             }
@@ -304,7 +311,7 @@ client.on('messageCreate', async message => {
             message: message, isSlashGame: false,
             opponent: message.mentions.users.first() || message.author,
             embed: { title: 'لعبة أربع على الحواف', color: '#5865F2' },
-            mentionUser: true, timeoutTime: 60000,
+            mentionUser: true, timeoutTime: 300000,
         });
         Game.startGame();
     }
@@ -314,7 +321,7 @@ client.on('messageCreate', async message => {
             message: message, isSlashGame: false,
             opponent: message.mentions.users.first() || message.author,
             embed: { title: 'حجر ورق مقص', color: '#5865F2' },
-            mentionUser: true, timeoutTime: 60000,
+            mentionUser: true, timeoutTime: 300000,
         });
         Game.startGame();
     }
@@ -323,7 +330,7 @@ client.on('messageCreate', async message => {
         const Game = new GuessTheNumber({
             message: message, isSlashGame: false,
             embed: { title: 'تخمين الرقم', color: '#5865F2' },
-            timeoutTime: 60000, mode: 'buttons'
+            timeoutTime: 300000, mode: 'buttons'
         });
         Game.startGame();
     }
@@ -332,7 +339,7 @@ client.on('messageCreate', async message => {
         const Game = new QuickClick({
             message: message, isSlashGame: false,
             embed: { title: 'تحدي السرعة', color: '#5865F2' },
-            timeoutTime: 60000,
+            timeoutTime: 300000,
         });
         Game.startGame();
     }
@@ -341,7 +348,7 @@ client.on('messageCreate', async message => {
         const Game = new Slot({
             message: message, isSlashGame: false,
             embed: { title: 'لعبة الحظ', color: '#5865F2' },
-            timeoutTime: 60000,
+            timeoutTime: 300000,
         });
         Game.startGame();
     }
@@ -366,7 +373,7 @@ client.on('messageCreate', async message => {
         });
 
         const gameMessage = await message.reply({ embeds: [embed], components: [row] });
-        const collector = gameMessage.createMessageComponentCollector({ time: 30000 });
+        const collector = gameMessage.createMessageComponentCollector({ time: 300000 });
 
         collector.on('collect', async interaction => {
             if (interaction.user.id !== message.author.id) {
@@ -402,7 +409,7 @@ client.on('messageCreate', async message => {
         });
 
         const gameMessage = await message.reply({ embeds: [embed], components: [row] });
-        const collector = gameMessage.createMessageComponentCollector({ time: 30000 });
+        const collector = gameMessage.createMessageComponentCollector({ time: 300000 });
 
         collector.on('collect', async interaction => {
             if (interaction.user.id !== message.author.id) {
@@ -438,7 +445,7 @@ client.on('messageCreate', async message => {
         });
 
         const gameMessage = await message.reply({ embeds: [embed], components: [row] });
-        const collector = gameMessage.createMessageComponentCollector({ time: 30000 });
+        const collector = gameMessage.createMessageComponentCollector({ time: 300000 });
 
         collector.on('collect', async interaction => {
             if (interaction.user.id !== message.author.id) {
@@ -464,7 +471,7 @@ client.on('messageCreate', async message => {
         await message.reply({ embeds: [embed] });
 
         const filter = response => response.author.id === message.author.id;
-        const collector = message.channel.createMessageCollector({ filter, time: 20000, max: 1 });
+        const collector = message.channel.createMessageCollector({ filter, time: 300000, max: 1 });
 
         collector.on('collect', response => {
             if (response.content.trim() === randomWord.spaced) {
@@ -485,7 +492,7 @@ client.on('messageCreate', async message => {
         await message.reply({ embeds: [embed] });
 
         const filter = response => response.author.id === message.author.id;
-        const collector = message.channel.createMessageCollector({ filter, time: 20000, max: 1 });
+        const collector = message.channel.createMessageCollector({ filter, time: 300000, max: 1 });
 
         collector.on('collect', response => {
             if (response.content.trim() === randomRakib.correct) {
@@ -506,7 +513,7 @@ client.on('messageCreate', async message => {
         await message.reply({ embeds: [embed] });
 
         const filter = response => response.author.id === message.author.id;
-        const collector = message.channel.createMessageCollector({ filter, time: 20000, max: 1 });
+        const collector = message.channel.createMessageCollector({ filter, time: 300000, max: 1 });
 
         collector.on('collect', response => {
             if (response.content.trim() === randomHazir.correct) {
