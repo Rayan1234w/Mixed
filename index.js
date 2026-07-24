@@ -159,7 +159,7 @@ client.on('messageCreate', async message => {
         await message.reply({ embeds: [helpEmbed] });
     }
 
-    // لعبة إكس أو بالعربي (طلب الموافقة بمهلة دقيقة كاملة 60000)
+    // لعبة إكس أو بالعربي (فقط اكتب !xo @الشخص بدون أي كلام إضافي)
     if (message.content.startsWith('!xo')) {
         const args = message.content.split(' ');
         let opponent = message.mentions.users.first();
@@ -260,7 +260,7 @@ client.on('messageCreate', async message => {
 
             await interaction.update({ embeds: [gameEmbed], components: getRow(board) });
             
-            const gameCollector = inviteMessage.createMessageComponentCollector({ time: 60000 }); // دقيقة لكل حركة
+            const gameCollector = inviteMessage.createMessageComponentCollector({ time: 60000 });
 
             gameCollector.on('collect', async gameInteraction => {
                 if (!gameInteraction.customId.startsWith('xo_')) return;
