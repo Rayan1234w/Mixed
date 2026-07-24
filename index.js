@@ -159,9 +159,19 @@ client.on('messageCreate', async message => {
         await message.reply({ embeds: [helpEmbed] });
     }
 
-    // لعبة إكس أو بالعربي
-    if (message.content === '!xo') {
-        const opponent = message.mentions.users.first();
+    // لعبة إكس أو بالعربي (تم التعديل هنا لتقبل المنشن والآي دي بنجاح)
+    if (message.content.startsWith('!xo')) {
+        const args = message.content.split(' ');
+        let opponent = message.mentions.users.first();
+        
+        if (!opponent && args[1]) {
+            const cleanId = args[1].replace(/[<@!>]/g, '');
+            try {
+                const fetchedUser = await client.users.fetch(cleanId);
+                if (fetchedUser) opponent = fetchedUser;
+            } catch (e) {}
+        }
+
         if (!opponent) {
             return message.reply('❌ يجب عليك منشن شخص لتبدأ معه لعبة إكس أو! مثال: `!xo @الشخص`');
         }
