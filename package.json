@@ -8,7 +8,6 @@
   },
   "dependencies": {
     "discord.js": "^14.14.1",
-    "discord-gamecord": "4.2.1",
     "express": "^4.19.2"
   }
 }
