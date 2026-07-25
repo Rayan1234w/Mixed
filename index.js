@@ -10,7 +10,7 @@ app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
 
-const { Client, GatewayIntentBits, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, PermissionFlagsBits } = require('discord.js');
+const { Client, GatewayIntentBits, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, PermissionsBitField } = require('discord.js');
 const { ConnectFour, RockPaperScissors, GuessTheNumber, QuickClick, Slot } = require('discord-gamecord');
 
 const client = new Client({
@@ -22,7 +22,7 @@ const client = new Client({
     ]
 });
 
-// لمعالجة الأخطاء ومنع البوت من الانهيار (تمت الإضافة لحل المشكلة)
+// لمعالجة الأخطاء ومنع البوت من الانهيار
 client.on('error', (error) => {
     console.error('خطأ في اتصال البوت:', error);
 });
@@ -125,46 +125,31 @@ client.once('ready', () => {
 client.on('messageCreate', async message => {
     if (message.author.bot) return;
 
-    // أمر تنظيف الشات (!clear)
+    // أمر مسح الشات (يعمل برمجياً ولكن غير موجود في قائمة المساعدة !help)
     if (message.content.startsWith('!clear')) {
-        if (!message.member.permissions.has(PermissionFlagsBits.ManageMessages)) {
-            return message.reply({ content: '❌ ما عندك صلاحية لإستخدام هذا الأمر!', ephemeral: true });
+        if (!message.member.permissions.has(PermissionsBitField.Flags.ManageMessages)) {
+            return message.reply('❌ ليس لديك صلاحية لإدارة الرسائل (Manage Messages)!');
+        }
+
+        const args = message.content.split(' ');
+        let amount = parseInt(args[1]);
+
+        if (isNaN(amount) || amount <= 0 || amount > 100) {
+            return message.reply('❌ يرجى تحديد عدد صحيح للرسائل المراد مسحها بين 1 و 100. مثال: `!clear 10`');
         }
 
         try {
-            let fetched;
-            do {
-                fetched = await message.channel.messages.fetch({ limit: 100 });
-                const messagesToDelete = fetched.filter(msg => !msg.pinned && (Date.now() - msg.createdTimestamp < 1209600000));
-                if (messagesToDelete.size === 0) break;
-                await message.channel.bulkDelete(messagesToDelete, true);
-                if (fetched.size < 100) break;
-            } while (true);
-
-            const reply = await message.channel.send('✅ تم تنظيف الروم بنجاح! تم حذف الرسائل غير المثبتة.');
-            setTimeout(() => reply.delete().catch(() => {}), 4000);
+            await message.channel.bulkDelete(amount + 1, true);
+            const confirmation = await message.channel.send(`✅ تم مسح **${amount}** رسالة بنجاح.`);
+            setTimeout(() => confirmation.delete().catch(() => {}), 4000);
         } catch (error) {
             console.error(error);
-            message.channel.send('❌ حدث خطأ أثناء محاولة مسح الرسائل.');
+            message.reply('❌ حدث خطأ أثناء محاولة مسح الرسائل. (تأكد من أن الرسائل أقدم من 14 يوماً ولدي الصلاحية المناسبة).');
         }
         return;
     }
 
-    // أمر معلومات السيرفر (!server)
-    if (message.content === '!server') {
-        const serverEmbed = new EmbedBuilder()
-            .setTitle(`📊 معلومات السيرفر: ${message.guild.name}`)
-            .setThumbnail(message.guild.iconURL({ dynamic: true }))
-            .addFields(
-                { name: '👑 الأنر (المالك):', value: `<@${message.guild.ownerId}>`, inline: true },
-                { name: '👥 عدد الأعضاء:', value: `${message.guild.memberCount}`, inline: true },
-                { name: '📅 تاريخ الإنشاء:', value: `<t:${Math.floor(message.guild.createdTimestamp / 1000)}:R>`, inline: true }
-            )
-            .setColor(0x5865F2);
-        return message.reply({ embeds: [serverEmbed] });
-    }
-
-    // قائمة المساعدة (!help)
+    // قائمة المساعدة (!help) بدون أمر مسح الشات وبدون أوامر السيرفر
     if (message.content === '!help') {
         const helpEmbed = new EmbedBuilder()
             .setTitle('🎮 قائمة ألعاب البوت التفاعلية والأوامر')
@@ -181,9 +166,7 @@ client.on('messageCreate', async message => {
                 { name: '🏛️ لعبة العواصم', value: '`!عواصم`', inline: true },
                 { name: '🧩 لعبة فكك', value: '`!فكك`', inline: true },
                 { name: '🔤 لعبة ركب', value: '`!ركب`', inline: true },
-                { name: '🧠 لعبة حزر', value: '`!حزر`', inline: true },
-                { name: '📊 معلومات السيرفر', value: '`!server`', inline: true },
-                { name: '🧹 مسح الشات', value: '`!clear`', inline: true }
+                { name: '🧠 لعبة حزر', value: '`!حزر`', inline: true }
             )
             .setColor(0x5865F2);
 
