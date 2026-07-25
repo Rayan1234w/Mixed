@@ -1,4 +1,93 @@
-const inviteMsg = await message.reply({ 
+const express = require('express');
+const app = express();
+const port = process.env.PORT || 3000;
+
+app.get('/', (req, res) => {
+  res.send('Bot is alive!');
+});
+
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
+
+const { Client, GatewayIntentBits, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, PermissionsBitField, REST, Routes, SlashCommandBuilder } = require('discord.js');
+const { ConnectFour, RockPaperScissors } = require('discord-gamecord');
+
+const client = new Client({
+    intents: [
+        GatewayIntentBits.Guilds,
+        GatewayIntentBits.GuildMembers,
+        GatewayIntentBits.GuildMessages,
+        GatewayIntentBits.MessageContent
+    ]
+});
+
+client.on('error', (error) => { console.error(error); });
+process.on('unhandledRejection', (error) => { console.error(error); });
+process.on('uncaughtException', (error) => { console.error(error); });
+
+// ==========================================
+// البيانات
+// ==========================================
+const fakkData = [
+    { word: "مكتبة", spaced: "م ك ت ب ة" }, { word: "حاسوب", spaced: "ح ا س و ب" }, { word: "مدرسة", spaced: "م د ر س ة" }
+];
+
+const rakibData = [
+    { scrambled: "س م ك", correct: "سمك" }, { scrambled: "ق م ر", correct: "قمر" }, { scrambled: "ش م ش", correct: "شمس" }
+];
+
+const triviaData = [
+    { question: "ما هي عاصمة المملكة العربية السعودية؟", correct: "الرياض", options: ["جدة", "الرياض", "الدمام", "مكة"] }
+];
+
+const flagsGameData = [
+    { country: "المملكة العربية السعودية", flag: "🇸🇦", options: ["المملكة العربية السعودية", "الإمارات العربية المتحدة", "الكويت", "قطر"] }
+];
+
+const capitalsGameData = [
+    { country: "المملكة العربية السعودية", capital: "الرياض", options: ["الرياض", "جدة", "مكة المكرمة", "الدمام"] }
+];
+
+const hazirData = [{ riddle: "ما هو الشيء الذي أبيض من السن وأسود من الليل؟", correct: "خط القران" }];
+
+function shuffleArray(array) {
+    return array.sort(() => Math.random() - 0.5);
+}
+
+client.once('ready', async () => {
+    console.log(`تم تسجيل الدخول بنجاح باسم: ${client.user.tag}`);
+});
+
+client.on('messageCreate', async message => {
+    if (message.author.bot) return;
+
+    if (message.content === '!help') {
+        const helpEmbed = new EmbedBuilder()
+            .setTitle('🎮 قائمة ألعاب البوت التفاعلية والأوامر')
+            .addFields(
+                { name: '✂️ حجر ورق مقص', value: '`!rps @الشخص`', inline: true },
+                { name: '🔢 تخمين الرقم', value: '`!تخمين`', inline: true },
+                { name: '⚡ تحدي السرعة', value: '`!سريع`', inline: true },
+                { name: '🎰 الحظ السعيد', value: '`!حظ`', inline: true },
+                { name: '❓ الأسئلة', value: '`!اسئلة`', inline: true },
+                { name: '🌍 الأعلام', value: '`!اعلام`', inline: true },
+                { name: '🏛️ العواصم', value: '`!عواصم`', inline: true },
+                { name: '🧩 فكك', value: '`!فكك`', inline: true },
+                { name: '🔤 ركب', value: '`!ركب`', inline: true },
+                { name: '🧠 حزر', value: '`!حزر`', inline: true }
+            )
+            .setColor(0x5865F2);
+        return message.reply({ embeds: [helpEmbed] });
+    }
+
+    // 3. حجر ورق مقص
+    if (message.content.startsWith('!rps')) {
+        let opponent = message.mentions.users.first();
+        if (!opponent) return message.reply('❌ منشن شخص لتبدأ معه! مثال: `!rps @الشخص`');
+        if (opponent.bot || opponent.id === message.author.id) return message.reply('❌ لا يمكنك اللعب مع نفسك أو بوت!');
+
+        const inviteMsg = await message.reply({ 
             content: `<@${opponent.id}>`, 
             embeds: [new EmbedBuilder().setTitle('✂️ تحدي حجر ورق مقص').setDescription(`تحدي من <@${message.author.id}>`).setColor(0x5865F2)], 
             components: [new ActionRowBuilder().addComponents(
@@ -104,7 +193,7 @@ const inviteMsg = await message.reply({
         return;
     }
 
-    // 8. الأعلام
+    // 8. الأعلام (تم تصحيح الخطأ هنا)
     if (message.content === '!اعلام') {
         const f = flagsGameData[Math.floor(Math.random() * flagsGameData.length)];
         const shuffledOpts = shuffleArray([...f.options]);
@@ -116,7 +205,7 @@ const inviteMsg = await message.reply({
             );
         });
 
-        const embed = newEmbedBuilder = new EmbedBuilder().setTitle('🌍 لعبة تخمين الأعلام').setDescription(`ما هو اسم الدولة الخاصة بهذا العلم؟\n\n# ${f.flag}`).setColor(0x5865F2);
+        const embed = new EmbedBuilder().setTitle('🌍 لعبة تخمين الأعلام').setDescription(`ما هو اسم الدولة الخاصة بهذا العلم؟\n\n# ${f.flag}`).setColor(0x5865F2);
         const msg = await message.reply({ embeds: [embed], components: [row] });
 
         const collector = msg.createMessageComponentCollector({ time: 30000 });
