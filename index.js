@@ -99,69 +99,39 @@ const triviaData = [
 ];
 
 const flagsGameData = [
-    { country: "المملكة العربية السعودية", flag: "🇸🇦", options: ["المملكة العربية السعودية", "الإمارات العربية المتحدة", "الكويت", "قطر"] },
-    { country: "الكويت", flag: "🇰🇼", options: ["الكويت", "البحرين", "عمان", "مصر"] },
-    { country: "الإمارات العربية المتحدة", flag: "🇦🇪", options: ["قطر", "الإمارات العربية المتحدة", "السعودية", "اليمن"] },
-    { country: "قطر", flag: "🇶🇦", options: ["قطر", "البحرين", "الكويت", "عمان"] },
-    { country: "البحرين", flag: "🇧🇭", options: ["البحرين", "الأردن", "العراق", "لبنان"] },
-    { country: "عمان", flag: "🇴🇲", options: ["عمان", "اليمن", "السعودية", "مصر"] },
-    { country: "مصر", flag: "🇪🇬", options: ["مصر", "سوريا", "فلسطين", "ليبيا"] },
-    { country: "العراق", flag: "🇮🇶", options: ["العراق", "الكويت", "الأردن", "إيران"] },
-    { country: "الأردن", flag: "🇯🇴", options: ["الأردن", "سوريا", "لبنان", "فلسطين"] },
-    { country: "فلسطين", flag: "🇵🇸", options: ["فلسطين", "الأردن", "مصر", "المغرب"] },
-    { country: "لبنان", flag: "🇱🇧", options: ["لبنان", "سوريا", "قبرص", "اليونان"] },
-    { country: "سوريا", flag: "🇸🇾", options: ["سوريا", "العراق", "مصر", "تركيا"] },
-    { country: "المغرب", flag: "🇲🇦", options: ["المغرب", "الجزائر", "تونس", "موريتانيا"] },
-    { country: "الجزائر", flag: "🇩🇿", options: ["الجزائر", "المغرب", "تونس", "ليبيا"] },
-    { country: "تونس", flag: "🇹🇳", options: ["تونس", "ليبيا", "مصر", "الجزائر"] },
-    { country: "ليبيا", flag: "🇱🇾", options: ["ليبيا", "السودان", "مصر", "تونس"] },
-    { country: "السودان", flag: "🇸🇩", options: ["السودان", "مصر", "إثيوبيا", "تشاد"] },
-    { country: "اليمن", flag: "🇾🇪", options: ["اليمن", "عمان", "السعودية", "الصومال"] },
-    { country: "تركيا", flag: "🇹🇷", options: ["تركيا", "اليونان", "إيطاليا", "إسبانيا"] },
-    { country: "إيطاليا", flag: "🇮🇹", options: ["إيطاليا", "فرنسا", "ألمانيا", "إسبانيا"] },
-    { country: "فرنسا", flag: "🇫🇷", options: ["فرنسا", "بريطانيا", "إيطاليا", "بلجيكا"] },
-    { country: "إسبانيا", flag: "🇪🇸", options: ["إسبانيا", "البرتغال", "فرنسا", "إيطاليا"] },
-    { country: "ألمانيا", flag: "🇩🇪", options: ["ألمانيا", "النمسا", "سويسرا", "فرنسا"] },
-    { country: "البرازيل", flag: "🇧🇷", options: ["البرازيل", "الأرجنتين", "كولومبيا", "تشيلي"] },
-    { country: "الأرجنتين", flag: "🇦🇷", options: ["الأرجنتين", "البرازيل", "أوروغواي", "بيرو"] },
-    { country: "الولايات المتحدة", flag: "🇺🇸", options: ["الولايات المتحدة", "كندا", "بريطانيا", "أستراليا"] },
-    { country: "كندا", flag: "🇨🇦", options: ["كندا", "الولايات المتحدة", "أستراليا", "نيوزيلندا"] },
-    { country: "اليابان", flag: "🇯🇵", options: ["اليابان", "كوريا الجنوبية", "الصين", "فيتنام"] },
-    { country: "الصين", flag: "🇨🇳", options: ["الصين", "اليابان", "الهند", "كوريا"] },
-    { country: "كوريا الجنوبية", flag: "🇰🇷", options: ["كوريا الجنوبية", "اليابان", "كوريا الشمالية", "تايلاند"] }
+    { country: "المملكة العربية السعودية", flag: "🇸🇦" }, { country: "الكويت", flag: "🇰🇼" },
+    { country: "الإمارات العربية المتحدة", flag: "🇦🇪" }, { country: "قطر", flag: "🇶🇦" },
+    { country: "البحرين", flag: "🇧🇭" }, { country: "عمان", flag: "🇴🇲" },
+    { country: "مصر", flag: "🇪🇬" }, { country: "العراق", flag: "🇮🇶" },
+    { country: "الأردن", flag: "🇯🇴" }, { country: "فلسطين", flag: "🇵🇸" },
+    { country: "لبنان", flag: "🇱🇧" }, { country: "سوريا", flag: "🇸🇾" },
+    { country: "المغرب", flag: "🇲🇦" }, { country: "الجزائر", flag: "🇩🇿" },
+    { country: "تونس", flag: "🇹🇳" }, { country: "ليبيا", flag: "🇱🇾" },
+    { country: "السودان", flag: "🇸🇩" }, { country: "اليمن", flag: "🇾🇪" },
+    { country: "تركيا", flag: "🇹🇷" }, { country: "إيطاليا", flag: "🇮🇹" },
+    { country: "فرنسا", flag: "🇫🇷" }, { country: "إسبانيا", flag: "🇪🇸" },
+    { country: "ألمانيا", flag: "🇩🇪" }, { country: "البرازيل", flag: "🇧🇷" },
+    { country: "الأرجنتين", flag: "🇦🇷" }, { country: "الولايات المتحدة", flag: "🇺🇸" },
+    { country: "كندا", flag: "🇨🇦" }, { country: "اليابان", flag: "🇯🇵" },
+    { country: "الصين", flag: "🇨🇳" }, { country: "كوريا الجنوبية", flag: "🇰🇷" }
 ];
 
 const capitalsGameData = [
-    { country: "المملكة العربية السعودية", capital: "الرياض", options: ["الرياض", "جدة", "مكة المكرمة", "الدمام"] },
-    { country: "مصر", capital: "القاهرة", options: ["الإسكندرية", "القاهرة", "الجيزة", "أسوان"] },
-    { country: "الإمارات", capital: "أبوظبي", options: ["دبي", "أبوظبي", "الشارقة", "عجمان"] },
-    { country: "الكويت", capital: "الكويت", options: ["الكويت", "الجهراء", "حولي", "الفحيحيل"] },
-    { country: "قطر", capital: "الدوحة", options: ["الدوحة", "الخور", "الوكرة", "الريان"] },
-    { country: "البحرين", capital: "المنامة", options: ["المحرق", "المنامة", "الرفاع", "المدينة"] },
-    { country: "عمان", capital: "مسقط", options: ["صلالة", "مسقط", "نزوى", "صحر"] },
-    { country: "الأردن", capital: "عمان", options: ["إربد", "عمان", "الزرقاء", "السلط"] },
-    { country: "العراق", capital: "بغداد", options: ["الموصل", "بغداد", "البصرة", "اربيل"] },
-    { country: "سوريا", capital: "دمشق", options: ["حلب", "دمشق", "حمص", "اللاذقية"] },
-    { country: "لبنان", capital: "بيروت", options: ["طرابلس", "بيروت", "صيدا", "صور"] },
-    { country: "فلسطين", capital: "القدس", options: ["رام الله", "القدس", "غزة", "نابلس"] },
-    { country: "اليمن", capital: "صنعاء", options: ["عدن", "صنعاء", "تعز", "إب"] },
-    { country: "الجزائر", capital: "الجزائر", options: ["وهران", "الجزائر", "قسنطينة", "عنابة"] },
-    { country: "المغرب", capital: "الرباط", options: ["الدار البيضاء", "الرباط", "مراكش", "فاس"] },
-    { country: "تونس", capital: "تونس", options: ["سوسة", "تونس", "صفاقس", "بنزرت"] },
-    { country: "ليبيا", capital: "طرابلس", options: ["بنغازي", "طرابلس", "مصراتة", "سبها"] },
-    { country: "السودان", capital: "الخرطوم", options: ["الخرطوم", "بورتسودان", "أم درمان", "كسلا"] },
-    { country: "تركيا", capital: "أنقرة", options: ["إسطنبول", "أنقرة", "إزمير", "بورصة"] },
-    { country: "إيطاليا", capital: "روما", options: ["ميلانو", "روما", "البندقية", "فلورنسا"] },
-    { country: "فرنسا", capital: "باريس", options: ["ليون", "مارسيليا", "باريس", "نيس"] },
-    { country: "إسبانيا", capital: "مدريد", options: ["برشلونة", "مدريد", "إشبيلية", "فالنسيا"] },
-    { country: "ألمانيا", capital: "برلين", options: ["ميونخ", "فرانكفورت", "برلين", "هامبورغ"] },
-    { country: "بريطانيا", capital: "لندن", options: ["مانشستر", "لندن", "ليفربول", "برمنغهام"] },
-    { country: "الولايات المتحدة", capital: "واشنطن", options: ["نيويورك", "واشنطن", "لوس أنجلوس", "شيكاغو"] },
-    { country: "كندا", capital: "أوتاوا", options: ["تورونتو", "فانكوفر", "أوتاوا", "مونتريال"] },
-    { country: "اليابان", capital: "طوكيو", options: ["أوساكا", "طوكيو", "كيوتو", "هيروشيما"] },
-    { country: "الصين", capital: "بكين", options: ["شنغهاي", "بكين", "هونغ كونغ", "قوانغتشو"] },
-    { country: "روسيا", capital: "موسكو", options: ["سان بطرسبرغ", "موسكو", "قازان", "سوتشي"] },
-    { country: "البرازيل", capital: "برازيليا", options: ["ريو دي جانيرو", "ساو باولو", "برازيليا", "سالفادور"] }
+    { country: "المملكة العربية السعودية", capital: "الرياض" }, { country: "مصر", capital: "القاهرة" },
+    { country: "الإمارات", capital: "أبوظبي" }, { country: "الكويت", capital: "الكويت" },
+    { country: "قطر", capital: "الدوحة" }, { country: "البحرين", capital: "المنامة" },
+    { country: "عمان", capital: "مسقط" }, { country: "الأردن", capital: "عمان" },
+    { country: "العراق", capital: "بغداد" }, { country: "سوريا", capital: "دمشق" },
+    { country: "لبنان", capital: "بيروت" }, { country: "فلسطين", capital: "القدس" },
+    { country: "اليمن", capital: "صنعاء" }, { country: "الجزائر", capital: "الجزائر" },
+    { country: "المغرب", capital: "الرباط" }, { country: "تونس", capital: "تونس" },
+    { country: "ليبيا", capital: "طرابلس" }, { country: "السودان", capital: "الخرطوم" },
+    { country: "تركيا", capital: "أنقرة" }, { country: "إيطاليا", capital: "روما" },
+    { country: "فرنسا", capital: "باريس" }, { country: "إسبانيا", capital: "مدريد" },
+    { country: "ألمانيا", capital: "برلين" }, { country: "بريطانيا", capital: "لندن" },
+    { country: "الولايات المتحدة", capital: "واشنطن" }, { country: "كندا", capital: "أوتاوا" },
+    { country: "اليابان", capital: "طوكيو" }, { country: "الصين", capital: "بكين" },
+    { country: "روسيا", capital: "موسكو" }, { country: "البرازيل", capital: "برازيليا" }
 ];
 
 const hazirData = [
@@ -197,10 +167,6 @@ const hazirData = [
     { riddle: "ما هو الشيء الذي كلما زاد نقص؟", correct: "العمر" }
 ];
 
-function shuffleArray(array) {
-    return array.sort(() => Math.random() - 0.5);
-}
-
 client.once('ready', () => {
     console.log(`تم تسجيل الدخول بنجاح باسم: ${client.user.tag}`);
 });
@@ -208,7 +174,6 @@ client.once('ready', () => {
 client.on('messageCreate', async message => {
     if (message.author.bot) return;
 
-    // أمر المسح المباشر في الشات دون لوحة أو أزرار
     if (message.content === '!clear') {
         if (!message.member.permissions.has(PermissionsBitField.Flags.ManageMessages)) {
             return message.reply('❌ ليس لديك صلاحية لإدارة الرسائل!');
@@ -248,7 +213,6 @@ client.on('messageCreate', async message => {
         return message.reply({ embeds: [helpEmbed] });
     }
 
-    // حجر ورق مقص
     if (message.content.startsWith('!rps')) {
         let opponent = message.mentions.users.first();
         if (!opponent) return message.reply('❌ منشن شخص لتبدأ معه! مثال: `!rps @الشخص`');
@@ -273,7 +237,6 @@ client.on('messageCreate', async message => {
         return;
     }
 
-    // تخمين الرقم
     if (message.content === '!تخمين') {
         const secret = Math.floor(Math.random() * 100) + 1;
         let attempts = 10;
@@ -293,16 +256,15 @@ client.on('messageCreate', async message => {
                 return m.reply(`❌ انتهت المحاولات! الرقم الصحيح كان **${secret}**.`);
             } else if (guess < secret) {
                 await m.react('📈');
-                m.reply(`الرقم **أكبر**! باقي لديك **${attempts}** محاولات.`);
+                m.reply(`خطأ يا ملك الاغبياء! الرقم **أكبر**! باقي لديك **${attempts}** محاولات.`);
             } else {
                 await m.react('📉');
-                m.reply(`الرقم **أصغر**! باقي لديك **${attempts}** محاولات.`);
+                m.reply(`خطأ يا ملك الاغبياء! الرقم **أصغر**! باقي لديك **${attempts}** محاولات.`);
             }
         });
         return;
     }
 
-    // تحدي السرعة
     if (message.content === '!سريع') {
         const words = ["تفاح", "برمجة", "ديسكورد", "حاسوب", "تطبيقات", "سرعة", "تحدي", "خوارزمية", "مطور", "ذكاء", "سيرفر", "قناة", "روم", "صوت", "تفاعل", "نشاط", "تحديث", "تطوير", "مشروع", "منصة"];
         const targetWord = words[Math.floor(Math.random() * words.length)];
@@ -314,16 +276,20 @@ client.on('messageCreate', async message => {
         
         await message.channel.send({ embeds: [embed] });
         
-        const filter = m => !m.author.bot && m.content === targetWord;
-        const collector = message.channel.createMessageCollector({ filter, max: 1, time: 30000 });
+        const filter = m => !m.author.bot;
+        const collector = message.channel.createMessageCollector({ filter, time: 30000 });
 
         collector.on('collect', m => {
-            m.reply(`🎉 كفو <@${m.author.id}>! لقد فزت بالسرعة البارقة وكسبت التحدي! ⚡`);
+            if (m.content === targetWord) {
+                collector.stop();
+                m.reply(`🎉 كفو <@${m.author.id}>! لقد فزت بالسرعة البارقة وكسبت التحدي! ⚡`);
+            } else {
+                m.reply(`❌ خطأ يا ملك الاغبياء! الكلمة المطلوبة هي: \`${targetWord}\``);
+            }
         });
         return;
     }
 
-    // الحظ السعيد
     if (message.content === '!حظ') {
         const emojis = ['🍒', '🍋', '🍊', '🍇', '🔔', '⭐'];
         const r1 = emojis[Math.floor(Math.random() * emojis.length)];
@@ -332,96 +298,68 @@ client.on('messageCreate', async message => {
 
         const embed = new EmbedBuilder()
             .setTitle('🎰 ماكينة الحظ السعيد')
-            .setDescription(`[ ${r1} | ${r2} | ${r3} ]\n\n` + (r1 === r2 && r2 === r3 ? '🎉 مبروك! لقد ربحت الجائزة الكبرى!' : '❌ هارد لك، حظاً أوفر في المرة القادمة!'))
+            .setDescription(`[ ${r1} | ${r2} | ${r3} ]\n\n` + (r1 === r2 && r2 === r3 ? '🎉 مبروك! لقد ربحت الجائزة الكبرى!' : '❌ خطأ يا ملك الاغبياء، هارد لك حظاً أوفر في المرة القادمة!'))
             .setColor(0x9B59B6);
         return message.reply({ embeds: [embed] });
     }
 
-    // الأسئلة
     if (message.content === '!اسئلة') {
         const q = triviaData[Math.floor(Math.random() * triviaData.length)];
-        const shuffledOpts = shuffleArray([...q.options]);
-        
-        const row = new ActionRowBuilder();
-        shuffledOpts.forEach((opt, idx) => {
-            row.addComponents(
-                new ButtonBuilder().setCustomId(`trivia_${idx}_${opt === q.correct}`).setLabel(opt).setStyle(ButtonStyle.Primary)
-            );
-        });
+        const embed = new EmbedBuilder().setTitle('❓ سؤال وجواب (اكتب الإجابة في الشات)').setDescription(`${q.question}\n\nالخيارات المتاحة: \`${q.options.join(', ')}\``).setColor(0x3498DB);
+        await message.channel.send({ embeds: [embed] });
 
-        const embed = new EmbedBuilder().setTitle('❓ سؤال وجواب').setDescription(q.question).setColor(0x3498DB);
-        const msg = await message.reply({ embeds: [embed], components: [row] });
+        const filter = m => !m.author.bot;
+        const collector = message.channel.createMessageCollector({ filter, time: 30000 });
 
-        const collector = msg.createMessageComponentCollector({ time: 30000 });
-        collector.on('collect', async i => {
-            collector.stop();
-            const isCorrect = i.customId.endsWith('_true');
-            if (isCorrect) {
-                await i.update({ content: `✅ إجابة صحيحة وكفو يا <@${i.user.id}>!`, embeds: [], components: [] });
+        collector.on('collect', m => {
+            if (m.content.trim() === q.correct) {
+                collector.stop();
+                m.reply(`✅ إجابة صحيحة وكفو يا <@${m.author.id}>!`);
             } else {
-                await i.update({ content: `❌ إجابة خاطئة يا <@${i.user.id}>! الإجابة الصحيحة هي: **${q.correct}**`, embeds: [], components: [] });
+                m.reply(`❌ خطأ يا ملك الاغبياء! الإجابة الصحيحة هي: **${q.correct}**`);
             }
         });
         return;
     }
 
-    // الأعلام
     if (message.content === '!اعلام') {
         const f = flagsGameData[Math.floor(Math.random() * flagsGameData.length)];
-        const shuffledOpts = shuffleArray([...f.options]);
+        const embed = new EmbedBuilder().setTitle('🌍 لعبة تخمين الأعلام (اكتب اسم الدولة في الشات)').setDescription(`ما هي الدولة الخاصة بهذا العلم؟\n\n# ${f.flag}`).setColor(0xE67E22);
+        await message.channel.send({ embeds: [embed] });
 
-        const row = new ActionRowBuilder();
-        shuffledOpts.forEach((opt, idx) => {
-            row.addComponents(
-                new ButtonBuilder().setCustomId(`flag_${idx}_${opt === f.country}`).setLabel(opt).setStyle(ButtonStyle.Primary)
-            );
-        });
+        const filter = m => !m.author.bot;
+        const collector = message.channel.createMessageCollector({ filter, time: 30000 });
 
-        const embed = new EmbedBuilder().setTitle('🌍 لعبة تخمين الأعلام').setDescription(`ما هي الدولة الخاصة بهذا العلم؟\n\n# ${f.flag}`).setColor(0xE67E22);
-        const msg = await message.reply({ embeds: [embed], components: [row] });
-
-        const collector = msg.createMessageComponentCollector({ time: 30000 });
-        collector.on('collect', async i => {
-            collector.stop();
-            const isCorrect = i.customId.endsWith('_true');
-            if (isCorrect) {
-                await i.update({ content: `✅ كفو <@${i.user.id}>! إجابة صحيحة ورائعة.`, embeds: [], components: [] });
+        collector.on('collect', m => {
+            if (m.content.trim() === f.country) {
+                collector.stop();
+                m.reply(`✅ كفو <@${m.author.id}>! إجابة صحيحة ورائعة.`);
             } else {
-                await i.update({ content: `❌ إجابة خاطئة يا <@${i.user.id}>! الدولة هي: **${f.country}**`, embeds: [], components: [] });
+                m.reply(`❌ خطأ يا ملك الاغبياء! الدولة هي: **${f.country}**`);
             }
         });
         return;
     }
 
-    // العواصم
     if (message.content === '!عواصم') {
         const c = capitalsGameData[Math.floor(Math.random() * capitalsGameData.length)];
-        const shuffledOpts = shuffleArray([...c.options]);
+        const embed = new EmbedBuilder().setTitle('🏛️ لعبة العواصم (اكتب اسم العاصمة في الشات)').setDescription(`ما هي عاصمة دولة **${c.country}**؟`).setColor(0x1ABC9C);
+        await message.channel.send({ embeds: [embed] });
 
-        const row = new ActionRowBuilder();
-        shuffledOpts.forEach((opt, idx) => {
-            row.addComponents(
-                new ButtonBuilder().setCustomId(`cap_${idx}_${opt === c.capital}`).setLabel(opt).setStyle(ButtonStyle.Primary)
-            );
-        });
+        const filter = m => !m.author.bot;
+        const collector = message.channel.createMessageCollector({ filter, time: 30000 });
 
-        const embed = new EmbedBuilder().setTitle('🏛️ لعبة العواصم').setDescription(`ما هي عاصمة دولة **${c.country}**؟`).setColor(0x1ABC9C);
-        const msg = await message.reply({ embeds: [embed], components: [row] });
-
-        const collector = msg.createMessageComponentCollector({ time: 30000 });
-        collector.on('collect', async i => {
-            collector.stop();
-            const isCorrect = i.customId.endsWith('_true');
-            if (isCorrect) {
-                await i.update({ content: `✅ كفو <@${i.user.id}>! عاصمة صحيحة.`, embeds: [], components: [] });
+        collector.on('collect', m => {
+            if (m.content.trim() === c.capital) {
+                collector.stop();
+                m.reply(`✅ كفو <@${m.author.id}>! عاصمة صحيحة.`);
             } else {
-                await i.update({ content: `❌ خطأ يا <@${i.user.id}>! العاصمة الصحيحة هي: **${c.capital}**`, embeds: [], components: [] });
+                m.reply(`❌ خطأ يا ملك الاغبياء! العاصمة الصحيحة هي: **${c.capital}**`);
             }
         });
         return;
     }
 
-    // فكك (يجب تفكيك الحروف بالمسافات)
     if (message.content === '!فكك') {
         const item = fakkData[Math.floor(Math.random() * fakkData.length)];
         const embed = new EmbedBuilder()
@@ -431,22 +369,20 @@ client.on('messageCreate', async message => {
         
         await message.channel.send({ embeds: [embed] });
 
-        const filter = m => !m.author.bot && m.content.trim() === item.spaced;
-        const collector = message.channel.createMessageCollector({ filter, max: 1, time: 30000 });
+        const filter = m => !m.author.bot;
+        const collector = message.channel.createMessageCollector({ filter, time: 30000 });
 
         collector.on('collect', m => {
-            m.reply(`🎉 كفو <@${m.author.id}>! فككتها وصح عليك.`);
-        });
-        
-        collector.on('end', (collected, reason) => {
-            if (reason === 'time' && collected.size === 0) {
-                message.channel.send(`⏰ انتهى الوقت! الإجابة الصحيحة كانت: \`${item.spaced}\``);
+            if (m.content.trim() === item.spaced) {
+                collector.stop();
+                m.reply(`🎉 كفو <@${m.author.id}>! فككتها وصح عليك.`);
+            } else {
+                m.reply(`❌ خطأ يا ملك الاغبياء! الإجابة الصحيحة مفككة هكذا: \`${item.spaced}\``);
             }
         });
         return;
     }
 
-    // ركب
     if (message.content === '!ركب') {
         const item = rakibData[Math.floor(Math.random() * rakibData.length)];
         const embed = new EmbedBuilder()
@@ -456,16 +392,20 @@ client.on('messageCreate', async message => {
         
         await message.channel.send({ embeds: [embed] });
 
-        const filter = m => !m.author.bot && m.content.replace(/\s+/g, '') === item.correct;
-        const collector = message.channel.createMessageCollector({ filter, max: 1, time: 30000 });
+        const filter = m => !m.author.bot;
+        const collector = message.channel.createMessageCollector({ filter, time: 30000 });
 
         collector.on('collect', m => {
-            m.reply(`🎉 كفو <@${m.author.id}>! ركبتها وصح عليك (الكلمة: **${item.correct}**).`);
+            if (m.content.replace(/\s+/g, '') === item.correct) {
+                collector.stop();
+                m.reply(`🎉 كفو <@${m.author.id}>! ركبتها وصح عليك (الكلمة: **${item.correct}**).`);
+            } else {
+                m.reply(`❌ خطأ يا ملك الاغبياء! ركبها صح.`);
+            }
         });
         return;
     }
 
-    // حزر
     if (message.content === '!حزر') {
         const item = hazirData[Math.floor(Math.random() * hazirData.length)];
         const embed = new EmbedBuilder()
@@ -475,11 +415,16 @@ client.on('messageCreate', async message => {
         
         await message.channel.send({ embeds: [embed] });
 
-        const filter = m => !m.author.bot && m.content.includes(item.correct);
-        const collector = message.channel.createMessageCollector({ filter, max: 1, time: 40000 });
+        const filter = m => !m.author.bot;
+        const collector = message.channel.createMessageCollector({ filter, time: 40000 });
 
         collector.on('collect', m => {
-            m.reply(`🎉 إجابة ذكية يا <@${m.author.id}>! الحل الصحيح هو: **${item.correct}**`);
+            if (m.content.includes(item.correct)) {
+                collector.stop();
+                m.reply(`🎉 إجابة ذكية يا <@${m.author.id}>! الحل الصحيح هو: **${item.correct}**`);
+            } else {
+                m.reply(`❌ خطأ يا ملك الاغبياء! فكر زين.`);
+            }
         });
         return;
     }
