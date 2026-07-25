@@ -125,31 +125,34 @@ client.once('ready', () => {
 client.on('messageCreate', async message => {
     if (message.author.bot) return;
 
-    // أمر مسح الشات (يعمل برمجياً ولكن غير موجود في قائمة المساعدة !help)
-    if (message.content.startsWith('!clear')) {
+    // أمر مسح الشات بدون شروط (يحذف الرسائل ويتخطى المثبتة تلقائياً) وغير موجود في الـ help
+    if (message.content === '!clear') {
         if (!message.member.permissions.has(PermissionsBitField.Flags.ManageMessages)) {
-            return message.reply('❌ ليس لديك صلاحية لإدارة الرسائل (Manage Messages)!');
-        }
-
-        const args = message.content.split(' ');
-        let amount = parseInt(args[1]);
-
-        if (isNaN(amount) || amount <= 0 || amount > 100) {
-            return message.reply('❌ يرجى تحديد عدد صحيح للرسائل المراد مسحها بين 1 و 100. مثال: `!clear 10`');
+            return message.reply('❌ ليس لديك صلاحية لإدارة الرسائل!');
         }
 
         try {
-            await message.channel.bulkDelete(amount + 1, true);
-            const confirmation = await message.channel.send(`✅ تم مسح **${amount}** رسالة بنجاح.`);
+            // جلب آخر 100 رسالة في الشات
+            const fetchedMessages = await message.channel.messages.fetch({ limit: 100 });
+            
+            // فلترة الرسائل (استثناء الرسائل المثبتة لكي لا يتم حذفها)
+            const messagesToDelete = fetchedMessages.filter(msg => !msg.pinned);
+
+            if (messagesToDelete.size === 0) {
+                return message.reply('❌ لا توجد رسائل غير مثبتة ليتم مسحها.');
+            }
+
+            await message.channel.bulkDelete(messagesToDelete, true);
+            const confirmation = await message.channel.send(`✅ تم مسح الشات بنجاح (مع الحفاظ على الرسائل المثبتة).`);
             setTimeout(() => confirmation.delete().catch(() => {}), 4000);
         } catch (error) {
             console.error(error);
-            message.reply('❌ حدث خطأ أثناء محاولة مسح الرسائل. (تأكد من أن الرسائل أقدم من 14 يوماً ولدي الصلاحية المناسبة).');
+            message.reply('❌ حدث خطأ أثناء مسح الرسائل (تأكد أن الرسائل ليس أقدم من 14 يوماً).');
         }
         return;
     }
 
-    // قائمة المساعدة (!help) بدون أمر مسح الشات وبدون أوامر السيرفر
+    // قائمة المساعدة (!help)
     if (message.content === '!help') {
         const helpEmbed = new EmbedBuilder()
             .setTitle('🎮 قائمة ألعاب البوت التفاعلية والأوامر')
