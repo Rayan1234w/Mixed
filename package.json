@@ -1,14 +1,14 @@
 {
   "name": "Mixed-bot",
   "version": "1.0.0",
-  "description": "",
+  "description": "Discord Bot",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
   "dependencies": {
-    "discord-gamecord": "^4.2.3",
     "discord.js": "^14.14.1",
+    "discord-gamecord": "^5.2.2",
     "express": "^4.19.2"
   }
 }
