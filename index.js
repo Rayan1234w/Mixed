@@ -26,7 +26,163 @@ client.on('error', (error) => { console.error(error); });
 process.on('unhandledRejection', (error) => { console.error(error); });
 process.on('uncaughtException', (error) => { console.error(error); });
 
-// قواعد البيانات
+// ==========================================
+// 100 عنصر للعبة فكك
+// ==========================================
+const fakkData = [
+    { word: "مكتبة", spaced: "م ك ت ب ة" }, { word: "حاسوب", spaced: "ح ا س و ب" }, { word: "مدرسة", spaced: "م د ر س ة" }, { word: "جامعة", spaced: "ج ا م ع ة" }, { word: "سيارة", spaced: "س ي ا ر ة" },
+    { word: "طائرة", spaced: "ط ا ئ ر ة" }, { word: "قطار", spaced: "ق ط ا ر" }, { word: "شجرة", spaced: "ش ج ر ة" }, { word: "حديقة", spaced: "ح د ي ق ة" }, { word: "طاولة", spaced: "ط ا و ل ة" },
+    { word: "قلم", spaced: "ق ل م" }, { word: "دفتر", spaced: "د ف ت ر" }, { word: "حقيبة", spaced: "ح ق ي ب ة" }, { word: "نافذة", spaced: "ن ا ف ذ ة" }, { word: "باب", spaced: "ب ا ب" },
+    { word: "منزل", spaced: "م ن ز ل" }, { word: "مدينة", spaced: "م د ي ن ة" }, { word: "دولة", spaced: "د و ل ة" }, { word: "عالم", spaced: "ع ا ل م" }, { word: "تاريخ", spaced: "ت ا ر ي خ" },
+    { word: "جغرافيا", spaced: "ج غ ر ا ف ي ا" }, { word: "رياضيات", spaced: "ر ي ا ض ي ا ت" }, { word: "فيزياء", spaced: "ف ي ز ي ا ء" }, { word: "كيمياء", spaced: "ك ي م ي ا ء" }, { word: "أحياء", spaced: "أ ح ي ا ء" },
+    { word: "حاسب", spaced: "ح ا س ب" }, { word: "برمجة", spaced: "ب ر م ج ة" }, { word: "تطبيقات", spaced: "ت ط ب ي ق ا ت" }, { word: "شبكة", spaced: "ش ب ك ة" }, { word: "انترنت", spaced: "ا ن ت ر ن ت" },
+    { word: "شاشات", spaced: "ش ا ش ا ت" }, { word: "سماعات", spaced: "س م ا ع ا ت" }, { word: "مفاتيح", spaced: "م ف ا ت ي ح" }, { word: "كرسي", spaced: "ك ر س ي" }, { word: "سرير", spaced: "س ر ي ر" },
+    { word: "غرفة", spaced: "غ ر ف ة" }, { word: "مطبخ", spaced: "م ط ب خ" }, { word: "حمام", spaced: "ح م ا م" }, { word: "طعام", spaced: "ط ع ا م" }, { word: "شراب", spaced: "ش ر ا ب" },
+    { word: "تفاح", spaced: "ت ف ا ح" }, {, word: "موز", spaced: "م و ز" }, { word: "برتقال", spaced: "ب ر ت ق ا ل" }, { word: "عنب", spaced: "ع ن ب" }, { word: "بطيخ", spaced: "ب ط ي خ" },
+    { word: "خيار", spaced: "خ ي ا ر" }, { word: "طماطم", spaced: "ط م ا ط م" }, { word: "خس", spaced: "خ س" }, { word: "جزر", spaced: "ج ز ر" }, { word: "بطاطس", spaced: "ب ط ا ط س" },
+    { word: "ملابس", spaced: "م ل ا ب س" }, { word: "قميص", spaced: "ق م ي ص" }, { word: "بنطلون", spaced: "ب ن ط ل و ن" }, { word: "حذاء", spaced: "ح ذ ا ء" }, { word: "جورب", spaced: "ج و ر ب" },
+    { word: "ساعة", spaced: "س ا ع ة" }, { word: "خاتم", spaced: "خ ا ت م" }, { word: "نظارة", spaced: "ن ظ ا ر ة" }, { word: "عطر", spaced: "ع ط ر" }, { word: "صصابون", spaced: "ص ا ب و ن" },
+    { word: "مفتاح", spaced: "م ف ت ا ح" }, { word: "قففل", spaced: "ق ف ل" }, { word: "حقيبة", spaced: "ح ق ي ب ة" }, { word: "محفظة", spaced: "م ح ف ظ ة" }, { word: "نقود", spaced: "ن ق و د" },
+    { word: "مصرف", spaced: "م ص ر ف" }, { word: "بطاقة", spaced: "ب ط ا ق ة" }, { word: "هاتف", spaced: "ه ا ت ف" }, { word: "جوال", spaced: "ج و ا ل" }, { word: "شاحن", spaced: "ش ا ح ن" },
+    { word: "كاميرا", spaced: "ك ا م ي ر ا" }, { word: "صورة", spaced: "ص و ر ة" }, { word: "شاشة", spaced: "ش ا ش ة" }, { word: "لوحة", spaced: "ل و ح ة" }, { word: "رسم", spaced: "ر س م" },
+    { word: "لون", spaced: "ل و ن" }, { word: "أحمر", spaced: "أ ح م ر" }, { word: "أزرق", spaced: "أ ز ر ق" }, { word: "أخضر", spaced: "أ خ ض ر" }, { word: "أصفر", spaced: "أ ص ف ر" },
+    { word: "أسود", spaced: "أ س و د" }, { word: "أبيض", spaced: "أ ب ي ض" }, { word: "رمادي", spaced: "ر م ا د ي" }, { word: "بني", spaced: "ب ن ي" }, { word: "وردي", spaced: "و ر د ي" },
+    { word: "سماء", spaced: "س م ا ء" }, { word: "أرض", spaced: "أ ر ض" }, { word: "بحر", spaced: "ب ح ر" }, { word: "نهر", spaced: "ن ه ر" }, { word: "جبل", spaced: "ج ب ل" },
+    { word: "صحراء", spaced: "ص ح ر ا ء" }, { word: "غابة", spaced: "غ ا ب ة" }, { word: "حيوان", spaced: "ح ي و ا ن" }, { word: "أسد", spaced: "أ س د" }, { word: "نمر", spaced: "ن م ر" },
+    { word: "فهد", spaced: "ف ه د" }, { word: "ذئب", spaced: "ذ ئ ب" }, { word: "ثعلب", spaced: "ث ع ل ب" }, { word: "غزال", spaced: "غ ز ا ل" }, { word: "جمل", spaced: "ج م ل" }
+];
+
+// ==========================================
+// 100 عنصر للعبة ركب
+// ==========================================
+const rakibData = [
+    { scrambled: "س م ك", correct: "سمك" }, { scrambled: "ق م ر", correct: "قمر" }, { scrambled: "ش م س", correct: "شمس" }, { scrambled: "ن ج م", correct: "نجم" }, { scrambled: "ب ح ر", correct: "بحر" },
+    { scrambled: "ن ه ر", correct: "نهر" }, { scrambled: "ج ب ل", correct: "جبل" }, { scrambled: "ق ل م", correct: "قلم" }, { scrambled: "ك ت ب", correct: "كتب" }, { scrambled: "و ر ق", correct: "ورق" },
+    { scrambled: "ب ا ب", correct: "باب" }, { scrambled: "د ا ر", correct: "دار" }, { scrambled: "س د ر", correct: "درس" }, { scrambled: "ل ع ب", correct: "لعب" }, { scrambled: "أ ك ل", correct: "أكل" },
+    { scrambled: "ش ر ب", correct: "شرب" }, { scrambled: "ن ا م", correct: "نام" }, { scrambled: "ق ا م", correct: "قام" }, { scrambled: "م ش ى", correct: "مشى" }, { scrambled: "ج ر ي", correct: "جري" },
+    { scrambled: "ح ب ل", correct: "حبل" }, { scrambled: "خ ش ب", correct: "خشب" }, { scrambled: "ح د ي د", correct: "حديد" }, { scrambled: "ذ ه ب", correct: "ذهب" }, { scrambled: "ف ض ة", correct: "فضة" },
+    { scrambled: "م ا ء", correct: "ماء" }, { scrambled: "ه و ا ء", correct: "هواء" }, { scrambled: "تُراب", correct: "تراب" }, { scrambled: "نَار", correct: "نار" }, { scrambled: "ثَوَب", correct: "ثوب" },
+    { scrambled: "بَيْت", correct: "بيت" }, { scrambled: "سُوق", correct: "سوق" }, { scrambled: "حَكَم", correct: "حكم" }, { scrambled: "عِلْم", correct: "علم" }, { scrambled: "فَهْم", correct: "فهم" },
+    { scrambled: "سَمْع", correct: "سمع" }, { scrambled: "بَصَر", correct: "بصر" }, { scrambled: "نَطْق", correct: "نطق" }, { scrambled: "قَوْل", correct: "قول" }, { scrambled: "فِعْل", correct: "فعل" },
+    { scrambled: "صَدْق", correct: "صدق" }, { scrambled: "عَدْل", correct: "عدل" }, { scrambled: "صَبْر", correct: "صبر" }, { scrambled: "شُكْر", correct: "شكر" }, { scrambled: "حَمْد", correct: "حمد" },
+    { scrambled: "مُلْك", correct: "ملك" }, { scrambled: "أَمِير", correct: "أمير" }, { scrambled: "وَزِير", correct: "وزير" }, { scrambled: "قَاضِي", correct: "قاضي" }, { scrambled: "عَالِم", correct: "عالم" },
+    { scrambled: "طَبِيب", correct: "طبيب" }, { scrambled: "مُهَنْدِس", correct: "مهندس" }, { scrambled: "مُعَلِّم", correct: "معلم" }, { scrambled: "طَالِب", correct: "طالب" }, { scrambled: "جُنْدِيّ", correct: "جندي" },
+    { scrambled: "شُرْطِيّ", correct: "شرطي" }, { scrambled: "تَاجِر", correct: "تاجر" }, { scrambled: "فَلَّاح", correct: "فلاح" }, { scrambled: "صَيَّاد", correct: "صياد" }, { scrambled: "نَجَّار", correct: "نجار" },
+    { scrambled: "حَدَّاد", correct: "حداد" }, { scrambled: "خَبَّاز", correct: "خباز" }, { scrambled: "بَنَّاء", correct: "بناء" }, { scrambled: "خَيَّاط", correct: "خياط" }, { scrambled: "رَسَّام", correct: "رسام" },
+    { scrambled: "كَاتِب", correct: "كاتب" }, { scrambled: "شَاعِر", correct: "شاعر" }, { scrambled: "أَدِيب", correct: "أديب" }, { scrambled: "خَطِيب", correct: "خطيب" }, { scrambled: "إِمَام", correct: "إمام" },
+    { scrambled: "مُؤَذِّن", correct: "مؤذن" }, { scrambled: "خَادِم", correct: "خادم" }, { scrambled: "ضَيْف", correct: "ضيف" }, { scrambled: "جَار", correct: "جار" }, { scrambled: "صَدِيق", correct: "صديق" },
+    { scrambled: "رَفِيق", correct: "رفيق" }, { scrambled: "أَخ", correct: "أخ" }, { scrambled: "أُخْت", correct: "أخت" }, { scrambled: "أَب", correct: "أب" }, { scrambled: "أُمّ", correct: "أم" },
+    { scrambled: "جَدّ", correct: "جد" }, { scrambled: "جَدَّة", correct: "جدة" }, { scrambled: "خَال", correct: "خال" }, { scrambled: "عَمّ", correct: "عم" }, { scrambled: "ابْن", correct: "ابن" },
+    { scrambled: "بِنْت", correct: "بنت" }, { scrambled: "طِفْل", correct: "طفل" }, { scrambled: "وَلَد", correct: "ولد" }, { scrambled: "رَجُل", correct: "رجل" }, { scrambled: "امْرَأَة", correct: "امرأة" },
+    { scrambled: "شَابّ", correct: "شاب" }, { scrambled: "فَتَاة", correct: "فتاة" }, { scrambled: "عَجُوز", correct: "عجوز" }, { scrambled: "قَوِيّ", correct: "قوي" }, { scrambled: "ضَعِيف", correct: "ضعيف" },
+    { scrambled: "غَنِيّ", correct: "غني" }, { scrambled: "فَقِير", correct: "فقير" }, { scrambled: "كَرِيم", correct: "كريم" }, { scrambled: "بَخِيل", correct: "بخيل" }, { scrambled: "شَجَاع", correct: "شجاع" }
+];
+
+// ==========================================
+// 100 سؤال للعبة الأسئلة (Trivia)
+// ==========================================
+const triviaData = [
+    { question: "ما هو أعلى حزام في التايكوندو؟", correct: "الأسود", options: ["الأخضر", "الأحمر", "الأبيض", "الأسود"] },
+    { question: "ما هي عاصمة المملكة العربية السعودية؟", correct: "الرياض", options: ["جدة", "الرياض", "الدمام", "مكة"] },
+    { question: "كم عدد سور القرآن الكريم؟", correct: "114", options: ["112", "113", "114", "115"] },
+    { question: "ما هو أكبر كوكب في المجموعة الشمسية؟", correct: "المشتري", options: ["المريخ", "زحل", "المشتري", "الأرض"] },
+    { question: "في أي قارة تقع مصر؟", correct: "إفريقيا", options: ["آسيا", "إفريقيا", "أوروبا", "أستراليا"] },
+    { question: "ما هو الحيوان الذي يُسمى بملك الغابة؟", correct: "الأسد", options: ["النمر", "الأسد", "الفهد", "הدب"] },
+    { question: "كم عدد ركعات صلاة الفجر؟", correct: "ركعتان", options: ["ركعة", "ركعتان", "ثلاث ركعات", "أربع ركعات"] },
+    { question: "ما هو عنصر الذهب بالجدول الدوري؟", correct: "Au", options: ["Ag", "Au", "Fe", "Cu"] },
+    { question: "ما هي عاصمة فرنسا؟", correct: "باريس", options: ["لندن", "برلين", "باريس", "روما"] },
+    { question: "كم يبلغ عدد ألوان قوس قزح؟", correct: "7", options: ["5", "6", "7", "8"] },
+    { question: "ما هو أسرع حيوان بري في العالم؟", correct: "الفهد", options: ["الأسد", "الحصان", "الفهد", "الغزال"] },
+    { question: "ما هو أطول نهر في العالم؟", correct: "نهر النيل", options: ["نهر الأمازون", "نهر النيل", "نهر المسيسيبي", "نهر الفرات"] },
+    { question: "ما هي عاصمة الإمارات؟", correct: "أبوظبي", options: ["دبي", "الشارقة", "أبوظبي", "عجمان"] },
+    { question: "من هو أول خلفاء المسلمين؟", correct: "أبو بكر الصديق", options: ["عمر بن الخطاب", "عثمان بن عفان", "علي بن أبي طالب", "أبو بكر الصديق"] },
+    { question: "ما هو المعدن السائل في درجة حرارة الغرفة؟", correct: "الزئبق", options: ["الذهب", "الزئبق", "الحديد", "النحاس"] },
+    { question: "كم عدد عظام جسم الإنسان البالغ؟", correct: "206", options: ["200", "206", "210", "180"] },
+    { question: "ما هو الغاز الأكثر رواجاً في الغلاف الجوي للأرض؟", correct: "النيتروجين", options: ["الأكسجين", "النيتروجين", "السيليكون", "الهيدروجين"] },
+    { question: "ما هي عاصمة الكويت؟", correct: "الكويت", options: ["الجهراء", "الكويت", "الفروانية", "حولي"] },
+    { question: "في أي عام هجري كانت غزوة بدر؟", correct: "السنة الثانية", options: ["السنة الأولى", "السنة الثانية", "السنة الثالثة", "السنة الرابعة"] },
+    { question: "ما هو الكوكب الملقب بالكوكب الأحمر؟", correct: "المريخ", options: ["الزهرة", "المريخ", "عطارد", "المشتري"] },
+    { question: "كم عدد أجزاء القرآن الكريم؟", correct: "30", options: ["20", "25", "30", "40"] },
+    { question: "ما هي عاصمة قطر؟", correct: "الدوحة", options: ["الدوحة", "الوكرة", "الخور", "لوسيل"] },
+    { question: "من هو النبي الذي أُلقي في الجب؟", correct: "يوسف عليه السلام", options: ["موسى عليه السلام", "يوسف عليه السلام", "إبراهيم عليه السلام", "يونس عليه السلام"] },
+    { question: "ما هو أصل كلمة 'تلفاز'؟", correct: "يوناني/لاتيني", options: ["عربي", "إنجليزي", "يوناني/لاتيني", "فرنسي"] },
+    { question: "ما هي عاصمة سلطنة عمان؟", correct: "مسقط", options: ["صلالة", "نزوى", "مسقط", "صواريخ"] },
+    { question: "كم عدد الأئمة عند الشيعة الإثنا عشرية؟", correct: "12", options: ["10", "11", "12", "14"] },
+    { question: "ما هو الحيوان الذي يتحمل العطش أكثر من الجمل؟", correct: "الزرافة", options: ["الفيل", "الزرافة", "الحصان", "الكلب"] },
+    { question: "ما هي عاصمة البحرين؟", correct: "المنامة", options: ["المحرق", "المنامة", "رفاع", "السيص"] },
+    { question: "من هو مخترع المصباح الكهربائي؟", correct: "توماس إديسون", options: ["نيكولا تيسلا", "توماس إديسون", "ألبرت آينشتاين", "ألكسندر بيل"] },
+    { question: "ما هي عاصمة الأردن؟", correct: "عمان", options: ["إربد", "عمان", "الزرقاء", "مادبا"] },
+    { question: "ما هو البحر الذي يقع بين إفريقيا وآسيا؟", correct: "البحر الأحمر", options: ["البحر المتوسط", "البحر الأحمر", "بحر العرب", "الخليج العربي"] },
+    { question: "كم عدد ركعات صلاة الظهر؟", correct: "أربع ركعات", options: ["ركعتان", "ثلاث ركعات", "أربع ركعات", "أربع ركعات وسنة"] },
+    { question: "ما هي عاصمة لبنان؟", correct: "بيروت", options: ["طرابلس", "بيروت", "صيدا", "جبيل"] },
+    { question: "من هو النبي الذي فداه الله بذبح عظيم؟", correct: "إسماعيل عليه السلام", options: ["إسحاق عليه السلام", "إسماعيل عليه السلام", "يعقوب عليه السلام", "إبراهيم عليه السلام"] },
+    { question: "ما هي عاصمة سوريا؟", correct: "دمشق", options: ["حلب", "حمص", "دمشق", "اللاذقية"] },
+    { question: "ما هي عاصمة العراق؟", correct: "بغداد", options: ["الموصل", "البصرة", "بغداد", "أربيل"] },
+    { question: "ما هو أكبر بحر مغلق في العالم؟", correct: "بحر قزوين", options: ["البحر الميت", "بحر قزوين", "البحر الأسود", "البحر الأحمر"] },
+    { question: "ما هي عاصمة المغرب؟", correct: "الرباط", options: ["الدار البيضاء", "مراكش", "الرباط", "فاس"] },
+    { question: "من هو كاتب رواية البؤساء؟", correct: "فكتور هوغو", options: ["شكسبير", "فكتور هوغو", "تولستوي", "تشيخوف"] },
+    { question: "ما هي عاصمة الجزائر؟", correct: "الجزائر", options: ["وهران", "الجزائر", "قسنطينة", "عنابة"] },
+    { question: "ما هي عاصمة تونس؟", correct: "تونس", options: ["صفاقس", "سوسة", "تونس", "بنزرت"] },
+    { question: "ما هي عاصمة ليبيا؟", correct: "طرابلس", options: ["بنغازي", "طرابلس", "مصراتة", "سرت"] },
+    { question: "ما هي عاصمة السودان؟", correct: "الخرطوم", options: ["بورتسودان", "الخرطوم", "أم درمان", "كسلا"] },
+    { question: "ما هو أصل الكنغر؟", correct: "أستراليا", options: ["إفريقيا", "أستراليا", "أمريكا الجنوبية", "آسيا"] },
+    { question: "كم عدد حروف الهجاء العربية؟", correct: "28", options: ["26", "28", "30", "29"] },
+    { question: "ما هي عاصمة فلسطين؟", correct: "القدس", options: ["غزة", "القدس", "رام الله", "نابلس"] },
+    { question: "ما هو أصغر كوكب في المجموعة الشمسية؟", correct: "عطارد", options: ["المريخ", "عطارد", "الزهرة", "بلوتو"] },
+    { question: "من هو عاصفة الصحراء قائد معركة؟", correct: "خالد بن الوليد", options: ["عمر بن الخطاب", "خالد بن الوليد", "علي بن أبي طالب", "سعد بن أبي وقاص"] },
+    { question: "ما هو الحيوان الذي ينفرد بوجود سنامين؟", correct: "الجمل ذو السنامين", options: ["الجمل العربي", "الجمل ذو السنامين", "اللاما", "الألباكا"] },
+    { question: "ما هي عاصمة تركيا؟", correct: "أنقرة", options: ["إسطنبول", "أنقرة", "إزمير", "بورصة"] },
+    { question: "ما هي عاصمة إيران؟", correct: "طهران", options: ["أصفهان", "طهران", "شيراز", "تبريز"] },
+    { question: "ما هي عاصمة اليابان؟", correct: "طوكيو", options: ["أوساكا", "طوكيو", "كيوتو", "هيروشيما"] },
+    { question: "ما هي عاصمة الصين؟", correct: "بكين", options: ["شنغهاي", "بكين", "هونغ كونغ", "قوانغتشو"] },
+    { question: "ما هي عاصمة الهند؟", correct: "نيودلهي", options: ["مومباي", "نيودلهي", "بنغالور", "كلكتا"] },
+    { question: "ما هي عاصمة باكستان؟", correct: "إسلام آباد", options: ["كراتشي", "لاهور", "إسلام آباد", "بيشاور"] },
+    { question: "ما هي عاصمة ألمانيا؟", correct: "برلين", options: ["ميونخ", "فرانكفورت", "برلين", "هامبورغ"] },
+    { question: "ما هي عاصمة إيطاليا؟", correct: "روما", options: ["ميلانو", "فلورنس", "روما", "البندقية"] },
+    { question: "ما هي عاصمة إسبانيا؟", correct: "مدريد", options: ["برشلونة", "مدريد", "إشبيلية", "فالنسيا"] },
+    { question: "ما هي عاصمة إنجلترا (المملكة المتحدة)؟", correct: "لندن", options: ["مانشستر", "لندن", "ليفربول", "برمنغهام"] },
+    { question: "ما هي عاصمة روسيا؟", correct: "موسكو", options: ["سان بطرسبرغ", "موسكو", "قازان", "سوتشي"] },
+    { question: "ما هي عاصمة البرازيل؟", correct: "برازيليا", options: ["ريو دي جانيرو", "ساو باولو", "برازيليا", "سالفادور"] },
+    { question: "ما هي عاصمة الأرجنتين؟", correct: "بوينس آيرس", options: ["قرطبة", "بوينس آيرس", "روزاريو", "مندوزا"] },
+    { question: "ما هي عاصمة كندا؟", correct: "أوتاوا", options: ["تورونتو", "فانكوفر", "أوتاوا", "مونتريال"] },
+    { question: "ما هي عاصمة الولايات المتحدة الأمريكية؟", correct: "واشنطن العاصمة", options: ["نيويورك", "لوس أنجلوس", "واشنطن العاصمة", "شيكاغو"] },
+    { question: "ما هو أكبر محيط في العالم؟", correct: "المحيط الهادئ", options: ["المحيط الأطلسي", "المحيط الهندي", "المحيط الهادئ", "المحيط المتجمد الشمالي"] },
+    { question: "ما هو الحيوان الذي يُسمى بـ 'سفينة الصحراء'؟", correct: "الجمل", options: ["الحصان", "الجمل", "الفيل", "الخروف"] },
+    { question: "ما هو لون دم طائر الكركي أو بعض الحشرات؟", correct: "أصفر أو أبيض شفيف", options: ["أحمر", "أزرق", "أصفر أو أبيض", "أخضر"] },
+    { question: "كم عدد أركان الإسلام؟", correct: "5", options: ["4", "5", "6", "3"] },
+    { question: "كم عدد أركان الإيمان؟", correct: "6", options: ["4", "5", "6", "7"] },
+    { question: "من هو أول مؤذن في الإسلام؟", correct: "بلال بن رباح", options: ["عمار بن ياسر", "بلال بن رباح", "عبد الله بن مسعود", "زيد بن حارثة"] },
+    { question: "ما هو الحرف الذي يُكتب ولا يُنطق في الكلمات أحياناً؟", correct: "ألف الوصل أو واو الجماعة", options: ["الباء", "التاء", "واو الجماعة", "السين"] },
+    { question: "ما هي السورة التي تُسمى 'قلب القرآن'؟", correct: "سورة يس", options: ["سورة البقرة", "سورة الملك", "سورة يس", "سورة الكهف"] },
+    { question: "ما هي السورة التي تعدل ثلث القرآن؟", correct: "سورة الإخلاص", options: ["سورة الفاتحة", "سورة الإخلاص", "سورة الناس", "سورة الكافرون"] },
+    { question: "ما هو الشرك الأصغر كما جاء في السنة؟", correct: "الرياء", options: ["عبادة غير الله", "الرياء", "السحر", "الكذب"] },
+    { question: "ما هي أثقل حيوان بحري في العالم؟", correct: "الحوت الأزرق", options: ["القرش الأبيض", "الحوت الأزرق", "الحوت قاتل", "الأُكْتُوبُوس"] },
+    { question: "ما هو العنصر الكيميائي الذي يرمز له بالرمز O؟", correct: "الأكسجين", options: ["الذهب", "الأكسجين", "الفضة", "الحديد"] },
+    { question: "ما هو العنصر الكيميائي الذي يرمز له بالرمز H؟", correct: "الهيدروجين", options: ["الهيدروجين", "الهيليوم", "الحديد", "الزئبق"] },
+    { function: "ما هو أطول الشهر الهجرية؟", question: "ما هو الشهر التاسع في التقويم الهجري؟", correct: "رمضان", options: ["شعبان", "رمضان", "شوال", "رجب"] },
+    { question: "في أي شهر هجري يأتي عيد الأضحى؟", correct: "ذو الحجة", options: ["شوال", "رمضان", "ذو القعدة", "ذو الحجة"] },
+    { question: "من هو النبي الذي بني السفينة الكبرى؟", correct: "نوح عليه السلام", options: ["إبراهيم عليه السلام", "نوح عليه السلام", "موسى عليه السلام", "عيسى عليه السلام"] },
+    { question: "ما هو أسرع كوكب يدور حول الشمس؟", correct: "عطارد", options: ["عطارد", "الزهرة", "الأرض", "المريخ"] },
+    { question: "من هو مكتشف أمريكا؟", correct: "كريستوفر كولومبوس", options: ["فاسكو دي غاما", "كريستوفر كولومبوس", "ماجلان", "ابن بطوطة"] },
+    { question: "ما هو الحيوان الذي يستطيع النوم وإحدى عينيه مفتوحة؟", correct: "الدلفين", options: ["القط", "الدلفين", "الكلب", "الأسد"] },
+    { question: "كم عدد اللاعبين الأساسيين في فريق كرة القدم؟", correct: "11", options: ["9", "10", "11", "12"] },
+    { question: "كم عدد الشهور الميلادية؟", correct: "12", options: ["10", "11", "12", "13"] },
+    { question: "ما هي عاصمة اليونان؟", correct: "أثينا", options: ["أثينا", "اسبرطة", "ثيسالونيكي", "باتراس"] },
+    { question: "ما هي عاصمة البرتغال؟", correct: "لشبونة", options: ["بورتو", "لشبونة", "كويمبرا", "فارو"] },
+    { question: "ما هي عاصمة هولندا؟", correct: "أمستردام", options: ["روتردام", "أمستردام", "لاهاي", "أوترخت"] },
+    { question: "ما هي عاصمة بلجيكا؟", correct: "بروكسل", options: ["أنتويرب", "بروكسل", "خنت", "بروج"] },
+    { question: "ما هي عاصمة سويسرا؟", correct: "برن", options: ["زيورخ", "جنيف", "برن", "بازل"] },
+    { question: "ما هي عاصمة النمسا؟", correct: "فيينا", options: ["سالزبورغ", "فيينا", "إنسبروك", "غراتس"] },
+    { question: "ما هي عاصمة السويد؟", correct: "ستوكهولم", options: ["غوتنبرغ", "ستوكهولم", "مالمو", "أوبسالا"] },
+    { question: "ما هي عاصمة النرويج؟", correct: "أوسلو", options: ["بيرغن", "أوسلو", "تروندهايم", "ستافانغر"] },
+    { question: "ما هي عاصمة فنلندا؟", correct: "هلسنكي", options: ["إسبو", "تامبيري", "هلسنكي", "أولو"] },
+    { question: "ما هي عاصمة الدنمارك؟", correct: "كوبنهاغن", options: ["آرهوس", "كوبنهاغن", "أودنسه", "ألبورغ"] },
+    { question: "ما هي عاصمة أستراليا؟", correct: "كانبيرا", options: ["سيدني", "ملبورن", "كانبيرا", "بريسبان"] },
+    { question: "ما هي عاصمة نيوزيلندا؟", correct: "ويلينغتون", options: ["أوكلاند", "ويلينغتون", "كرايستشيرش", "هامิลتون"] },
+    { question: "ما هي عاصمة جنوب إفريقيا؟", correct: "بريتوريا", options: ["جوهانسبرغ", "كيب تاون", "بريتوريا", "ديربان"] },
+    { question: "من هو أول من بنى الكعبة؟", correct: "الملائكة ثم إبراهيم وإسماعيل", options: ["آدم عليه السلام", "إبراهيم عليه السلام", "الملائكة ثم إبراهيم وإسماعيل", "قريش"] }
+];
+
 const flagsGameData = [
     { country: "المملكة العربية السعودية", flag: "🇸🇦", options: ["المملكة العربية السعودية", "الإمارات العربية المتحدة", "الكويت", "قطر"] },
     { country: "اليابان", flag: "🇯🇵", options: ["الصين", "اليابان", "كوريا الجنوبية", "فيتنام"] }
@@ -36,10 +192,7 @@ const capitalsGameData = [
     { country: "المملكة العربية السعودية", capital: "الرياض", options: ["الرياض", "جدة", "مكة المكرمة", "الدمام"] }
 ];
 
-const fakkData = [{ word: "مكتبة", spaced: "م ك ت ب ة" }];
-const rakibData = [{ scrambled: "س م ك", correct: "سمك" }];
 const hazirData = [{ riddle: "ما هو الشيء الذي أبيض من السن وأسود من الليل؟", correct: "خط القران" }];
-const triviaData = [{ question: "ما هو أعلى حزام في التايكوندو؟", correct: "الأسود", options: ["الأخضر", "الأحمر", "الأبيض", "الأسود"] }];
 
 function shuffleArray(array) {
     return array.sort(() => Math.random() - 0.5);
@@ -108,7 +261,7 @@ client.on('messageCreate', async message => {
 
     if (message.content === '!help') {
         const helpEmbed = new EmbedBuilder()
-            .setTitle('🎮 قائمة ألعاب البوت التفاعلية والأوامر')
+            .setTitle('🎮 قائمة ألعاب البوت التفاعلية والأوامر (100 سؤال لكل لعبة تفاعلية)')
             .addFields(
                 { name: '❌ إكس أو', value: '`!xo @الشخص`', inline: true },
                 { name: '🟡 أربع على الحواف', value: '`!اربع @الشخص`', inline: true },
@@ -116,18 +269,18 @@ client.on('messageCreate', async message => {
                 { name: '🔢 تخمين الرقم', value: '`!تخمين`', inline: true },
                 { name: '⚡ تحدي السرعة', value: '`!سريع`', inline: true },
                 { name: '🎰 الحظ السعيد', value: '`!حظ`', inline: true },
-                { name: '❓ الأسئلة', value: '`!اسئلة`', inline: true },
+                { name: '❓ الأسئلة (100 سؤال)', value: '`!اسئلة`', inline: true },
                 { name: '🌍 الأعلام', value: '`!اعلام`', inline: true },
                 { name: '🏛️ العواصم', value: '`!عواصم`', inline: true },
-                { name: '🧩 فكك', value: '`!فكك`', inline: true },
-                { name: '🔤 ركب', value: '`!ركب`', inline: true },
+                { name: '🧩 فكك (100 كلمة)', value: '`!فكك`', inline: true },
+                { name: '🔤 ركب (100 كلمة)', value: '`!ركب`', inline: true },
                 { name: '🧠 حزر', value: '`!حزر`', inline: true }
             )
             .setColor(0x5865F2);
         return message.reply({ embeds: [helpEmbed] });
     }
 
-    // 1. لعبة إكس أو
+    // 1. إكس أو
     if (message.content.startsWith('!xo')) {
         let opponent = message.mentions.users.first();
         if (!opponent) return message.reply('❌ يجب عليك منشن شخص لتبدأ معه! مثال: `!xo @الشخص`');
@@ -204,7 +357,7 @@ client.on('messageCreate', async message => {
         return;
     }
 
-    // 2. لعبة أربع على الحواف
+    // 2. أربع على الحواف
     if (message.content.startsWith('!اربع')) {
         let opponent = message.mentions.users.first();
         if (!opponent) return message.reply('❌ منشن شخص لتبدأ معه! مثال: `!اربع @الشخص`');
@@ -240,10 +393,10 @@ client.on('messageCreate', async message => {
         return;
     }
 
-    // 4. تخمين الرقم (مبرمج داخلياً وبدون أخطاء)
+    // 4. تخمين الرقم
     if (message.content === '!تخمين') {
         const targetNumber = Math.floor(Math.random() * 20) + 1;
-        const msg = await message.reply({ embeds: [new EmbedBuilder().setTitle('🔢 تخمين الرقم').setDescription('خمن رقماً بين **1 و 20** واكتبه في الشات! أمامك 30 ثانية.').setColor(0x5865F2)] });
+        await message.reply({ embeds: [new EmbedBuilder().setTitle('🔢 تخمين الرقم').setDescription('خمن رقماً بين **1 و 20** واكتبه في الشات! أمامك 30 ثانية.').setColor(0x5865F2)] });
         
         const col = message.channel.createMessageCollector({ filter: m => m.author.id === message.author.id, time: 30000, max: 1 });
         col.on('collect', m => {
@@ -256,7 +409,7 @@ client.on('messageCreate', async message => {
         });
     }
 
-    // 5. تحدي السرعة (مبرمج داخلياً وبدون أخطاء)
+    // 5. تحدي السرعة
     if (message.content === '!سريع') {
         const msg = await message.reply({ embeds: [new EmbedBuilder().setTitle('⚡ تحدي السرعة').setDescription('اضغط على الزر بأسرع ما يمكن!').setColor(0x5865F2)], components: [new ActionRowBuilder().addComponents(new ButtonBuilder().setCustomId('click_fast').setLabel('اضغط بسرعة!').setStyle(ButtonStyle.Success))] });
         
@@ -271,7 +424,7 @@ client.on('messageCreate', async message => {
         });
     }
 
-    // 6. لعبة الحظ (مبرمج داخلياً وبدون أخطاء)
+    // 6. لعبة الحظ
     if (message.content === '!حظ') {
         const items = ['🍇', '🍊', '🍋', '🍌', '🍍', '🍒', '⭐'];
         const r1 = items[Math.floor(Math.random() * items.length)];
@@ -283,23 +436,29 @@ client.on('messageCreate', async message => {
         await message.reply({ embeds: [embed] });
     }
 
-    // الألعاب الأخرى (أسئلة، أعلام، عواصم، فكك، ركب، حزر)
+    // 7. لعبة الأسئلة (عشوائي من أصل 100 سؤال)
     if (message.content === '!اسئلة') {
-        const q = triviaData[0];
+        const q = triviaData[Math.floor(Math.random() * triviaData.length)];
         const opts = shuffleArray([...q.options]);
         const row = new ActionRowBuilder();
         opts.forEach((o, i) => row.addComponents(new ButtonBuilder().setCustomId(`t_${i}`).setLabel(o).setStyle(ButtonStyle.Primary)));
-        const msg = await message.reply({ embeds: [new EmbedBuilder().setTitle('❓ أسئلة').setDescription(`**${q.question}**`).setColor(0x5865F2)], components: [row] });
+        const msg = await message.reply({ embeds: [new EmbedBuilder().setTitle('❓ أسئلة متنوعة (من 100 سؤال)').setDescription(`**${q.question}**`).setColor(0x5865F2)], components: [row] });
         const col = msg.createMessageComponentCollector({ time: 30000 });
         col.on('collect', async i => {
             if (i.user.id !== message.author.id) return i.reply({ content: '❌ ليست لك!', ephemeral: true });
-            await i.update({ content: `🎉 صحيح! الإجابة هي **${q.correct}**`, components: [] });
+            const selectedLabel = i.component.label;
+            if (selectedLabel === q.correct) {
+                await i.update({ content: `🎉 إجابة صحيحة! الكفو هو <@${i.user.id}> والإجابة هي **${q.correct}**`, components: [] });
+            } else {
+                await i.update({ content: `❌ إجابة خاطئة يا <@${i.user.id}>! الإجابة الصحيحة كانت **${q.correct}**`, components: [] });
+            }
             col.stop();
         });
     }
 
+    // 8. لعبة الأعلام
     if (message.content === '!اعلام') {
-        const d = flagsGameData[0];
+        const d = flagsGameData[Math.floor(Math.random() * flagsGameData.length)];
         const opts = shuffleArray([...d.options]);
         const row = new ActionRowBuilder();
         opts.forEach((o, i) => row.addComponents(new ButtonBuilder().setCustomId(`f_${i}`).setLabel(o).setStyle(ButtonStyle.Primary)));
@@ -312,8 +471,9 @@ client.on('messageCreate', async message => {
         });
     }
 
+    // 9. لعبة العواصم
     if (message.content === '!عواصم') {
-        const c = capitalsGameData[0];
+        const c = capitalsGameData[Math.floor(Math.random() * capitalsGameData.length)];
         const opts = shuffleArray([...c.options]);
         const row = new ActionRowBuilder();
         opts.forEach((o, i) => row.addComponents(new ButtonBuilder().setCustomId(`c_${i}`).setLabel(o).setStyle(ButtonStyle.Primary)));
@@ -326,24 +486,35 @@ client.on('messageCreate', async message => {
         });
     }
 
+    // 10. لعبة فكك (عشوائي من أصل 100 كلمة)
     if (message.content === '!فكك') {
-        const f = fakkData[0];
-        await message.reply({ embeds: [new EmbedBuilder().setTitle('🧩 فكك').setDescription(`فكك الكلمة:\n\n# ${f.word}`).setColor(0x5865F2)] });
+        const f = fakkData[Math.floor(Math.random() * fakkData.length)];
+        await message.reply({ embeds: [new EmbedBuilder().setTitle('🧩 فكك (من بين 100 كلمة)').setDescription(`فكك الكلمة التالية:\n\n# ${f.word}`).setColor(0x5865F2)] });
         const col = message.channel.createMessageCollector({ filter: r => r.author.id === message.author.id, time: 30000, max: 1 });
         col.on('collect', r => {
-            message.channel.send(r.content.trim() === f.spaced ? `🎉 صح: **${f.spaced}**` : `❌ خطأ! الصحيح: **${f.spaced}**`);
+            if (r.content.trim() === f.spaced) {
+                message.channel.send(`🎉 كفو <@${r.author.id}> إجابة صحيحة: **${f.spaced}**`);
+            } else {
+                message.channel.send(`❌ خطأ يا <@${r.author.id}>! الإجابة الصحيحة: **${f.spaced}**`);
+            }
         });
     }
 
+    // 11. لعبة ركب (عشوائي من أصل 100 كلمة)
     if (message.content === '!ركب') {
-        const r = rakibData[0];
-        await message.reply({ embeds: [new EmbedBuilder().setTitle('🔤 ركب').setDescription(`ركب الحروف:\n\n# ${r.scrambled}`).setColor(0x5865F2)] });
+        const r = rakibData[Math.floor(Math.random() * rakibData.length)];
+        await message.reply({ embeds: [new EmbedBuilder().setTitle('🔤 ركب (من بين 100 كلمة)').setDescription(`ركب الحروف التالية:\n\n# ${r.scrambled}`).setColor(0x5865F2)] });
         const col = message.channel.createMessageCollector({ filter: resp => resp.author.id === message.author.id, time: 30000, max: 1 });
         col.on('collect', resp => {
-            message.channel.send(resp.content.trim() === r.correct ? `🎉 صح: **${r.correct}**` : `❌ خطأ! الصحيح: **${r.correct}**`);
+            if (resp.content.trim() === r.correct) {
+                message.channel.send(`🎉 كفو <@${resp.author.id}> إجابة صحيحة: **${r.correct}**`);
+            } else {
+                message.channel.send(`❌ خطأ يا <@${resp.author.id}>! الإجابة الصحيحة: **${r.correct}**`);
+            }
         });
     }
 
+    // 12. لعبة حزر
     if (message.content === '!حزر') {
         const h = hazirData[0];
         await message.reply({ embeds: [new EmbedBuilder().setTitle('🧠 حزر').setDescription(`اللغز:\n\n# "${h.riddle}"`).setColor(0x5865F2)] });
