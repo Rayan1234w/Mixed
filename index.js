@@ -27,7 +27,7 @@ process.on('unhandledRejection', (error) => { console.error(error); });
 process.on('uncaughtException', (error) => { console.error(error); });
 
 // ==========================================
-// البيانات الموسعة (كلمات وجمل كثيرة)
+// البيانات الموسعة (كلمات وجمل كثيرة ومتنوعة)
 // ==========================================
 const fakkData = [
     { word: "مكتبة", spaced: "م ك ت ب ة" }, 
@@ -37,23 +37,27 @@ const fakkData = [
     { word: "الرياض", spaced: "ا ل ر ي ا ض" },
     { word: "ديسكورد", spaced: "د ي س ك و ر د" },
     { word: "جامعة", spaced: "ج ا م ع ة" },
-    { word: "طائرة", spaced: "ط ا ئ ر ة" }
+    { word: "طائرة", spaced: "ط ا ئ ر ة" },
+    { word: "سيارة", spaced: "س ي ا ر ة" },
+    { word: "كمبيوتر", spaced: "ك م ب ي و ت ر" }
 ];
 
 const rakibData = [
     { scrambled: "س م ك", correct: "سمك" }, 
     { scrambled: "ق م ر", correct: "قمر" }, 
-    { scrambled: "ش م س", correct: "شمس" },
+    { scrambled: "ش م ش", correct: "شمس" },
     { scrambled: "ق ل م", correct: "قلم" },
     { scrambled: "ب ح ر", correct: "بحر" },
     { scrambled: "و ر د", correct: "ورد" },
-    { scrambled: "ن ج م", correct: "نجم" }
+    { scrambled: "ن ج م", correct: "نجم" },
+    { scrambled: "ت ف ح", correct: "تفح" }
 ];
 
 const triviaData = [
     { question: "ما هي عاصمة المملكة العربية السعودية؟", correct: "الرياض", options: ["جدة", "الرياض", "الدمام", "مكة"] },
     { question: "ما هي عاصمة الإمارات العربية المتحدة؟", correct: "أبوظبي", options: ["دبي", "أبوظبي", "الشارقة", "عجمان"] },
-    { question: "كم عدد سور القرآن الكريم؟", correct: "114", options: ["112", "113", "114", "115"] }
+    { question: "كم عدد سور القرآن الكريم؟", correct: "114", options: ["112", "113", "114", "115"] },
+    { question: "ما هي عاصمة الكويت؟", correct: "الكويت", options: ["الجهراء", "الكويت", "المباركية", "حولي"] }
 ];
 
 const flagsGameData = [
@@ -68,7 +72,8 @@ const capitalsGameData = [
 
 const hazirData = [
     { riddle: "ما هو الشيء الذي أبيض من السن وأسود من الليل؟", correct: "خط القران" },
-    { riddle: "ما هو الشيء الذي يجري وراءك ولا تحسه؟", correct: "الظل" }
+    { riddle: "ما هو الشيء الذي يجري وراءك ولا تحسه؟", correct: "الظل" },
+    { riddle: "ما هو البيت الذي ليس فيه أبواب ولا نوافذ؟", correct: "بيت الشعر" }
 ];
 
 function shuffleArray(array) {
@@ -295,12 +300,12 @@ client.on('messageCreate', async message => {
         return;
     }
 
-    // فكك
+    // فكك (البوت يعطيك الكلمة متصلة وأنت تكتبها مفككة بالحروف والمسافات)
     if (message.content === '!فكك') {
         const item = fakkData[Math.floor(Math.random() * fakkData.length)];
         const embed = new EmbedBuilder()
             .setTitle('🧩 لعبة تفكيك الكلمات')
-            .setDescription(`فكك الكلمة التالية واكتبها متصلة:\n\`\`\`${item.spaced}\`\`\``)
+            .setDescription(`فكك الكلمة التالية واكتبها بالحروف مفرقة:\n\`\`\`${item.word}\`\`\``)
             .setColor(0xE91E63);
         
         await message.channel.send({ embeds: [embed] });
@@ -309,17 +314,17 @@ client.on('messageCreate', async message => {
         const collector = message.channel.createMessageCollector({ filter, max: 1, time: 30000 });
 
         collector.on('collect', m => {
-            m.reply(`🎉 كفو <@${m.author.id}>! فككتها وصح عليك (الكلمة: **${item.word}**).`);
+            m.reply(`🎉 كفو <@${m.author.id}>! فككتها وصح عليك (الإجابة المفككة: **${item.spaced}**).`);
         });
         return;
     }
 
-    // ركب
+    // ركب (البوت يعطيك الحروف مفرقة وأنت تركبها لتصبح كلمة متصلة)
     if (message.content === '!ركب') {
         const item = rakibData[Math.floor(Math.random() * rakibData.length)];
         const embed = new EmbedBuilder()
             .setTitle('🔤 لعبة تركيب الحروف')
-            .setDescription(`ركب الحروف التالية لتصبح كلمة صحيحة:\n\`\`\`${item.scrambled}\`\`\``)
+            .setDescription(`ركب الحروف التالية لتصبح كلمة صحيحة متصلة:\n\`\`\`${item.scrambled}\`\`\``)
             .setColor(0x34495E);
         
         await message.channel.send({ embeds: [embed] });
