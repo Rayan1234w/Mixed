@@ -489,21 +489,21 @@ client.on('messageCreate', async message => {
     // 10. لعبة فكك (عشوائي من أصل 100 كلمة)
     if (message.content === '!فكك') {
         const f = fakkData[Math.floor(Math.random() * fakkData.length)];
-        await message.reply({ embeds: [new EmbedBuilder().setTitle('🧩 فكك (من بين 100 كلمة)').setDescription(`فكك الكلمة التالية:\n\n# ${f.word}`).setColor(0x5865F2)] });
+        await message.reply({ embeds: [new EmbedBuilder().setTitle('🧩 فكك').setDescription(`فكك الكلمة التالية:\n\n# ${f.spaced}`).setColor(0x5865F2)] });
         const col = message.channel.createMessageCollector({ filter: r => r.author.id === message.author.id, time: 30000, max: 1 });
         col.on('collect', r => {
-            if (r.content.trim() === f.spaced) {
-                message.channel.send(`🎉 كفو <@${r.author.id}> إجابة صحيحة: **${f.spaced}**`);
+            if (r.content.trim() === f.word) {
+                message.channel.send(`🎉 كفو <@${r.author.id}> إجابة صحيحة: **${f.word}**`);
             } else {
-                message.channel.send(`❌ خطأ يا <@${r.author.id}>! الإجابة الصحيحة: **${f.spaced}**`);
+                message.channel.send(`❌ خطأ يا <@${r.author.id}>! الإجابة الصحيحة: **${f.word}**`);
             }
         });
     }
 
-    // 11. لعبة ركب (عشوائي من أصل 100 كلمة)
+ // 11. لعبة ركب (عشوائي من أصل 100 كلمة)
     if (message.content === '!ركب') {
         const r = rakibData[Math.floor(Math.random() * rakibData.length)];
-        await message.reply({ embeds: [new EmbedBuilder().setTitle('🔤 ركب (من بين 100 كلمة)').setDescription(`ركب الحروف التالية:\n\n# ${r.scrambled}`).setColor(0x5865F2)] });
+        await message.reply({ embeds: [new EmbedBuilder().setTitle('🔤 ركب').setDescription(`ركب الحروف التالية:\n\n# ${r.scrambled}`).setColor(0x5865F2)] });
         const col = message.channel.createMessageCollector({ filter: resp => resp.author.id === message.author.id, time: 30000, max: 1 });
         col.on('collect', resp => {
             if (resp.content.trim() === r.correct) {
