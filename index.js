@@ -51,18 +51,18 @@ const rakibData = [
     { scrambled: "س م ك", correct: "سمك" }, { scrambled: "ق م ر", correct: "قمر" }, 
     { scrambled: "ش م ش", correct: "شمس" }, { scrambled: "ق ل م", correct: "قلم" }, 
     { scrambled: "ب ح ر", correct: "بحر" }, { scrambled: "و ر د", correct: "ورد" }, 
-    { scrambled: "ن ج م", correct: "نجم" }, { scrambled: "ت ف ح", correct: "تفاح" },
+    { scrambled: "ن ج م", correct: "نجم" }, { scrambled: "ت ف ا ح", correct: "تفاح" },
     { scrambled: "ل ب ن", correct: "لبن" }, { scrambled: "م ا ء", correct: "ماء" },
     { scrambled: "خ ب ز", correct: "خبز" }, { scrambled: "ل ح م", correct: "لحم" },
-    { scrambled: "ب ب غ", correct: "ببغاء" }, { scrambled: "أ س د", correct: "أسد" },
-    { scrambled: "ن م ر", correct: "نمر" }, { scrambled: "في ل", correct: "فيل" },
+    { scrambled: "ب ب غ ا ء", correct: "ببغاء" }, { scrambled: "أ س د", correct: "أسد" },
+    { scrambled: "ن م ر", correct: "نمر" }, { scrambled: "ف ي ل", correct: "فيل" },
     { scrambled: "ق ط", correct: "قط" }, { scrambled: "ك ل ب", correct: "كلب" },
-    { scrambled: "ذ ي ب", correct: "ذئب" }, { scrambled: "ث ع ل", correct: "ثعلب" },
-    { scrambled: "غ ز ل", correct: "غزال" }, { scrambled: "ز ر ف", correct: "زرافة" },
+    { scrambled: "ذ ي ب", correct: "ذئب" }, { scrambled: "ث ع ل ب", correct: "ثعلب" },
+    { scrambled: "غ ز ا ل", correct: "غزال" }, { scrambled: "ز ر ا ف ة", correct: "زرافة" },
     { scrambled: "ق ر د", correct: "قرد" }, { scrambled: "د ب", correct: "دب" },
-    { scrambled: "ص ق ر", correct: "صقر" }, { scrambled: "ن ص ر", correct: "نسر" },
-    { scrambled: "ح م ا", correct: "حمام" }, { scrambled: "ب ط", correct: "بطة" },
-    { scrambled: "د ج ج", correct: "دجاجة" }, { scrambled: "خ ر ف", correct: "خروف" }
+    { scrambled: "ص ق ر", correct: "صقر" }, { scrambled: "ن س ر", correct: "نسر" },
+    { scrambled: "ح م ا م", correct: "حمام" }, { scrambled: "ب ط ة", correct: "بطة" },
+    { scrambled: "د ج ا ج ة", correct: "دجاجة" }, { scrambled: "خ ر و ف", correct: "خروف" }
 ];
 
 const triviaData = [
