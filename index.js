@@ -22,6 +22,19 @@ const client = new Client({
     ]
 });
 
+// لمعالجة الأخطاء ومنع البوت من الانهيار (تمت الإضافة لحل المشكلة)
+client.on('error', (error) => {
+    console.error('خطأ في اتصال البوت:', error);
+});
+
+process.on('unhandledRejection', (error) => {
+    console.error('خطأ غير معالج (Unhandled Rejection):', error);
+});
+
+process.on('uncaughtException', (error) => {
+    console.error('استثناء غير معالج (Uncaught Exception):', error);
+});
+
 // قائمة أعلام الدول
 const flagsGameData = [
     { country: "المملكة العربية السعودية", flag: "🇸🇦", options: ["المملكة العربية السعودية", "الإمارات العربية المتحدة", "الكويت", "قطر"] },
