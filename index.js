@@ -38,18 +38,18 @@ const fakkData = [
     { word: "حاسب", spaced: "ح ا س ب" }, { word: "برمجة", spaced: "ب ر م ج ة" }, { word: "تطبيقات", spaced: "ت ط ب ي ق ا ت" }, { word: "شبكة", spaced: "ش ب ك ة" }, { word: "انترنت", spaced: "ا ن ت ر ن ت" },
     { word: "شاشات", spaced: "ش ا ش ا ت" }, { word: "سماعات", spaced: "س م ا ع ا ت" }, { word: "مفاتيح", spaced: "م ف ا ت ي ح" }, { word: "كرسي", spaced: "ك ر س ي" }, { word: "سرير", spaced: "س ر ي ر" },
     { word: "غرفة", spaced: "غ ر ف ة" }, { word: "مطبخ", spaced: "م ط ب خ" }, { word: "حمام", spaced: "ح م ا م" }, { word: "طعام", spaced: "ط ع ا م" }, { word: "شراب", spaced: "ش ر ا ب" },
-    { word: "تفاح", spaced: "ت ف ا ح" }, {, word: "موز", spaced: "م و ز" }, { word: "برتقال", spaced: "ب ر ت ق ا ل" }, { word: "عنب", spaced: "ع ن ب" }, { word: "بطيخ", spaced: "ب ط ي خ" },
+    { word: "تفاح", spaced: "ت ف ا ح" }, { word: "موز", spaced: "م و ز" }, { word: "برتقال", spaced: "ب ر ت ق ا ل" }, { word: "عنب", spaced: "ع ن ب" }, { word: "بطيخ", spaced: "ب ط ي خ" },
     { word: "خيار", spaced: "خ ي ا ر" }, { word: "طماطم", spaced: "ط م ا ط م" }, { word: "خس", spaced: "خ س" }, { word: "جزر", spaced: "ج ز ر" }, { word: "بطاطس", spaced: "ب ط ا ط س" },
     { word: "ملابس", spaced: "م ل ا ب س" }, { word: "قميص", spaced: "ق م ي ص" }, { word: "بنطلون", spaced: "ب ن ط ل و ن" }, { word: "حذاء", spaced: "ح ذ ا ء" }, { word: "جورب", spaced: "ج و ر ب" },
-    { word: "ساعة", spaced: "س ا ع ة" }, { word: "خاتم", spaced: "خ ا ت م" }, { word: "نظارة", spaced: "ن ظ ا ر ة" }, { word: "عطر", spaced: "ع ط ر" }, { word: "صصابون", spaced: "ص ا ب و ن" },
-    { word: "مفتاح", spaced: "م ف ت ا ح" }, { word: "قففل", spaced: "ق ف ل" }, { word: "حقيبة", spaced: "ح ق ي ب ة" }, { word: "محفظة", spaced: "م ح ف ظ ة" }, { word: "نقود", spaced: "ن ق و د" },
-    { word: "مصرف", spaced: "م ص ر ف" }, { word: "بطاقة", spaced: "ب ط ا ق ة" }, { word: "هاتف", spaced: "ه ا ت ف" }, { word: "جوال", spaced: "ج و ا ل" }, { word: "شاحن", spaced: "ش ا ح ن" },
-    { word: "كاميرا", spaced: "ك ا م ي ر ا" }, { word: "صورة", spaced: "ص و ر ة" }, { word: "شاشة", spaced: "ش ا ش ة" }, { word: "لوحة", spaced: "ل و ح ة" }, { word: "رسم", spaced: "ر س م" },
-    { word: "لون", spaced: "ل و ن" }, { word: "أحمر", spaced: "أ ح م ر" }, { word: "أزرق", spaced: "أ ز ر ق" }, { word: "أخضر", spaced: "أ خ ض ر" }, { word: "أصفر", spaced: "أ ص ف ر" },
-    { word: "أسود", spaced: "أ س و د" }, { word: "أبيض", spaced: "أ ب ي ض" }, { word: "رمادي", spaced: "ر م ا د ي" }, { word: "بني", spaced: "ب ن ي" }, { word: "وردي", spaced: "و ر د ي" },
-    { word: "سماء", spaced: "س م ا ء" }, { word: "أرض", spaced: "أ ر ض" }, { word: "بحر", spaced: "ب ح ر" }, { word: "نهر", spaced: "ن ه ر" }, { word: "جبل", spaced: "ج ب ل" },
-    { word: "صحراء", spaced: "ص ح ر ا ء" }, { word: "غابة", spaced: "غ ا ب ة" }, { word: "حيوان", spaced: "ح ي و ا ن" }, { word: "أسد", spaced: "أ س د" }, { word: "نمر", spaced: "ن م ر" },
-    { word: "فهد", spaced: "ف ه د" }, { word: "ذئب", spaced: "ذ ئ ب" }, { word: "ثعلب", spaced: "ث ع ل ب" }, { word: "غزال", spaced: "غ ز ا ل" }, { word: "جمل", spaced: "ج م ل" }
+    { word: "ساعة", spaced: "س ا ع ة" }, { word: "خاتم", spaced: "خ ا ت م" }, { word: "نظارة", spaced: "ن ظ ا ر ة" }, { word: "عطر", spaced: "ع ط ر" }, { word: "صابون", spaced: "ص ا ب و ن" },
+    { word: "مفتاح", spaced: "م ف ت ا ح" }, { word: "قفل", spaced: "ق ف ل" }, { word: "محفظة", spaced: "م ح ف ظ ة" }, { word: "نقود", spaced: "ن ق و د" }, { word: "مصرف", spaced: "م ص ر ف" },
+    { word: "بطاقة", spaced: "ب ط ا ق ة" }, { word: "هاتف", spaced: "ه ا ت ف" }, { word: "جوال", spaced: "ج و ا ل" }, { word: "شاحن", spaced: "ش ا ح ن" }, { word: "كاميرا", spaced: "ك ا م ي ر ا" },
+    { word: "صورة", spaced: "ص و ر ة" }, { word: "شاشة", spaced: "ش ا ش ة" }, { word: "لوحة", spaced: "ل و ح ة" }, { word: "رسم", spaced: "ر س م" }, { word: "لون", spaced: "ل و ن" },
+    { word: "أحمر", spaced: "أ ح م ر" }, { word: "أزرق", spaced: "أ ز ر ق" }, { word: "أخضر", spaced: "أ خ ض ر" }, { word: "أصفر", spaced: "أ ص ف ر" }, { word: "أسود", spaced: "أ س و د" },
+    { word: "أبيض", spaced: "أ ب ي ض" }, { word: "رمادي", spaced: "ر م ا د ي" }, { word: "بني", spaced: "ب ن ي" }, { word: "وردي", spaced: "و ر د ي" }, { word: "سماء", spaced: "س م ا ء" },
+    { word: "أرض", spaced: "أ ر ض" }, { word: "بحر", spaced: "ب ح ر" }, { word: "نهر", spaced: "ن ه ر" }, { word: "جبل", spaced: "ج ب ل" }, { word: "صحراء", spaced: "ص ح ر ا ء" },
+    { word: "غابة", spaced: "غ ا ب ة" }, { word: "حيوان", spaced: "ح ي و ا ن" }, { word: "أسد", spaced: "أ س د" }, { word: "نمر", spaced: "ن م ر" }, { word: "فهد", spaced: "ف ه د" },
+    { word: "ذئب", spaced: "ذ ئ ب" }, { word: "ثعلب", spaced: "ث ع ل ب" }, { word: "غزال", spaced: "غ ز ا ل" }, { word: "جمل", spaced: "ج م ل" }
 ];
 
 // ==========================================
@@ -58,24 +58,24 @@ const fakkData = [
 const rakibData = [
     { scrambled: "س م ك", correct: "سمك" }, { scrambled: "ق م ر", correct: "قمر" }, { scrambled: "ش م س", correct: "شمس" }, { scrambled: "ن ج م", correct: "نجم" }, { scrambled: "ب ح ر", correct: "بحر" },
     { scrambled: "ن ه ر", correct: "نهر" }, { scrambled: "ج ب ل", correct: "جبل" }, { scrambled: "ق ل م", correct: "قلم" }, { scrambled: "ك ت ب", correct: "كتب" }, { scrambled: "و ر ق", correct: "ورق" },
-    { scrambled: "ب ا ب", correct: "باب" }, { scrambled: "د ا ر", correct: "دار" }, { scrambled: "س د ر", correct: "درس" }, { scrambled: "ل ع ب", correct: "لعب" }, { scrambled: "أ ك ل", correct: "أكل" },
+    { scrambled: "ب ا ب", correct: "باب" }, { scrambled: "د ا ر", correct: "دار" }, { scrambled: "د ر س", correct: "درس" }, { scrambled: "ل ع ب", correct: "لعب" }, { scrambled: "أ ك ل", correct: "أكل" },
     { scrambled: "ش ر ب", correct: "شرب" }, { scrambled: "ن ا م", correct: "نام" }, { scrambled: "ق ا م", correct: "قام" }, { scrambled: "م ش ى", correct: "مشى" }, { scrambled: "ج ر ي", correct: "جري" },
     { scrambled: "ح ب ل", correct: "حبل" }, { scrambled: "خ ش ب", correct: "خشب" }, { scrambled: "ح د ي د", correct: "حديد" }, { scrambled: "ذ ه ب", correct: "ذهب" }, { scrambled: "ف ض ة", correct: "فضة" },
-    { scrambled: "م ا ء", correct: "ماء" }, { scrambled: "ه و ا ء", correct: "هواء" }, { scrambled: "تُراب", correct: "تراب" }, { scrambled: "نَار", correct: "نار" }, { scrambled: "ثَوَب", correct: "ثوب" },
-    { scrambled: "بَيْت", correct: "بيت" }, { scrambled: "سُوق", correct: "سوق" }, { scrambled: "حَكَم", correct: "حكم" }, { scrambled: "عِلْم", correct: "علم" }, { scrambled: "فَهْم", correct: "فهم" },
-    { scrambled: "سَمْع", correct: "سمع" }, { scrambled: "بَصَر", correct: "بصر" }, { scrambled: "نَطْق", correct: "نطق" }, { scrambled: "قَوْل", correct: "قول" }, { scrambled: "فِعْل", correct: "فعل" },
-    { scrambled: "صَدْق", correct: "صدق" }, { scrambled: "عَدْل", correct: "عدل" }, { scrambled: "صَبْر", correct: "صبر" }, { scrambled: "شُكْر", correct: "شكر" }, { scrambled: "حَمْد", correct: "حمد" },
-    { scrambled: "مُلْك", correct: "ملك" }, { scrambled: "أَمِير", correct: "أمير" }, { scrambled: "وَزِير", correct: "وزير" }, { scrambled: "قَاضِي", correct: "قاضي" }, { scrambled: "عَالِم", correct: "عالم" },
-    { scrambled: "طَبِيب", correct: "طبيب" }, { scrambled: "مُهَنْدِس", correct: "مهندس" }, { scrambled: "مُعَلِّم", correct: "معلم" }, { scrambled: "طَالِب", correct: "طالب" }, { scrambled: "جُنْدِيّ", correct: "جندي" },
-    { scrambled: "شُرْطِيّ", correct: "شرطي" }, { scrambled: "تَاجِر", correct: "تاجر" }, { scrambled: "فَلَّاح", correct: "فلاح" }, { scrambled: "صَيَّاد", correct: "صياد" }, { scrambled: "نَجَّار", correct: "نجار" },
-    { scrambled: "حَدَّاد", correct: "حداد" }, { scrambled: "خَبَّاز", correct: "خباز" }, { scrambled: "بَنَّاء", correct: "بناء" }, { scrambled: "خَيَّاط", correct: "خياط" }, { scrambled: "رَسَّام", correct: "رسام" },
-    { scrambled: "كَاتِب", correct: "كاتب" }, { scrambled: "شَاعِر", correct: "شاعر" }, { scrambled: "أَدِيب", correct: "أديب" }, { scrambled: "خَطِيب", correct: "خطيب" }, { scrambled: "إِمَام", correct: "إمام" },
-    { scrambled: "مُؤَذِّن", correct: "مؤذن" }, { scrambled: "خَادِم", correct: "خادم" }, { scrambled: "ضَيْف", correct: "ضيف" }, { scrambled: "جَار", correct: "جار" }, { scrambled: "صَدِيق", correct: "صديق" },
-    { scrambled: "رَفِيق", correct: "رفيق" }, { scrambled: "أَخ", correct: "أخ" }, { scrambled: "أُخْت", correct: "أخت" }, { scrambled: "أَب", correct: "أب" }, { scrambled: "أُمّ", correct: "أم" },
-    { scrambled: "جَدّ", correct: "جد" }, { scrambled: "جَدَّة", correct: "جدة" }, { scrambled: "خَال", correct: "خال" }, { scrambled: "عَمّ", correct: "عم" }, { scrambled: "ابْن", correct: "ابن" },
-    { scrambled: "بِنْت", correct: "بنت" }, { scrambled: "طِفْل", correct: "طفل" }, { scrambled: "وَلَد", correct: "ولد" }, { scrambled: "رَجُل", correct: "رجل" }, { scrambled: "امْرَأَة", correct: "امرأة" },
-    { scrambled: "شَابّ", correct: "شاب" }, { scrambled: "فَتَاة", correct: "فتاة" }, { scrambled: "عَجُوز", correct: "عجوز" }, { scrambled: "قَوِيّ", correct: "قوي" }, { scrambled: "ضَعِيف", correct: "ضعيف" },
-    { scrambled: "غَنِيّ", correct: "غني" }, { scrambled: "فَقِير", correct: "فقير" }, { scrambled: "كَرِيم", correct: "كريم" }, { scrambled: "بَخِيل", correct: "بخيل" }, { scrambled: "شَجَاع", correct: "شجاع" }
+    { scrambled: "م ا ء", correct: "ماء" }, { scrambled: "ه و ا ء", correct: "هواء" }, { scrambled: "ت ر ا ب", correct: "تراب" }, { scrambled: "ن ا ر", correct: "نار" }, { scrambled: "ث و ب", correct: "ثوب" },
+    { scrambled: "ب ي ت", correct: "بيت" }, { scrambled: "س و ق", correct: "سوق" }, { scrambled: "ح ك م", correct: "حكم" }, { scrambled: "ع ل م", correct: "علم" }, { scrambled: "ف ه م", correct: "فهم" },
+    { scrambled: "س م ع", correct: "سمع" }, { scrambled: "ب ص ر", correct: "بصر" }, { scrambled: "ن ط ق", correct: "نطق" }, { scrambled: "ق و ل", correct: "قول" }, { scrambled: "ف ع ل", correct: "فعل" },
+    { scrambled: "ص د ق", correct: "صدق" }, { scrambled: "ع د ل", correct: "عدل" }, { scrambled: "ص ب ر", correct: "صبر" }, { scrambled: "ش ك ر", correct: "شكر" }, { scrambled: "ح م د", correct: "حمد" },
+    { scrambled: "م ل ك", correct: "ملك" }, { scrambled: "أ م ي ر", correct: "أمير" }, { scrambled: "و ز ي ر", correct: "وزير" }, { scrambled: "ق ا ض ي", correct: "قاضي" }, { scrambled: "ع ا ل م", correct: "عالم" },
+    { scrambled: "ط ب ي ب", correct: "طبيب" }, { scrambled: "م ه ن د س", correct: "مهندس" }, { scrambled: "م ع ل م", correct: "معلم" }, { scrambled: "ط ا ل ب", correct: "طالب" }, { scrambled: "ج ن د ي", correct: "جندي" },
+    { scrambled: "ش ر ط ي", correct: "شرطي" }, { scrambled: "ت ا ج ر", correct: "تاجر" }, { scrambled: "ف ل ل ا ح", correct: "فلاح" }, { scrambled: "ص ي ا د", correct: "صياد" }, { scrambled: "ن ج ا ر", correct: "نجار" },
+    { scrambled: "ح د ا د", correct: "حداد" }, { scrambled: "خ ب ا ز", correct: "خباز" }, { scrambled: "ب ن ا ء", correct: "بناء" }, { scrambled: "خ ي ا ط", correct: "خياط" }, { scrambled: "ر س ا م", correct: "رسام" },
+    { scrambled: "ك ا ت ب", correct: "كاتب" }, { scrambled: "ش ا ع ر", correct: "شاعر" }, { scrambled: "أ د ي ب", correct: "أديب" }, { scrambled: "خ ط ي ب", correct: "خطيب" }, { scrambled: "إ م ا م", correct: "إمام" },
+    { scrambled: "م و ذ ن", correct: "مؤذن" }, { scrambled: "خ ا د م", correct: "خادم" }, { scrambled: "ض ي ف", correct: "ضيف" }, { scrambled: "ج ا ر", correct: "جار" }, { scrambled: "ص د ي ق", correct: "صديق" },
+    { scrambled: "ر ف ي ق", correct: "رفيق" }, { scrambled: "أ خ", correct: "أخ" }, { scrambled: "أ خ ت", correct: "أخت" }, { scrambled: "أ ب", correct: "أب" }, { scrambled: "أ م", correct: "أم" },
+    { scrambled: "ج د", correct: "جد" }, { scrambled: "ج د ة", correct: "جدة" }, { scrambled: "خ ا ل", correct: "خال" }, { scrambled: "ع م", correct: "عم" }, { scrambled: "ا ب ن", correct: "ابن" },
+    { scrambled: "ب ن ت", correct: "بنت" }, { scrambled: "ط ف ل", correct: "طفل" }, { scrambled: "و ل د", correct: "ولد" }, { scrambled: "ر ج ل", correct: "رجل" }, { scrambled: "ا م ر أ ة", correct: "امرأة" },
+    { scrambled: "ش ا ب", correct: "شاب" }, { scrambled: "ف ت ا ة", correct: "فتاة" }, { scrambled: "ع ج و ز", correct: "عجوز" }, { scrambled: "ق و ي", correct: "قوي" }, { scrambled: "ض ع ي ف", correct: "ضعيف" },
+    { scrambled: "غ ن ي", correct: "غني" }, { scrambled: "ف ق ي ر", correct: "فقير" }, { scrambled: "ك ر ي م", correct: "كريم" }, { scrambled: "ب خ ي ل", correct: "بخيل" }, { scrambled: "ش ج ا ع", correct: "شجاع" }
 ];
 
 // ==========================================
@@ -87,7 +87,7 @@ const triviaData = [
     { question: "كم عدد سور القرآن الكريم؟", correct: "114", options: ["112", "113", "114", "115"] },
     { question: "ما هو أكبر كوكب في المجموعة الشمسية؟", correct: "المشتري", options: ["المريخ", "زحل", "المشتري", "الأرض"] },
     { question: "في أي قارة تقع مصر؟", correct: "إفريقيا", options: ["آسيا", "إفريقيا", "أوروبا", "أستراليا"] },
-    { question: "ما هو الحيوان الذي يُسمى بملك الغابة؟", correct: "الأسد", options: ["النمر", "الأسد", "الفهد", "הدب"] },
+    { question: "ما هو الحيوان الذي يُسمى بملك الغابة؟", correct: "الأسد", options: ["النمر", "الأسد", "الفهد", "الدب"] },
     { question: "كم عدد ركعات صلاة الفجر؟", correct: "ركعتان", options: ["ركعة", "ركعتان", "ثلاث ركعات", "أربع ركعات"] },
     { question: "ما هو عنصر الذهب بالجدول الدوري؟", correct: "Au", options: ["Ag", "Au", "Fe", "Cu"] },
     { question: "ما هي عاصمة فرنسا؟", correct: "باريس", options: ["لندن", "برلين", "باريس", "روما"] },
@@ -129,7 +129,7 @@ const triviaData = [
     { question: "كم عدد حروف الهجاء العربية؟", correct: "28", options: ["26", "28", "30", "29"] },
     { question: "ما هي عاصمة فلسطين؟", correct: "القدس", options: ["غزة", "القدس", "رام الله", "نابلس"] },
     { question: "ما هو أصغر كوكب في المجموعة الشمسية؟", correct: "عطارد", options: ["المريخ", "عطارد", "الزهرة", "بلوتو"] },
-    { question: "من هو عاصفة الصحراء قائد معركة؟", correct: "خالد بن الوليد", options: ["عمر بن الخطاب", "خالد بن الوليد", "علي بن أبي طالب", "سعد بن أبي وقاص"] },
+    { question: "من هو قائد معركة عفت الصحراء؟", correct: "خالد بن الوليد", options: ["عمر بن الخطاب", "خالد بن الوليد", "علي بن أبي طالب", "سعد بن أبي وقاص"] },
     { question: "ما هو الحيوان الذي ينفرد بوجود سنامين؟", correct: "الجمل ذو السنامين", options: ["الجمل العربي", "الجمل ذو السنامين", "اللاما", "الألباكا"] },
     { question: "ما هي عاصمة تركيا؟", correct: "أنقرة", options: ["إسطنبول", "أنقرة", "إزمير", "بورصة"] },
     { question: "ما هي عاصمة إيران؟", correct: "طهران", options: ["أصفهان", "طهران", "شيراز", "تبريز"] },
@@ -152,16 +152,16 @@ const triviaData = [
     { question: "كم عدد أركان الإسلام؟", correct: "5", options: ["4", "5", "6", "3"] },
     { question: "كم عدد أركان الإيمان؟", correct: "6", options: ["4", "5", "6", "7"] },
     { question: "من هو أول مؤذن في الإسلام؟", correct: "بلال بن رباح", options: ["عمار بن ياسر", "بلال بن رباح", "عبد الله بن مسعود", "زيد بن حارثة"] },
-    { question: "ما هو الحرف الذي يُكتب ولا يُنطق في الكلمات أحياناً؟", correct: "ألف الوصل أو واو الجماعة", options: ["الباء", "التاء", "واو الجماعة", "السين"] },
+    { question: "ما هو الحرف الذي يُكتب ولا يُنطق في الكلمات أحياناً؟", correct: "واو الجماعة", options: ["الباء", "التاء", "واو الجماعة", "السين"] },
     { question: "ما هي السورة التي تُسمى 'قلب القرآن'؟", correct: "سورة يس", options: ["سورة البقرة", "سورة الملك", "سورة يس", "سورة الكهف"] },
     { question: "ما هي السورة التي تعدل ثلث القرآن؟", correct: "سورة الإخلاص", options: ["سورة الفاتحة", "سورة الإخلاص", "سورة الناس", "سورة الكافرون"] },
     { question: "ما هو الشرك الأصغر كما جاء في السنة؟", correct: "الرياء", options: ["عبادة غير الله", "الرياء", "السحر", "الكذب"] },
-    { question: "ما هي أثقل حيوان بحري في العالم؟", correct: "الحوت الأزرق", options: ["القرش الأبيض", "الحوت الأزرق", "الحوت قاتل", "الأُكْتُوبُوس"] },
+    { question: "ما هو أثقل حيوان بحري في العالم؟", correct: "الحوت الأزرق", options: ["القرش الأبيض", "الحوت الأزرق", "الحوت قاتل", "الأُكْتُوبُوس"] },
     { question: "ما هو العنصر الكيميائي الذي يرمز له بالرمز O؟", correct: "الأكسجين", options: ["الذهب", "الأكسجين", "الفضة", "الحديد"] },
     { question: "ما هو العنصر الكيميائي الذي يرمز له بالرمز H؟", correct: "الهيدروجين", options: ["الهيدروجين", "الهيليوم", "الحديد", "الزئبق"] },
-    { function: "ما هو أطول الشهر الهجرية؟", question: "ما هو الشهر التاسع في التقويم الهجري؟", correct: "رمضان", options: ["شعبان", "رمضان", "شوال", "رجب"] },
+    { question: "ما هو الشهر التاسع في التقويم الهجري؟", correct: "رمضان", options: ["شعبان", "رمضان", "شوال", "رجب"] },
     { question: "في أي شهر هجري يأتي عيد الأضحى؟", correct: "ذو الحجة", options: ["شوال", "رمضان", "ذو القعدة", "ذو الحجة"] },
-    { question: "من هو النبي الذي بني السفينة الكبرى؟", correct: "نوح عليه السلام", options: ["إبراهيم عليه السلام", "نوح عليه السلام", "موسى عليه السلام", "عيسى عليه السلام"] },
+    { question: "من هو النبي الذي بنى السفينة الكبرى؟", correct: "نوح عليه السلام", options: ["إبراهيم عليه السلام", "نوح عليه السلام", "موسى عليه السلام", "عيسى عليه السلام"] },
     { question: "ما هو أسرع كوكب يدور حول الشمس؟", correct: "عطارد", options: ["عطارد", "الزهرة", "الأرض", "المريخ"] },
     { question: "من هو مكتشف أمريكا؟", correct: "كريستوفر كولومبوس", options: ["فاسكو دي غاما", "كريستوفر كولومبوس", "ماجلان", "ابن بطوطة"] },
     { question: "ما هو الحيوان الذي يستطيع النوم وإحدى عينيه مفتوحة؟", correct: "الدلفين", options: ["القط", "الدلفين", "الكلب", "الأسد"] },
@@ -178,7 +178,7 @@ const triviaData = [
     { question: "ما هي عاصمة فنلندا؟", correct: "هلسنكي", options: ["إسبو", "تامبيري", "هلسنكي", "أولو"] },
     { question: "ما هي عاصمة الدنمارك؟", correct: "كوبنهاغن", options: ["آرهوس", "كوبنهاغن", "أودنسه", "ألبورغ"] },
     { question: "ما هي عاصمة أستراليا؟", correct: "كانبيرا", options: ["سيدني", "ملبورن", "كانبيرا", "بريسبان"] },
-    { question: "ما هي عاصمة نيوزيلندا؟", correct: "ويلينغتون", options: ["أوكلاند", "ويلينغتون", "كرايستشيرش", "هامิลتون"] },
+    { question: "ما هي عاصمة نيوزيلندا؟", correct: "ويلينغتون", options: ["أوكلاند", "ويلينغتون", "كرايستشيرش", "هاميلتون"] },
     { question: "ما هي عاصمة جنوب إفريقيا؟", correct: "بريتوريا", options: ["جوهانسبرغ", "كيب تاون", "بريتوريا", "ديربان"] },
     { question: "من هو أول من بنى الكعبة؟", correct: "الملائكة ثم إبراهيم وإسماعيل", options: ["آدم عليه السلام", "إبراهيم عليه السلام", "الملائكة ثم إبراهيم وإسماعيل", "قريش"] }
 ];
@@ -261,7 +261,7 @@ client.on('messageCreate', async message => {
 
     if (message.content === '!help') {
         const helpEmbed = new EmbedBuilder()
-            .setTitle('🎮 قائمة ألعاب البوت التفاعلية والأوامر (100 سؤال لكل لعبة تفاعلية)')
+            .setTitle('🎮 قائمة ألعاب البوت التفاعلية والأوامر')
             .addFields(
                 { name: '❌ إكس أو', value: '`!xo @الشخص`', inline: true },
                 { name: '🟡 أربع على الحواف', value: '`!اربع @الشخص`', inline: true },
@@ -269,11 +269,11 @@ client.on('messageCreate', async message => {
                 { name: '🔢 تخمين الرقم', value: '`!تخمين`', inline: true },
                 { name: '⚡ تحدي السرعة', value: '`!سريع`', inline: true },
                 { name: '🎰 الحظ السعيد', value: '`!حظ`', inline: true },
-                { name: '❓ الأسئلة (100 سؤال)', value: '`!اسئلة`', inline: true },
+                { name: '❓ الأسئلة', value: '`!اسئلة`', inline: true },
                 { name: '🌍 الأعلام', value: '`!اعلام`', inline: true },
                 { name: '🏛️ العواصم', value: '`!عواصم`', inline: true },
-                { name: '🧩 فكك (100 كلمة)', value: '`!فكك`', inline: true },
-                { name: '🔤 ركب (100 كلمة)', value: '`!ركب`', inline: true },
+                { name: '🧩 فكك', value: '`!فكك`', inline: true },
+                { name: '🔤 ركب', value: '`!ركب`', inline: true },
                 { name: '🧠 حزر', value: '`!حزر`', inline: true }
             )
             .setColor(0x5865F2);
@@ -424,7 +424,7 @@ client.on('messageCreate', async message => {
         });
     }
 
-    // 6. لعبة الحظ
+    // 6. الحظ
     if (message.content === '!حظ') {
         const items = ['🍇', '🍊', '🍋', '🍌', '🍍', '🍒', '⭐'];
         const r1 = items[Math.floor(Math.random() * items.length)];
@@ -436,27 +436,26 @@ client.on('messageCreate', async message => {
         await message.reply({ embeds: [embed] });
     }
 
-    // 7. لعبة الأسئلة (عشوائي من أصل 100 سؤال)
+    // 7. الأسئلة
     if (message.content === '!اسئلة') {
         const q = triviaData[Math.floor(Math.random() * triviaData.length)];
         const opts = shuffleArray([...q.options]);
         const row = new ActionRowBuilder();
         opts.forEach((o, i) => row.addComponents(new ButtonBuilder().setCustomId(`t_${i}`).setLabel(o).setStyle(ButtonStyle.Primary)));
-        const msg = await message.reply({ embeds: [new EmbedBuilder().setTitle('❓ أسئلة متنوعة (من 100 سؤال)').setDescription(`**${q.question}**`).setColor(0x5865F2)], components: [row] });
+        const msg = await message.reply({ embeds: [new EmbedBuilder().setTitle('❓ أسئلة متنوعة').setDescription(`**${q.question}**`).setColor(0x5865F2)], components: [row] });
         const col = msg.createMessageComponentCollector({ time: 30000 });
         col.on('collect', async i => {
             if (i.user.id !== message.author.id) return i.reply({ content: '❌ ليست لك!', ephemeral: true });
-            const selectedLabel = i.component.label;
-            if (selectedLabel === q.correct) {
-                await i.update({ content: `🎉 إجابة صحيحة! الكفو هو <@${i.user.id}> والإجابة هي **${q.correct}**`, components: [] });
+            if (i.component.label === q.correct) {
+                await i.update({ content: `🎉 إجابة صحيحة يا <@${i.user.id}>! الإجابة هي **${q.correct}**`, components: [] });
             } else {
-                await i.update({ content: `❌ إجابة خاطئة يا <@${i.user.id}>! الإجابة الصحيحة كانت **${q.correct}**`, components: [] });
+                await i.update({ content: `❌ إجابة خاطئة يا <@${i.user.id}>! الصحيحة هي **${q.correct}**`, components: [] });
             }
             col.stop();
         });
     }
 
-    // 8. لعبة الأعلام
+    // 8. الأعلام
     if (message.content === '!اعلام') {
         const d = flagsGameData[Math.floor(Math.random() * flagsGameData.length)];
         const opts = shuffleArray([...d.options]);
@@ -471,7 +470,7 @@ client.on('messageCreate', async message => {
         });
     }
 
-    // 9. لعبة العواصم
+    // 9. العواصم
     if (message.content === '!عواصم') {
         const c = capitalsGameData[Math.floor(Math.random() * capitalsGameData.length)];
         const opts = shuffleArray([...c.options]);
@@ -486,7 +485,7 @@ client.on('messageCreate', async message => {
         });
     }
 
-    // 10. لعبة فكك (عشوائي من أصل 100 كلمة)
+    // 10. فكك
     if (message.content === '!فكك') {
         const f = fakkData[Math.floor(Math.random() * fakkData.length)];
         await message.reply({ embeds: [new EmbedBuilder().setTitle('🧩 فكك').setDescription(`فكك الكلمة التالية:\n\n# ${f.spaced}`).setColor(0x5865F2)] });
@@ -500,7 +499,7 @@ client.on('messageCreate', async message => {
         });
     }
 
- // 11. لعبة ركب (عشوائي من أصل 100 كلمة)
+    // 11. ركب
     if (message.content === '!ركب') {
         const r = rakibData[Math.floor(Math.random() * rakibData.length)];
         await message.reply({ embeds: [new EmbedBuilder().setTitle('🔤 ركب').setDescription(`ركب الحروف التالية:\n\n# ${r.scrambled}`).setColor(0x5865F2)] });
@@ -514,7 +513,7 @@ client.on('messageCreate', async message => {
         });
     }
 
-    // 12. لعبة حزر
+    // 12. حزر
     if (message.content === '!حزر') {
         const h = hazirData[0];
         await message.reply({ embeds: [new EmbedBuilder().setTitle('🧠 حزر').setDescription(`اللغز:\n\n# "${h.riddle}"`).setColor(0x5865F2)] });
