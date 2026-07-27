@@ -196,7 +196,7 @@ client.on('interactionCreate', async interaction => {
                 { name: '🎰 الحظ السعيد', value: '`/حظ`', inline: true },
                 { name: '⚡ تحدي السرعة', value: '`/سريع`', inline: true },
                 { name: '🔢 تخمين الرقم', value: '`/تخمين`', inline: true },
-                { name: '🏛️ لعبة العواصم', value: '`/عواصم`', inline: true },
+                { name: '🌐 لعبة العواصم', value: '`/عواصم`', inline: true },
                 { name: '❓ لعبة الأسئلة', value: '`/اسئلة`', inline: true },
                 { name: '🔤 لعبة ركب', value: '`/ركب`', inline: true },
                 { name: '🧩 لعبة فكك', value: '`/فكك`', inline: true }
@@ -367,7 +367,7 @@ client.on('interactionCreate', async interaction => {
     if (commandName === 'عواصم') {
         const c = cairoData[Math.floor(Math.random() * cairoData.length)];
         const embed = new EmbedBuilder()
-            .setTitle('🏛️ لعبة تخمين العواصم')
+            .setTitle('🌐 لعبة تخمين العواصم')
             .setDescription(`ما هي عاصمة دولة **${c.country}**؟ اكتب الإجابة في الشات!`)
             .setColor(0x1ABC9C);
         
