@@ -199,8 +199,7 @@ client.on('interactionCreate', async interaction => {
                 { name: '🏛️ لعبة العواصم', value: '`/عواصم`', inline: true },
                 { name: '❓ لعبة الأسئلة', value: '`/اسئلة`', inline: true },
                 { name: '🔤 لعبة ركب', value: '`/ركب`', inline: true },
-                { name: '🧩 لعبة فكك', value: '`/فكك`', inline: true },
-                { name: '🧹 مسح الرسائل', value: '`/clear`', inline: true }
+                { name: '🧩 لعبة فكك', value: '`/فكك`', inline: true }
             )
             .setColor(0x00AE86)
             .setTimestamp();
@@ -352,7 +351,6 @@ client.on('interactionCreate', async interaction => {
         const collector = interaction.channel.createMessageCollector({ filter, time: 30000 });
 
         collector.on('collect', m => {
-            // توحيد المسافات (إزالة المسافات المتعددة واستبدالها بمسافة واحدة لتجنب أخطاء الإدخال)
             const cleanUserMsg = m.content.trim().replace(/\s+/g, ' ');
             const cleanTarget = item.spaced.trim().replace(/\s+/g, ' ');
 
