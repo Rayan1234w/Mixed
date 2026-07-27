@@ -32,7 +32,7 @@ process.on('uncaughtException', (error) => { console.error(error); });
 
 // 1. لعبة فكك (40 كلمة)
 const fakkData = [
-    { word: "مكتبة", spaced: "م k ت ب ة" }, { word: "حاسوب", spaced: "ح ا س و ب" }, 
+    { word: "مكتبة", spaced: "م ك ت ب ة" }, { word: "حاسوب", spaced: "ح ا س و ب" }, 
     { word: "مدرسة", spaced: "م د ر س ة" }, { word: "برمجة", spaced: "ب ر م ج ة" }, 
     { word: "الرياض", spaced: "ا ل ر ي ا ض" }, { word: "ديسكورد", spaced: "د ي س ك و ر د" },
     { word: "سيارة", spaced: "س ي ا ر ة" }, { word: "طائرة", spaced: "ط ا ئ ر ة" },
@@ -352,7 +352,11 @@ client.on('interactionCreate', async interaction => {
         const collector = interaction.channel.createMessageCollector({ filter, time: 30000 });
 
         collector.on('collect', m => {
-            if (m.content.trim() === item.spaced) {
+            // توحيد المسافات (إزالة المسافات المتعددة واستبدالها بمسافة واحدة لتجنب أخطاء الإدخال)
+            const cleanUserMsg = m.content.trim().replace(/\s+/g, ' ');
+            const cleanTarget = item.spaced.trim().replace(/\s+/g, ' ');
+
+            if (cleanUserMsg === cleanTarget) {
                 collector.stop();
                 m.reply(`🎉 كفو <@${m.author.id}>! فككتها وصح عليك.`);
             } else {
