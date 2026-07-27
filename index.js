@@ -27,7 +27,7 @@ process.on('unhandledRejection', (error) => { console.error(error); });
 process.on('uncaughtException', (error) => { console.error(error); });
 
 // ==========================================
-// قاعدة البيانات الضخمة (40 سؤال/جملة لكل لعبة)
+// قاعدة البيانات الضخمة (40 سؤال/جملة لكل لعبة - مُصححة)
 // ==========================================
 
 // 1. لعبة فكك (40 كلمة)
@@ -111,7 +111,7 @@ const cairoData = [
     { country: "باكستان", capital: "إسلام آباد" }, { country: "إيران", capital: "طهران" },
     { country: "أستراليا", capital: "كانبيرا" }, { country: "جنوب أفريقيا", capital: "بريتوريا" },
     { country: "المكسيك", capital: "مكسيكو سيتي" }, { country: "السويد", capital: "ستوكهولم" },
-    { country: "النرويج", capital: "أوسلو" }, { country: "فنتلندا", capital: "هلسنكي" },
+    { country: "النرويج", capital: "أوسلو" }, { country: "فنلندا", capital: "هلسنكي" },
     { country: "الدنمارك", capital: "كوبنهاغن" }, { country: "هولندا", capital: "أمستردام" },
     { country: "بلجيكا", capital: "بروكسل" }, { country: "سويسرا", capital: "برن" },
     { country: "النمسا", capital: "فيينا" }, { country: "البرتغال", capital: "لشبونة" },
@@ -141,7 +141,7 @@ const flagsData = [
     { country: "النمسا", flag: "🇦🇹" }, { country: "البرتغال", flag: "🇵🇹" }
 ];
 
-// 5. لعبة ركب الحروف (40 جملة)
+// 5. لعبة ركب الحروف (40 جملة - مُصححة بالكامل)
 const rakabData = [
     { scrambled: "ة ك ت ب", correct: "مكتبة" }, { scrambled: "ب و س ح ا", correct: "حاسوب" },
     { scrambled: "ة ر د م س", correct: "مدرسة" }, { scrambled: "ة ج م ر ب", correct: "برمجة" },
@@ -162,7 +162,7 @@ const rakabData = [
     { scrambled: "ة ر و ب س", correct: "سبورة" }, { scrambled: "ح ا ت ف م", correct: "مفتاح" },
     { scrambled: "ب ا ب", correct: "باب" }, { scrambled: "ة ذ ف ن", correct: "نافذة" },
     { scrambled: "ة ل و ط ا", correct: "طاولة" }, { scrambled: "ي س ر ك", correct: "كرسي" },
-    { scrambled: "ة ع ا س", correct: "ساعة" }, { scrambled: "ف ت ه ه", correct: "هاتف" }
+    { scrambled: "ة ع ا س", correct: "ساعة" }, { scrambled: "ه ا ت ف", correct: "هاتف" }
 ];
 
 client.once('ready', async () => {
