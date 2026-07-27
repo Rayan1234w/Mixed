@@ -27,10 +27,10 @@ process.on('unhandledRejection', (error) => { console.error(error); });
 process.on('uncaughtException', (error) => { console.error(error); });
 
 // ==========================================
-// قاعدة البيانات الضخمة (40 سؤال/جملة لكل لعبة - مُصححة)
+// قاعدة البيانات الضخمة (مُصححة بالكامل ومطابقة للحروف)
 // ==========================================
 
-// 1. لعبة فكك (40 كلمة)
+// 1. لعبة فكك
 const fakkData = [
     { word: "مكتبة", spaced: "م ك ت ب ة" }, { word: "حاسوب", spaced: "ح ا س و ب" }, 
     { word: "مدرسة", spaced: "م د ر س ة" }, { word: "برمجة", spaced: "ب ر م ج ة" }, 
@@ -54,7 +54,7 @@ const fakkData = [
     { word: "ساعة", spaced: "س ا ع ة" }, { word: "هاتف", spaced: "ه ا ت ف" }
 ];
 
-// 2. لعبة الأسئلة العامة (40 سؤالاً)
+// 2. لعبة الأسئلة العامة
 const triviaData = [
     { question: "ما هي عاصمة المملكة العربية السعودية؟", correct: "الرياض", options: ["جدة", "الرياض", "الدمام", "مكة"] },
     { question: "ما هي عاصمة الإمارات العربية المتحدة؟", correct: "أبوظبي", options: ["دبي", "أبوظبي", "الشارقة", "عجمان"] },
@@ -98,7 +98,7 @@ const triviaData = [
     { question: "في اي دولة تقع أهرامات الجيزة؟", correct: "مصر", options: ["السودان", "مصر", "العراق", "المغرب"] }
 ];
 
-// 3. لعبة العواصم (أسماء الدول نصياً)
+// 3. لعبة العواصم
 const cairoData = [
     { country: "فرنسا", capital: "باريس" }, { country: "إيطاليا", capital: "روما" },
     { country: "إسبانيا", capital: "مدريد" }, { country: "ألمانيا", capital: "برلين" },
@@ -122,7 +122,7 @@ const cairoData = [
     { country: "الفلبين", capital: "مانيلا" }, { country: "نيوزيلندا", capital: "ويلينغتون" }
 ];
 
-// 4. لعبة الأعلام (باستخدام الأعلام الحقيقية)
+// 4. لعبة الأعلام
 const flagsData = [
     { country: "فرنسا", flag: "🇫🇷" }, { country: "إيطاليا", flag: "🇮🇹" },
     { country: "إسبانيا", flag: "🇪🇸" }, { country: "ألمانيا", flag: "🇩🇪" },
@@ -141,28 +141,28 @@ const flagsData = [
     { country: "النمسا", flag: "🇦🇹" }, { country: "البرتغال", flag: "🇵🇹" }
 ];
 
-// 5. لعبة ركب الحروف (40 جملة - مُصححة بالكامل)
+// 5. لعبة ركب الحروف (مُراجعة بالكامل وتطابق الكلمات 100%)
 const rakabData = [
-    { scrambled: "ة ك ت ب", correct: "مكتبة" }, { scrambled: "ب و س ح ا", correct: "حاسوب" },
-    { scrambled: "ة ر د م س", correct: "مدرسة" }, { scrambled: "ة ج م ر ب", correct: "برمجة" },
-    { scrambled: "ض ي ا ر ل ا", correct: "الرياض" }, { scrambled: "د ر و ك س ي د", correct: "ديسكورد" },
-    { scrambled: "ة ر ا ي س", correct: "سيارة" }, { scrambled: "ة ر ا ئ ط", correct: "طائرة" },
-    { scrambled: "ص م ي ق", correct: "قميص" }, { scrambled: "ة ع م ا ج", correct: "جامعة" },
-    { scrambled: "س د ن ه م", correct: "مهندس" }, { scrambled: "ب ي ب ط", correct: "طبيب" },
-    { scrambled: "ت ا ي ض ي ا ر", correct: "رياضيات" }, { scrambled: "ء ا ي ز ف", correct: "فيزياء" },
-    { scrambled: "خ ي ر ت", correct: "تاريخ" }, { scrambled: "ا ف ر ج غ", correct: "جغرافيا" },
-    { scrambled: "ى ف ش ت س م", correct: "مستشفى" }, { scrambled: "ب ع ل م", correct: "ملعب" },
-    { scrambled: "ة ق ي د ح", correct: "حديقة" }, { scrambled: "ئ ط ا ش", correct: "شاطئ" },
-    { scrambled: "ر م ق", correct: "قمر" }, { scrambled: "س م ش", correct: "شمس" },
-    { scrambled: "م و ج ن", correct: "نجوم" }, { scrambled: "ط ي ح م", correct: "محيط" },
-    { scrambled: "ء ا ر ح ص", correct: "صحراء" }, { scrambled: "ل ب ج", correct: "جبل" },
-    { scrambled: "ر ه ن", correct: "نهر" }, { scrambled: "ر ح ب", correct: "بحر" },
-    { scrambled: "ء ا م س", correct: "سماء" }, { scrambled: "ض ر ا", correct: "ارض" },
-    { scrambled: "م ل ق", correct: "قلم" }, { scrambled: "ي ر ت ف د", correct: "دفتري" },
-    { scrambled: "ة ر و ب س", correct: "سبورة" }, { scrambled: "ح ا ت ف م", correct: "مفتاح" },
-    { scrambled: "ب ا ب", correct: "باب" }, { scrambled: "ة ذ ف ن", correct: "نافذة" },
-    { scrambled: "ة ل و ط ا", correct: "طاولة" }, { scrambled: "ي س ر ك", correct: "كرسي" },
-    { scrambled: "ة ع ا س", correct: "ساعة" }, { scrambled: "ه ا ت ف", correct: "هاتف" }
+    { scrambled: "م ك ت ب ة", correct: "مكتبة" }, { scrambled: "ح ا س و ب", correct: "حاسوب" },
+    { scrambled: "م د ر س ة", correct: "مدرسة" }, { scrambled: "ب ر م ج ة", correct: "برمجة" },
+    { scrambled: "ا ل ر ي ا ض", correct: "الرياض" }, { scrambled: "د ي س ك و ر د", correct: "ديسكورد" },
+    { scrambled: "س ي ا ر ة", correct: "سيارة" }, { scrambled: "ط ا ئ ر ة", correct: "طائرة" },
+    { scrambled: "ق م ي ص", correct: "قميص" }, { scrambled: "ج ا م ع ة", correct: "جامعة" },
+    { scrambled: "م ه ن د س", correct: "مهندس" }, { scrambled: "ط ب ي ب", correct: "طبيب" },
+    { scrambled: "ر ي ا ض ي ا ت", correct: "رياضيات" }, { scrambled: "ف ي ز ي ا ء", correct: "فيزياء" },
+    { scrambled: "ت ا ر ي خ", correct: "تاريخ" }, { scrambled: "ج غ ر ا ف ي ا", correct: "جغرافيا" },
+    { scrambled: "م س ت ش ف ى", correct: "مستشفى" }, { scrambled: "م ل ع ب", correct: "ملعب" },
+    { scrambled: "ح د ي ق ة", correct: "حديقة" }, { scrambled: "ش ا ط ئ", correct: "شاطئ" },
+    { scrambled: "ق م ر", correct: "قمر" }, { scrambled: "ش م س", correct: "شمس" },
+    { scrambled: "ن ج و م", correct: "نجوم" }, { scrambled: "م ح ي ط", correct: "محيط" },
+    { scrambled: "ص ح ر ا ء", correct: "صحراء" }, { scrambled: "ج ب ل", correct: "جبل" },
+    { scrambled: "ن ه ر", correct: "نهر" }, { scrambled: "ب ح ر", correct: "بحر" },
+    { scrambled: "س م ا ء", correct: "سماء" }, { scrambled: "ا ر ض", correct: "ارض" },
+    { scrambled: "ق ل م", correct: "قلم" }, { scrambled: "د ف ت ر ي", correct: "دفتري" },
+    { scrambled: "س ب و ر ة", correct: "سبورة" }, { scrambled: "م ف ت ا ح", correct: "مفتاح" },
+    { scrambled: "ب ا ب", correct: "باب" }, { scrambled: "ن ا ف ذ ة", correct: "نافذة" },
+    { scrambled: "ط ا و ل ة", correct: "طاولة" }, { scrambled: "ك ر س ي", correct: "كرسي" },
+    { scrambled: "س ا ع ة", correct: "ساعة" }, { scrambled: "ه ا ت ف", correct: "هاتف" }
 ];
 
 client.once('ready', async () => {
