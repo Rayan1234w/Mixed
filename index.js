@@ -10,7 +10,7 @@ app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
 
-const { Client, GatewayIntentBits, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, SlashCommandBuilder, REST, Routes, PermissionFlagsBits } = require('discord.js');
+const { Client, GatewayIntentBits, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, SlashCommandBuilder, REST, Routes, PermissionFlagsBits, MessageFlags } = require('discord.js');
 const { RockPaperScissors } = require('discord-gamecord');
 
 const client = new Client({
@@ -30,7 +30,6 @@ process.on('uncaughtException', (error) => { console.error(error); });
 // قاعدة البيانات الضخمة (مُصححة بالكامل ومطابقة للحروف)
 // ==========================================
 
-// 1. لعبة فكك
 const fakkData = [
     { word: "مكتبة", spaced: "م ك ت ب ة" }, { word: "حاسوب", spaced: "ح ا س و ب" }, 
     { word: "مدرسة", spaced: "م د ر س ة" }, { word: "برمجة", spaced: "ب ر م ج ة" }, 
@@ -54,7 +53,6 @@ const fakkData = [
     { word: "ساعة", spaced: "س ا ع ة" }, { word: "هاتف", spaced: "ه ا ت ف" }
 ];
 
-// 2. لعبة الأسئلة العامة
 const triviaData = [
     { question: "ما هي عاصمة المملكة العربية السعودية؟", correct: "الرياض", options: ["جدة", "الرياض", "الدمام", "مكة"] },
     { question: "ما هي عاصمة الإمارات العربية المتحدة؟", correct: "أبوظبي", options: ["دبي", "أبوظبي", "الشارقة", "عجمان"] },
@@ -98,7 +96,6 @@ const triviaData = [
     { question: "في اي دولة تقع أهرامات الجيزة؟", correct: "مصر", options: ["السودان", "مصر", "العراق", "المغرب"] }
 ];
 
-// 3. لعبة العواصم
 const cairoData = [
     { country: "فرنسا", capital: "باريس" }, { country: "إيطاليا", capital: "روما" },
     { country: "إسبانيا", capital: "مدريد" }, { country: "ألمانيا", capital: "برلين" },
@@ -122,7 +119,6 @@ const cairoData = [
     { country: "الفلبين", capital: "مانيلا" }, { country: "نيوزيلندا", capital: "ويلينغتون" }
 ];
 
-// 4. لعبة الأعلام
 const flagsData = [
     { country: "فرنسا", flag: "🇫🇷" }, { country: "إيطاليا", flag: "🇮🇹" },
     { country: "إسبانيا", flag: "🇪🇸" }, { country: "ألمانيا", flag: "🇩🇪" },
@@ -141,7 +137,6 @@ const flagsData = [
     { country: "النمسا", flag: "🇦🇹" }, { country: "البرتغال", flag: "🇵🇹" }
 ];
 
-// 5. لعبة ركب الحروف (مُراجعة بالكامل وتطابق الكلمات 100%)
 const rakabData = [
     { scrambled: "م ك ت ب ة", correct: "مكتبة" }, { scrambled: "ح ا س و ب", correct: "حاسوب" },
     { scrambled: "م د ر س ة", correct: "مدرسة" }, { scrambled: "ب ر م ج ة", correct: "برمجة" },
@@ -229,11 +224,11 @@ client.on('interactionCreate', async interaction => {
 
     if (commandName === 'clear') {
         if (!interaction.member.permissions.has(PermissionFlagsBits.ManageMessages)) {
-            return await interaction.reply({ content: '❌ ليس لديك صلاحية لإدارة الرسائل!', ephemeral: true });
+            return await interaction.reply({ content: '❌ ليس لديك صلاحية لإدارة الرسائل!', flags: MessageFlags.Ephemeral });
         }
 
         try {
-            await interaction.deferReply({ ephemeral: true });
+            await interaction.deferReply({ flags: MessageFlags.Ephemeral });
             const fetched = await interaction.channel.messages.fetch({ limit: 100 });
             const messagesToDelete = fetched.filter(msg => !msg.pinned);
             await interaction.channel.bulkDelete(messagesToDelete, true);
@@ -250,7 +245,7 @@ client.on('interactionCreate', async interaction => {
     if (commandName === 'rps') {
         let opponent = interaction.options.getUser('user');
         if (opponent.bot || opponent.id === interaction.user.id) {
-            return await interaction.reply({ content: '❌ لا يمكنك اللعب مع نفسك أو بوت!', ephemeral: true });
+            return await interaction.reply({ content: '❌ لا يمكنك اللعب مع نفسك أو بوت!', flags: MessageFlags.Ephemeral });
         }
 
         const inviteMsg = await interaction.reply({ 
@@ -265,7 +260,7 @@ client.on('interactionCreate', async interaction => {
 
         const col = inviteMsg.createMessageComponentCollector({ time: 60000 });
         col.on('collect', async i => {
-            if (i.user.id !== opponent.id) return await i.reply({ content: '❌ التحدي ليس موجهاً لك!', ephemeral: true });
+            if (i.user.id !== opponent.id) return await i.reply({ content: '❌ التحدي ليس موجهاً لك!', flags: MessageFlags.Ephemeral });
             if (i.customId === 'rps_no') return await i.update({ embeds: [new EmbedBuilder().setTitle('❌ تم رفض التحدي').setColor(0xFF0000)], components: [] });
             col.stop();
             await i.update({ content: '🎮 تبدأ اللعبة الآن...', embeds: [], components: [] });
