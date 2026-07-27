@@ -317,11 +317,15 @@ client.on('interactionCreate', async interaction => {
         const collector = interaction.channel.createMessageCollector({ filter, time: 30000 });
 
         collector.on('collect', m => {
-            if (m.content === targetWord) {
+            if (m.content.trim() === targetWord) {
                 collector.stop();
                 m.reply(`🎉 كفو <@${m.author.id}>! لقد فزت بالسرعة البارقة وكسبت التحدي! ⚡`);
-            } else {
-                m.reply(`❌ خطأ! الكلمة المطلوبة هي: \`${targetWord}\``);
+            }
+        });
+
+        collector.on('end', (collected, reason) => {
+            if (reason === 'time') {
+                interaction.followUp(`⏰ انتهى الوقت! الكلمة المطلوبة كانت: \`${targetWord}\``).catch(() => {});
             }
         });
         return;
@@ -352,8 +356,12 @@ client.on('interactionCreate', async interaction => {
             if (m.content.trim() === q.correct) {
                 collector.stop();
                 m.reply(`✅ إجابة صحيحة وكفو يا <@${m.author.id}>!`);
-            } else {
-                m.reply(`❌ خطأ! الإجابة الصحيحة هي: **${q.correct}**`);
+            }
+        });
+
+        collector.on('end', (collected, reason) => {
+            if (reason === 'time') {
+                interaction.followUp(`⏰ انتهى الوقت! الإجابة الصحيحة كانت: **${q.correct}**`).catch(() => {});
             }
         });
         return;
@@ -378,8 +386,12 @@ client.on('interactionCreate', async interaction => {
             if (cleanUserMsg === cleanTarget) {
                 collector.stop();
                 m.reply(`🎉 كفو <@${m.author.id}>! فككتها وصح عليك.`);
-            } else {
-                m.reply(`❌ خطأ! الإجابة الصحيحة مفككة هكذا: \`${item.spaced}\``);
+            }
+        });
+
+        collector.on('end', (collected, reason) => {
+            if (reason === 'time') {
+                interaction.followUp(`⏰ انتهى الوقت! الإجابة الصحيحة مفككة هكذا: \`${item.spaced}\``).catch(() => {});
             }
         });
         return;
@@ -401,8 +413,12 @@ client.on('interactionCreate', async interaction => {
             if (m.content.trim() === c.capital) {
                 collector.stop();
                 m.reply(`🎉 كفو <@${m.author.id}>! العاصمة الصحيحة هي **${c.capital}**.`);
-            } else {
-                m.reply(`❌ خطأ! الإجابة الصحيحة هي: **${c.capital}**`);
+            }
+        });
+
+        collector.on('end', (collected, reason) => {
+            if (reason === 'time') {
+                interaction.followUp(`⏰ انتهى الوقت! الإجابة الصحيحة هي: **${c.capital}**`).catch(() => {});
             }
         });
         return;
@@ -424,8 +440,12 @@ client.on('interactionCreate', async interaction => {
             if (m.content.trim() === f.country) {
                 collector.stop();
                 m.reply(`🎉 كفو <@${m.author.id}>! الدولة الصحيحة هي **${f.country}** ${f.flag}.`);
-            } else {
-                m.reply(`❌ خطأ! الدولة الصحيحة هي: **${f.country}** ${f.flag}`);
+            }
+        });
+
+        collector.on('end', (collected, reason) => {
+            if (reason === 'time') {
+                interaction.followUp(`⏰ انتهى الوقت! الدولة الصحيحة هي: **${f.country}** ${f.flag}`).catch(() => {});
             }
         });
         return;
@@ -447,8 +467,12 @@ client.on('interactionCreate', async interaction => {
             if (m.content.trim() === r.correct) {
                 collector.stop();
                 m.reply(`🎉 كفو <@${m.author.id}>! الكلمة الصحيحة هي **${r.correct}**.`);
-            } else {
-                m.reply(`❌ خطأ! الكلمة الصحيحة هي: **${r.correct}**`);
+            }
+        });
+
+        collector.on('end', (collected, reason) => {
+            if (reason === 'time') {
+                interaction.followUp(`⏰ انتهى الوقت! الكلمة الصحيحة هي: **${r.correct}**`).catch(() => {});
             }
         });
         return;
