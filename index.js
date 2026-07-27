@@ -98,51 +98,50 @@ const triviaData = [
     { question: "في اي دولة تقع أهرامات الجيزة؟", correct: "مصر", options: ["السودان", "مصر", "العراق", "المغرب"] }
 ];
 
-// 3. لعبة عواصم مع أعلام حقيقية (40 دولة)
+// 3. لعبة العواصم (أسماء الدول نصياً)
 const cairoData = [
-    { country: "فرنسا", flag: "🇫🇷", capital: "باريس" }, 
-    { country: "إيطاليا", flag: "🇮🇹", capital: "روما" },
-    { country: "إسبانيا", flag: "🇪🇸", capital: "مدريد" }, 
-    { country: "ألمانيا", flag: "🇩🇪", capital: "برلين" },
-    { country: "المملكة المتحدة", flag: "🇬🇧", capital: "لندن" }, 
-    { country: "اليابان", flag: "🇯🇵", capital: "طوكيو" },
-    { country: "الصين", flag: "🇨🇳", capital: "بكين" }, 
-    { country: "كوريا الجنوبية", flag: "🇰🇷", capital: "سيول" },
-    { country: "روسيا", flag: "🇷🇺", capital: "موسكو" }, 
-    { country: "الولايات المتحدة", flag: "🇺🇸", capital: "واشنطن" },
-    { country: "كندا", flag: "🇨🇦", capital: "أوتاوا" }, 
-    { country: "البرازيل", flag: "🇧🇷", capital: "برازيليا" },
-    { country: "الأرجنتين", flag: "🇦🇷", capital: "بوينس آيرس" }, 
-    { country: "تركيا", flag: "🇹🇷", capital: "أنقرة" },
-    { country: "اليونان", flag: "🇬🇷", capital: "أثينا" }, 
-    { country: "الهند", flag: "🇮🇳", capital: "نيودلهي" },
-    { country: "باكستان", flag: "🇵🇰", capital: "إسلام آباد" }, 
-    { country: "إيران", flag: "🇮🇷", capital: "طهران" },
-    { country: "أستراليا", flag: "🇦🇺", capital: "كانبيرا" }, 
-    { country: "جنوب أفريقيا", flag: "🇿🇦", capital: "بريتوريا" },
-    { country: "المكسيك", flag: "🇲🇽", capital: "مكسيكو سيتي" }, 
-    { country: "السويد", flag: "🇸🇪", capital: "ستوكهولم" },
-    { country: "النرويج", flag: "🇳🇴", capital: "أوسلو" }, 
-    { country: "فنتلندا", flag: "🇫🇮", capital: "هلسنكي" },
-    { country: "الدنمارك", flag: "🇩🇰", capital: "كوبنهاغن" }, 
-    { country: "هولندا", flag: "🇳🇱", capital: "أمستردام" },
-    { country: "بلجيكا", flag: "🇧🇪", capital: "بروكسل" }, 
-    { country: "سويسرا", flag: "🇨🇭", capital: "برن" },
-    { country: "النمسا", flag: "🇦🇹", capital: "فيينا" }, 
-    { country: "البرتغال", flag: "🇵🇹", capital: "لشبونة" },
-    { country: "بولندا", flag: "🇵🇱", capital: "وارسو" }, 
-    { country: "أوكرانيا", flag: "🇺🇦", capital: "كييف" },
-    { country: "المجر", flag: "🇭🇺", capital: "بودابست" }, 
-    { country: "رومانيا", flag: "🇷🇴", capital: "بوخارست" },
-    { country: "إندونيسيا", flag: "🇮🇩", capital: "جاكرتا" }, 
-    { country: "ماليزيا", flag: "🇲🇾", capital: "كوالالمبور" },
-    { country: "تايلاند", flag: "🇹🇭", capital: "بانكوك" }, 
-    { country: "فيتنام", flag: "🇻🇳", capital: "هانوي" },
-    { country: "الفلبين", flag: "🇵🇭", capital: "مانيلا" }, 
-    { country: "نيوزيلندا", flag: "🇳🇿", capital: "ويلينغتون" }
+    { country: "فرنسا", capital: "باريس" }, { country: "إيطاليا", capital: "روما" },
+    { country: "إسبانيا", capital: "مدريد" }, { country: "ألمانيا", capital: "برلين" },
+    { country: "المملكة المتحدة", capital: "لندن" }, { country: "اليابان", capital: "طوكيو" },
+    { country: "الصين", capital: "بكين" }, { country: "كوريا الجنوبية", capital: "سيول" },
+    { country: "روسيا", capital: "موسكو" }, { country: "الولايات المتحدة", capital: "واشنطن" },
+    { country: "كندا", capital: "أوتاوا" }, { country: "البرازيل", capital: "برازيليا" },
+    { country: "الأرجنتين", capital: "بوينس آيرس" }, { country: "تركيا", capital: "أنقرة" },
+    { country: "اليونان", capital: "أثينا" }, { country: "الهند", capital: "نيودلهي" },
+    { country: "باكستان", capital: "إسلام آباد" }, { country: "إيران", capital: "طهران" },
+    { country: "أستراليا", capital: "كانبيرا" }, { country: "جنوب أفريقيا", capital: "بريتوريا" },
+    { country: "المكسيك", capital: "مكسيكو سيتي" }, { country: "السويد", capital: "ستوكهولم" },
+    { country: "النرويج", capital: "أوسلو" }, { country: "فنتلندا", capital: "هلسنكي" },
+    { country: "الدنمارك", capital: "كوبنهاغن" }, { country: "هولندا", capital: "أمستردام" },
+    { country: "بلجيكا", capital: "بروكسل" }, { country: "سويسرا", capital: "برن" },
+    { country: "النمسا", capital: "فيينا" }, { country: "البرتغال", capital: "لشبونة" },
+    { country: "بولندا", capital: "وارسو" }, { country: "أوكرانيا", capital: "كييف" },
+    { country: "المجر", capital: "بودابست" }, { country: "رومانيا", capital: "بوخارست" },
+    { country: "إندونيسيا", capital: "جاكرتا" }, { country: "ماليزيا", capital: "كوالالمبور" },
+    { country: "تايلاند", capital: "بانكوك" }, { country: "فيتنام", capital: "هانوي" },
+    { country: "الفلبين", capital: "مانيلا" }, { country: "نيوزيلندا", capital: "ويلينغتون" }
 ];
 
-// 4. لعبة ركب الحروف (40 جملة)
+// 4. لعبة الأعلام (باستخدام الأعلام الحقيقية)
+const flagsData = [
+    { country: "فرنسا", flag: "🇫🇷" }, { country: "إيطاليا", flag: "🇮🇹" },
+    { country: "إسبانيا", flag: "🇪🇸" }, { country: "ألمانيا", flag: "🇩🇪" },
+    { country: "المملكة المتحدة", flag: "🇬🇧" }, { country: "اليابان", flag: "🇯🇵" },
+    { country: "الصين", flag: "🇨🇳" }, { country: "كوريا الجنوبية", flag: "🇰🇷" },
+    { country: "روسيا", flag: "🇷🇺" }, { country: "الولايات المتحدة", flag: "🇺🇸" },
+    { country: "كندا", flag: "🇨🇦" }, { country: "البرازيل", flag: "🇧🇷" },
+    { country: "الأرجنتين", flag: "🇦🇷" }, { country: "تركيا", flag: "🇹🇷" },
+    { country: "اليونان", flag: "🇬🇷" }, { country: "الهند", flag: "🇮🇳" },
+    { country: "باكستان", flag: "🇵🇰" }, { country: "إيران", flag: "🇮🇷" },
+    { country: "أستراليا", flag: "🇦🇺" }, { country: "جنوب أفريقيا", flag: "🇿🇦" },
+    { country: "المكسيك", flag: "🇲🇽" }, { country: "السويد", flag: "🇸🇪" },
+    { country: "النرويج", flag: "🇳🇴" }, { country: "فنلندا", flag: "🇫🇮" },
+    { country: "الدنمارك", flag: "🇩🇰" }, { country: "هولندا", flag: "🇳🇱" },
+    { country: "بلجيكا", flag: "🇧🇪" }, { country: "سويسرا", flag: "🇨🇭" },
+    { country: "النمسا", flag: "🇦🇹" }, { country: "البرتغال", flag: "🇵🇹" }
+];
+
+// 5. لعبة ركب الحروف (40 جملة)
 const rakabData = [
     { scrambled: "ة ك ت ب", correct: "مكتبة" }, { scrambled: "ب و س ح ا", correct: "حاسوب" },
     { scrambled: "ة ر د م س", correct: "مدرسة" }, { scrambled: "ة ج م ر ب", correct: "برمجة" },
@@ -181,6 +180,7 @@ client.once('ready', async () => {
         new SlashCommandBuilder().setName('اسئلة').setDescription('لعبة الأسئلة العامة'),
         new SlashCommandBuilder().setName('فكك').setDescription('لعبة تفكيك الكلمات'),
         new SlashCommandBuilder().setName('عواصم').setDescription('لعبة تخمين العواصم'),
+        new SlashCommandBuilder().setName('اعلام').setDescription('لعبة تخمين الأعلام'),
         new SlashCommandBuilder().setName('ركب').setDescription('لعبة تركيب الحروف'),
         new SlashCommandBuilder()
             .setName('clear')
@@ -217,6 +217,7 @@ client.on('interactionCreate', async interaction => {
                 { name: '⚡ تحدي السرعة', value: '`/سريع`', inline: true },
                 { name: '🔢 تخمين الرقم', value: '`/تخمين`', inline: true },
                 { name: '🌐 لعبة العواصم', value: '`/عواصم`', inline: true },
+                { name: '🏴 لعبة الأعلام', value: '`/اعلام`', inline: true },
                 { name: '❓ لعبة الأسئلة', value: '`/اسئلة`', inline: true },
                 { name: '🔤 لعبة ركب', value: '`/ركب`', inline: true },
                 { name: '🧩 لعبة فكك', value: '`/فكك`', inline: true }
@@ -387,8 +388,8 @@ client.on('interactionCreate', async interaction => {
     if (commandName === 'عواصم') {
         const c = cairoData[Math.floor(Math.random() * cairoData.length)];
         const embed = new EmbedBuilder()
-            .setTitle('🏛️ لعبة تخمين العواصم')
-            .setDescription(`ما هي عاصمة الدولة التي يمثلها هذا العلم؟ ${c.flag}\nاكتب الإجابة في الشات!`)
+            .setTitle('🌐 لعبة تخمين العواصم')
+            .setDescription(`ما هي عاصمة دولة **${c.country}**؟ اكتب الإجابة في الشات!`)
             .setColor(0x1ABC9C);
         
         await interaction.reply({ embeds: [embed] });
@@ -399,9 +400,32 @@ client.on('interactionCreate', async interaction => {
         collector.on('collect', m => {
             if (m.content.trim() === c.capital) {
                 collector.stop();
-                m.reply(`🎉 كفو <@${m.author.id}>! العاصمة الصحيحة لـ (${c.country} ${c.flag}) هي **${c.capital}**.`);
+                m.reply(`🎉 كفو <@${m.author.id}>! العاصمة الصحيحة هي **${c.capital}**.`);
             } else {
                 m.reply(`❌ خطأ! الإجابة الصحيحة هي: **${c.capital}**`);
+            }
+        });
+        return;
+    }
+
+    if (commandName === 'اعلام') {
+        const f = flagsData[Math.floor(Math.random() * flagsData.length)];
+        const embed = new EmbedBuilder()
+            .setTitle('🏴 لعبة تخمين الأعلام')
+            .setDescription(`ما هي الدولة التي يتبع لها هذا العلم؟ ${f.flag}\nاكتب اسم الدولة في الشات!`)
+            .setColor(0x34495E);
+        
+        await interaction.reply({ embeds: [embed] });
+
+        const filter = m => !m.author.bot;
+        const collector = interaction.channel.createMessageCollector({ filter, time: 30000 });
+
+        collector.on('collect', m => {
+            if (m.content.trim() === f.country) {
+                collector.stop();
+                m.reply(`🎉 كفو <@${m.author.id}>! الدولة الصحيحة هي **${f.country}** ${f.flag}.`);
+            } else {
+                m.reply(`❌ خطأ! الدولة الصحيحة هي: **${f.country}** ${f.flag}`);
             }
         });
         return;
