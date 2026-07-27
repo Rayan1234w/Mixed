@@ -10,7 +10,7 @@ app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
 
-const { Client, GatewayIntentBits, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, SlashCommandBuilder, REST, Routes } = require('discord.js');
+const { Client, GatewayIntentBits, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, SlashCommandBuilder, REST, Routes, PermissionFlagsBits } = require('discord.js');
 const { RockPaperScissors } = require('discord-gamecord');
 
 const client = new Client({
@@ -32,7 +32,7 @@ process.on('uncaughtException', (error) => { console.error(error); });
 
 // 1. لعبة فكك (40 كلمة)
 const fakkData = [
-    { word: "مكتبة", spaced: "م ك ت ب ة" }, { word: "حاسوب", spaced: "ح ا س و ب" }, 
+    { word: "مكتبة", spaced: "م k ت ب ة" }, { word: "حاسوب", spaced: "ح ا س و ب" }, 
     { word: "مدرسة", spaced: "م د ر س ة" }, { word: "برمجة", spaced: "ب ر م ج ة" }, 
     { word: "الرياض", spaced: "ا ل ر ي ا ض" }, { word: "ديسكورد", spaced: "د ي س ك و ر د" },
     { word: "سيارة", spaced: "س ي ا ر ة" }, { word: "طائرة", spaced: "ط ا ئ ر ة" },
@@ -42,7 +42,7 @@ const fakkData = [
     { word: "تاريخ", spaced: "ت ا ر ي خ" }, { word: "جغرافيا", spaced: "ج غ ر ا ف ي ا" },
     { word: "مستشفى", spaced: "م س ت ش ف ى" }, { word: "ملعب", spaced: "م ل ع ب" },
     { word: "حديقة", spaced: "ح د ي ق ة" }, { word: "شاطئ", spaced: "ش ا ط ئ" },
-    { word: "قممر", spaced: "ق م ر" }, { word: "شمس", spaced: "ش م س" },
+    { word: "قمر", spaced: "ق م ر" }, { word: "شمس", spaced: "ش م س" },
     { word: "نجوم", spaced: "ن ج و م" }, { word: "محيط", spaced: "م ح ي ط" },
     { word: "صحراء", spaced: "ص ح ر ا ء" }, { word: "جبل", spaced: "ج ب ل" },
     { word: "نهر", spaced: "ن ه ر" }, { word: "بحر", spaced: "ب ح ر" },
@@ -162,7 +162,10 @@ client.once('ready', async () => {
         new SlashCommandBuilder().setName('فكك').setDescription('لعبة تفكيك الكلمات'),
         new SlashCommandBuilder().setName('عواصم').setDescription('لعبة تخمين العواصم'),
         new SlashCommandBuilder().setName('ركب').setDescription('لعبة تركيب الحروف'),
-        new SlashCommandBuilder().setName('مسح').setDescription('حذف الرسائل في الشات مع إبقاء الرسائل المثبتة فقط')
+        new SlashCommandBuilder()
+            .setName('clear')
+            .setDescription('مسح رسائل الشات الحالية')
+            .setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages)
     ].map(command => command.toJSON());
 
     const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);
@@ -187,7 +190,7 @@ client.on('interactionCreate', async interaction => {
     if (commandName === 'help') {
         const helpEmbed = new EmbedBuilder()
             .setTitle('🎮 قائمة ألعاب وبوت التفاعلية والأوامر')
-            .setDescription('اختر لعبتك المفضلة أو الأمر واكتبه في الشات (كل لعبة تحتوي على 40 سؤالاً/جملة متجددة!):')
+            .setDescription('اختر لعبتك المفضلة أو الأمر (كل لعبة تحتوي على 40 سؤالاً/جملة متجددة!):')
             .addFields(
                 { name: '✂️ حجر ورق مقص', value: '`/rps`', inline: true },
                 { name: '🎰 الحظ السعيد', value: '`/حظ`', inline: true },
@@ -197,30 +200,29 @@ client.on('interactionCreate', async interaction => {
                 { name: '❓ لعبة الأسئلة', value: '`/اسئلة`', inline: true },
                 { name: '🔤 لعبة ركب', value: '`/ركب`', inline: true },
                 { name: '🧩 لعبة فكك', value: '`/فكك`', inline: true },
-                { name: '🧹 مسح الشات', value: '`/مسح`', inline: true }
+                { name: '🧹 مسح الرسائل', value: '`/clear`', inline: true }
             )
             .setColor(0x00AE86)
             .setTimestamp();
         return await interaction.reply({ embeds: [helpEmbed] });
     }
 
-    if (commandName === 'مسح') {
-        if (!interaction.member.permissions.has('ManageMessages')) {
-            return await interaction.reply({ content: '❌ ليس لديك صلاحية لإدارة الرسائل (Manage Messages)!', ephemeral: true });
+    if (commandName === 'clear') {
+        if (!interaction.member.permissions.has(PermissionFlagsBits.ManageMessages)) {
+            return await interaction.reply({ content: '❌ ليس لديك صلاحية لإدارة الرسائل!', ephemeral: true });
         }
 
-        await interaction.deferReply({ ephemeral: true });
-
         try {
+            await interaction.deferReply({ ephemeral: true });
             const fetched = await interaction.channel.messages.fetch({ limit: 100 });
-            // فلترة الرسائل لحذف غير المثبتة فقط
             const messagesToDelete = fetched.filter(msg => !msg.pinned);
-            
             await interaction.channel.bulkDelete(messagesToDelete, true);
-            await interaction.editReply(`✅ تم تنظيف الشات بنجاح مع الإبقاء على الرسائل المثبتة!`);
+            await interaction.editReply({ content: '✅ تم مسح الرسائل بنجاح!' });
         } catch (error) {
             console.error(error);
-            await interaction.editReply(`❌ حدث خطأ أثناء مسح الرسائل (تأكد أن الرسائل ليست أقدم من أسبوعين).`);
+            if (interaction.deferred) {
+                await interaction.editReply({ content: '❌ حدث خطأ أثناء مسح الرسائل (تأكد أن الرسائل ليست أقدم من أسبوعين).' });
+            }
         }
         return;
     }
