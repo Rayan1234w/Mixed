@@ -56,6 +56,16 @@ client.once('ready', async () => {
     }
 });
 
+// الرد التلقائي عند منشن البوت مع عبارة "انت موجود"
+client.on('messageCreate', async message => {
+    if (message.author.bot) return;
+
+    // التحقق مما إذا كان المنشن موجهاً للبوت والرسالة تحتوي على "انت موجود"
+    if (message.mentions.has(client.user) && message.content.includes('انت موجود')) {
+        await message.reply('اي موجود');
+    }
+});
+
 client.on('interactionCreate', async interaction => {
     if (!interaction.isChatInputCommand()) return;
 
