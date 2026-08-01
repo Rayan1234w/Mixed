@@ -1,12 +1,13 @@
 {
   "name": "Mixed",
   "version": "1.0.0",
-  "description": "Discord Bot",
+  "description": "Discord Bot / بوت ديسكورد",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
   "dependencies": {
+    "canvas": "^2.11.2",
     "discord.js": "^14.14.1",
     "express": "^4.19.2"
   }
