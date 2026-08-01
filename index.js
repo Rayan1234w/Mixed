@@ -89,7 +89,7 @@ client.once('ready', async () => {
     const commands = [
         new SlashCommandBuilder().setName('help').setDescription('عرض قائمة ألعاب وبوت التفاعلية والأوامر'),
         new SlashCommandBuilder().setName('nitro').setDescription('عرض بطاقة المهام والبروفايل الخاصة بك'),
-        new SlashCommandBuilder().setName('نترو').setDescription('عرض بطاقة المهام والبروفايل الخاصة بك'),
+        new SlashCommandBuilder().setName('نيترو').setDescription('عرض بطاقة المهام والبروفايل الخاصة بك'),
         new SlashCommandBuilder()
             .setName('rps')
             .setDescription('لعبة حجر ورق مقص مع شخص آخر')
@@ -122,7 +122,7 @@ client.once('ready', async () => {
     }
 });
 
-// دالة لتوليد بطاقة بروفايل المهام (تشبه الصورة المطلوبة)
+// دالة لتوليد بطاقة بروفايل المهام
 async function createNitroCard(user) {
     const canvas = createCanvas(800, 450);
     const ctx = canvas.getContext('2d');
@@ -136,7 +136,7 @@ async function createNitroCard(user) {
     ctx.lineWidth = 2;
     ctx.strokeRect(20, 20, canvas.width - 40, canvas.height - 40);
 
-    // جلب صورة بروفايل المستخدم وتدلياتها الدائرية
+    // جلب صورة بروفايل المستخدم
     const avatarURL = user.displayAvatarURL({ extension: 'png', size: 256 });
     const avatar = await loadImage(avatarURL);
 
@@ -169,7 +169,7 @@ async function createNitroCard(user) {
     ctx.lineTo(650, 300);
     ctx.stroke();
 
-    // رسم بعض نقاط المستويات
+    // رسم نقاط المستويات
     const nodes = [150, 230, 310, 390, 470, 550, 630];
     nodes.forEach((x, index) => {
         ctx.beginPath();
@@ -203,7 +203,7 @@ client.on('interactionCreate', async interaction => {
             .setTitle('🎮 قائمة ألعاب وبوت التفاعلية والأوامر')
             .setDescription('اختر لعبتك المفضلة أو الأمر:')
             .addFields(
-                { name: '🎟️ عرض بطاقة المهام', value: '`/nitro` أو `/نترو`', inline: true },
+                { name: '🎟️ عرض بطاقة المهام', value: '`/nitro` أو `/نيترو`', inline: true },
                 { name: '✂️ حجر ورق مقص', value: '`/rps`', inline: true },
                 { name: '🎰 الحظ السعيد', value: '`/حظ`', inline: true },
                 { name: '⚡ تحدي السرعة', value: '`/سريع`', inline: true },
@@ -277,8 +277,6 @@ client.on('interactionCreate', async interaction => {
         });
         return;
     }
-
-    // بقية الألعاب (تخمين، سريع، حظ، اسئلة، فكك، عواصم، اعلام، ركب) تعمل كما هي في كودك السابق...
 });
 
 client.login(process.env.TOKEN);
