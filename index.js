@@ -89,6 +89,7 @@ client.once('ready', async () => {
     const commands = [
         new SlashCommandBuilder().setName('help').setDescription('عرض قائمة ألعاب وبوت التفاعلية والأوامر'),
         new SlashCommandBuilder().setName('nitro').setDescription('عرض بطاقة المهام والبروفايل الخاصة بك'),
+        new SlashCommandBuilder().setName('نترو').setDescription('عرض بطاقة المهام والبروفايل الخاصة بك'),
         new SlashCommandBuilder()
             .setName('rps')
             .setDescription('لعبة حجر ورق مقص مع شخص آخر')
@@ -202,7 +203,7 @@ client.on('interactionCreate', async interaction => {
             .setTitle('🎮 قائمة ألعاب وبوت التفاعلية والأوامر')
             .setDescription('اختر لعبتك المفضلة أو الأمر:')
             .addFields(
-                { name: '🎟️ عرض بطاقة المهام', value: '`/nitro`', inline: true },
+                { name: '🎟️ عرض بطاقة المهام', value: '`/nitro` أو `/نترو`', inline: true },
                 { name: '✂️ حجر ورق مقص', value: '`/rps`', inline: true },
                 { name: '🎰 الحظ السعيد', value: '`/حظ`', inline: true },
                 { name: '⚡ تحدي السرعة', value: '`/سريع`', inline: true },
@@ -218,7 +219,7 @@ client.on('interactionCreate', async interaction => {
         return await interaction.reply({ embeds: [helpEmbed] });
     }
 
-    if (commandName === 'nitro') {
+    if (commandName === 'nitro' || commandName === 'نيترو') {
         await interaction.deferReply();
         try {
             const buffer = await createNitroCard(interaction.user);
